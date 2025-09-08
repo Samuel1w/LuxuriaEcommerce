@@ -1,0 +1,97 @@
+<div class="learn-container">
+  <!-- Hero Section -->
+  <section class="hero" style="text-align: center;">
+    <h1>Master the Art of Importation with <br> Luxuria_Imports</h1>
+    <p style="text-align: center;">Step into a world of wealth, independence, and opportunity. Let us take you from <br> beginner to pro importer — with real-time experience, mentorship, and guidance <br> that brings results.</p>
+    <button class="cta-button" (click)="joinWhatsAppCommunity()">Join Our WhatsApp Community</button>
+  </section>
+
+  <!-- Section 1: Luxuria Imports Flyer -->
+  <section class="flyer-section flyer-1">
+    <div class="flyer-placeholder">
+        <img style="width: 350px; height: auto;" src="assets/imports7.jpeg" alt="">
+    </div>
+    <div class="flyer-text">
+      <h2>Who We Are</h2>
+      <p>Luxuria_Imports is your go-to gateway for everything importation. From shipping assistance to product sourcing, we've helped over 300 clients get their goods safely and affordably from China, Turkey, Dubai and more. We pride ourselves in authenticity, speed, and trust. Learn from the very best in the business.</p>
+    </div>
+  </section>
+
+  <!-- Section 2: Importation Class Flyer -->
+  <section class="flyer-section flyer-2">
+    <div class="flyer-placeholder"><img style="width: 350px; height: auto;" src="assets/imports4.jpeg" alt=""></div>
+    <div class="flyer-text">
+      <h2>Learn Importation with Us</h2>
+      <p>This isn’t just a class — it’s a life-changing opportunity. Gain access to our tools, sourcing methods, shipping secrets, and vetted supplier lists. Whether you want to import fashion, electronics, hair, gadgets, or skincare — we guide you on it all. Zero experience required!</p>
+    </div>
+  </section>
+
+  <!-- Section 3: Our Services Flyer -->
+  <section class="flyer-section flyer-3">
+    <div class="flyer-placeholder"><img style="width: 450px; height: 490px;" src="assets/imports3.jpeg" alt=""></div>
+    <div class="flyer-text">
+      <h2>What You Get</h2>
+      <ul>
+        <li>✅ Lifetime access to mentorship</li>
+        <li>✅ Training on China, Turkey, Nigeria & US importation</li>
+        <li>✅ Supplier & agent contact list</li>
+        <li>✅ VIP WhatsApp group access</li>
+        <li>✅ Product ideas and how to find best-sellers</li>
+        <li>✅ Free shipping cost calculator & product tracker</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section: Registration Form -->
+  <section class="registration-section">
+    <h2>Register to Learn Importation</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" formControlName="fullName" placeholder="Enter your full name"/>
+        <div class="error" *ngIf="isSubmitted && registrationForm.get('fullName')?.invalid">Name is required</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" formControlName="email" placeholder="Enter your email"/>
+        <div class="error" *ngIf="isSubmitted && registrationForm.get('email')?.invalid">Valid email required</div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" formControlName="phone" placeholder="Enter your phone number"/>
+        <div class="error" *ngIf="isSubmitted && registrationForm.get('phone')?.invalid">Phone number is required</div>
+      </div>
+
+      <div class="form-group">
+        <label for="interest">What Do You Want to Import?</label>
+        <input type="text" id="interest" formControlName="interest" placeholder="e.g. Clothes, gadgets, shoes..."/>
+        <div class="error" *ngIf="isSubmitted && registrationForm.get('interest')?.invalid">This field is required</div>
+      </div>
+
+      <div class="form-group">
+        <label for="preferredTime">Preferred Class Time</label>
+        <select id="preferredTime" formControlName="preferredTime">
+          <option value="">Select preferred time</option>
+          <option value="Morning">Morning</option>
+          <option value="Afternoon">Afternoon</option>
+          <option value="Evening">Evening</option>
+        </select>
+        <div class="error" *ngIf="isSubmitted && registrationForm.get('preferredTime')?.invalid">Select a time</div>
+      </div>
+
+      <button type="submit" class="submit-btn">Register Now</button>
+    </form>
+  </section>
+
+  <!-- Encouraging Section -->
+  <section class="motivation">
+    <h2>Why You Shouldn’t Miss This</h2>
+    <p>Importation is a goldmine. But you need the right tools and guidance to unlock it. With Luxuria_Imports, you’re not just signing up for a class — you’re enrolling into a lifelong money-making journey. Let us show you how!</p>
+    <button (click)="joinWhatsAppCommunity()" class="cta-button">Join WhatsApp Class Group</button>
+  </section>
+
+
+ 
+</div>

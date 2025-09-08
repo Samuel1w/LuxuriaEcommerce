@@ -1,0 +1,43 @@
+<div class="admin-blog-container">
+  <h2>Luxuria Empire Blog Management</h2>
+
+  <form class= "blog-form" (ngSubmit)="submitBlog()" #blogForm="ngForm" enctype="multipart/form-data">
+  <input type="text" placeholder="Title" [(ngModel)]="blog.title" name="title" required>
+  <input type="text" placeholder="Excerpt" [(ngModel)]="blog.excerpt" name="excerpt" required>
+  <textarea placeholder="Content" [(ngModel)]="blog.content" name="content" required></textarea>
+  <input type="file" (change)="onFileSelected($event)" name="image">
+  <input type="text" placeholder="Author" [(ngModel)]="blog.author" name="author" required>
+  <input type="text" placeholder="Category" [(ngModel)]="blog.category" name="category" required>
+  <button type="submit">{{ editMode ? 'Update Blog' : 'Add Blog' }}</button>
+</form>
+
+  <div class="table-wrapper">
+    <table class="blogs-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Excerpt</th>
+          <th>Author</th>
+          <th>Category</th>
+          <th>Date Published</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let b of blogs">
+          <td>{{ b.id }}</td>
+          <td>{{ b.title }}</td>
+          <td>{{ b.excerpt }}</td>
+          <td>{{ b.author }}</td>
+          <td>{{ b.category }}</td>
+          <td>{{ b.date_published | date:'short' }}</td>
+          <td>
+            <button class="edit-btn" (click)="editBlog(b)">Edit</button>
+            <button class="delete-btn" (click)="deleteBlog(b.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

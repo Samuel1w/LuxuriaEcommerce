@@ -1,0 +1,58 @@
+<div class="admin-layout" [class.sidebar-open]="sidebarOpen">
+  <!-- Sidebar (off-canvas on mobile) -->
+  <aside class="sidebar" [class.open]="sidebarOpen" aria-label="Admin navigation">
+    <!-- Close Button (only visible on mobile) -->
+    <button class="close-btn" (click)="closeSidebar()" aria-label="Close menu">✕</button>
+
+    <div class="logo">
+      <img src="assets/luxEmpire.jpeg" alt="Luxuria Logo" />
+      <h2>Luxuria Empire</h2>
+    </div>
+
+    <nav>
+      <a routerLink="dashboard" routerLinkActive="active">📊 Dashboard</a>
+      <a routerLink="product" routerLinkActive="active">🛍 Products</a>
+      <a routerLink="order" routerLinkActive="active">📦 Orders</a>
+      <a routerLink="Apay" routerLinkActive="active">💳 Finace Keeper</a>
+      <a routerLink="deliveries" routerLinkActive="active">🚚 Deliveries</a>
+      <a routerLink="refunds" routerLinkActive="active">💸 Refunds</a>
+      <a routerLink="events" routerLinkActive="active">🎉 Events</a>
+      <a routerLink="blo" routerLinkActive="active">📝 Blog Upload</a>
+      <a routerLink="Class" routerLinkActive="active">🎓 Importation Students</a>
+      <a routerLink="mus" routerLinkActive="active">🎶 Music Students</a>
+      <a routerLink="tech-students" routerLinkActive="active">💻 Tech Students</a>
+      <a routerLink="note" routerLinkActive="active">🔔 Notifications</a>
+      <a routerLink="b-craft" routerLinkActive="active">🎨 BTS Crafts</a>
+      <a routerLink="b-import" routerLinkActive="active">🌍 BTS Imports</a>
+      <a routerLink="cont" routerLinkActive="active">📞 Contacts</a>
+    </nav>
+  </aside>
+
+  <!-- Backdrop (mobile only, appears when sidebar is open) -->
+  <div class="backdrop" *ngIf="sidebarOpen" (click)="closeSidebar()" aria-hidden="true"></div>
+
+  <!-- Main Content -->
+  <div class="content-area">
+    <header class="header">
+      <!-- Hamburger Menu (only visible on mobile) -->
+      <button class="menu-btn" (click)="toggleSidebar()" aria-label="Open menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <div class="welcome">
+        <h1>👑 Welcome, Admin</h1>
+        <p>Rule your empire with elegance & power</p>
+      </div>
+
+      <div class="profile">
+        <img src="assets/admin-avatar.png" alt="Admin avatar" />
+      </div>
+    </header>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

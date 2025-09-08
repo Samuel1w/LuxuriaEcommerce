@@ -1,0 +1,77 @@
+.admin-container {
+  padding: 40px;
+  background: linear-gradient(135deg, #0a043c, #3b0a45);
+  color: #f7f1ff;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffd700; /* royal gold */
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+.search-box {
+  padding: 10px 15px;
+  margin-bottom: 25px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.students-table th, .students-table td {
+  padding: 15px 20px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.students-table th {
+  background: rgba(255,215,0,0.2); /* subtle golden header */
+  color: #ffd700;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.students-table tr:hover {
+  background: rgba(255,215,0,0.1);
+  transform: scale(1.02);
+  transition: 0.3s;
+}
+
+.delete-btn {
+  padding: 8px 15px;
+  background-color: #ff0044;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.delete-btn:hover {
+  background-color: #ff1a66;
+  transform: scale(1.05);
+  transition: 0.2s;
+}

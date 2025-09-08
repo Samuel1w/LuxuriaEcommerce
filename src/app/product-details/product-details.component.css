@@ -1,0 +1,101 @@
+.product-details {
+  padding: 60px 10%;
+  background: linear-gradient(135deg, #fefcfb, #f9f6f1);
+  font-family: 'Cinzel', serif;
+}
+
+.details-container {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Image styling */
+.image-gallery {
+  flex: 1;
+  max-width: 500px;
+  border: 5px solid #d4af37;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.main-image {
+  width: 100%;
+  transition: transform 0.5s ease;
+}
+
+.main-image:hover {
+  transform: scale(1.05);
+}
+
+/* Info panel */
+.info-panel {
+  flex: 1;
+  min-width: 300px;
+}
+
+.product-title {
+  font-size: 2.5rem;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(to right, #d4af37, #b8860b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.product-price {
+  font-size: 2rem;
+  color: #b8860b;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.product-desc {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+/* Extra info */
+.extra-info p {
+  font-size: 1rem;
+  margin: 5px 0;
+  color: #333;
+}
+
+/* Buttons */
+.actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.royal-btn {
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #d4af37, #b8860b);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.royal-btn:hover {
+  background: linear-gradient(45deg, #b8860b, #d4af37);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.pre-order {
+  background: linear-gradient(45deg, #6a1b9a, #9c27b0);
+}
+
+.pre-order:hover {
+  background: linear-gradient(45deg, #9c27b0, #6a1b9a);
+}

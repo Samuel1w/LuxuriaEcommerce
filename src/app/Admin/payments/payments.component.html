@@ -1,0 +1,92 @@
+<div class="finance-dashboard">
+  <h1>💎 Luxuria Empire Finance Management</h1>
+
+  <!-- Cash In -->
+  <section class="section cashin">
+    <h2>💰 Cash In</h2>
+    <form (ngSubmit)="editingRecord ? updateRecord() : addRecord()">
+      <input [(ngModel)]="newRecord.name" name="name" placeholder="Name" required/>
+      <input [(ngModel)]="newRecord.purpose" name="purpose" placeholder="Purpose" required/>
+      <input type="number" [(ngModel)]="newRecord.amount" name="amount" placeholder="Amount" required/>
+      <button type="submit">Add Cash In</button>
+    </form>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Name</th><th>Purpose</th><th>Amount</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of cashIn; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{r.name}}</td>
+          <td>{{r.purpose}}</td>
+          <td>{{r.amount }}frs</td>
+          <td>
+            <button (click)="editRecord(r)">Edit</button>
+            <button (click)="deleteRecord(r.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="total">Total Cash In: {{totals.cashIn }}frs</div>
+  </section>
+
+  <!-- Expenses -->
+  <section class="section expenses">
+    <h2>💸 Expenses</h2>
+    <form (ngSubmit)="editingRecord ? updateRecord() : addRecord()">
+      <input [(ngModel)]="newRecord.name" name="name" placeholder="Name" required/>
+      <input [(ngModel)]="newRecord.purpose" name="purpose" placeholder="Purpose" required/>
+      <input type="number" [(ngModel)]="newRecord.amount" name="amount" placeholder="Amount" required/>
+      <button type="submit">Add Expense</button>
+    </form>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Name</th><th>Purpose</th><th>Amount</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of expenses; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{r.name}}</td>
+          <td>{{r.purpose}}</td>
+          <td>{{r.amount }}frs</td>
+          <td>
+            <button (click)="editRecord(r)">Edit</button>
+            <button (click)="deleteRecord(r.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="total">Total Expenses: {{totals.expenses }}frs</div>
+  </section>
+
+  <!-- Investments -->
+  <section class="section investments">
+    <h2>📈 Investments</h2>
+    <form (ngSubmit)="editingRecord ? updateRecord() : addRecord()">
+      <input [(ngModel)]="newRecord.name" name="name" placeholder="Name" required/>
+      <input [(ngModel)]="newRecord.purpose" name="purpose" placeholder="Purpose" required/>
+      <input type="number" [(ngModel)]="newRecord.amount" name="amount" placeholder="Amount" required/>
+      <input type="number" [(ngModel)]="newRecord.returns" name="returns" placeholder="Returns"/>
+      <button type="submit">Add Investment</button>
+    </form>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Name</th><th>Purpose</th><th>Amount</th><th>Returns</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of investments; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{r.name}}</td>
+          <td>{{r.purpose}}</td>
+          <td>{{r.amount }}frs</td>
+          <td>{{r.returns}}frs</td>
+          <td>
+            <button (click)="editRecord(r)">Edit</button>
+            <button (click)="deleteRecord(r.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="total">Total Investments: {{totals.investments }}frs (Returns: {{totals.returns }}frs)</div>
+  </section>
+</div>

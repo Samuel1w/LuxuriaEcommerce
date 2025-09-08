@@ -1,0 +1,23 @@
+<div class="behind-container">
+  <h3 class="section-title">Behind the Scenes — {{ type | titlecase }}</h3>
+
+  <div *ngIf="loading">Loading…</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div class="videos-grid">
+    <div class="video-card" *ngFor="let item of items">
+      <h4>{{ item.title }}</h4>
+      <p>{{ item.description }}</p>
+
+      <!-- build full url -->
+      <video
+        controls
+        [attr.src]="(item.video_url.startsWith('http') ? item.video_url : ('http://localhost:5000' + item.video_url))"
+        preload="none"
+        playsinline
+      ></video>
+
+      <div class="meta">{{ item.created_at | date:'medium' }}</div>
+    </div>
+  </div>
+</div>

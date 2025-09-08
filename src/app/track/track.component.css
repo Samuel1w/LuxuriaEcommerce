@@ -1,0 +1,257 @@
+/* ================= Track Order Page ================= */
+.track-order-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fff;
+  color: #1e1e1e;
+}
+
+/* Title */
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #6a0dad;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Tracking Form */
+.tracking-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.tracking-form input[type="text"] {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 300px;
+  max-width: 100%;
+}
+.tracking-form button {
+  padding: 12px 25px;
+  background: linear-gradient(90deg, #6a0dad, #ffd700);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.tracking-form button:hover {
+  transform: scale(1.05);
+}
+
+/* Status Cards */
+.status-cards {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+.status-card {
+  flex: 1 1 200px;
+  margin: 10px;
+  background: #6a0dad;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  min-width: 150px;
+}
+.status-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+.status-card p {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* Orders Table */
+.table-wrapper {
+  overflow-x: auto; /* Enable horizontal scroll */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  min-width: 650px; /* Force scroll on small screens */
+}
+.orders-table th, .orders-table td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: center;
+}
+.orders-table th {
+  background: #6a0dad;
+  color: #fff;
+  font-weight: 600;
+}
+.orders-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+.orders-table tr:hover {
+  background: #f0e6ff;
+}
+
+/* Buttons */
+.delivery-btn, .refund-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.delivery-btn {
+  background: #ffd700;
+  color: #6a0dad;
+}
+.delivery-btn:hover:not([disabled]) {
+  transform: scale(1.05);
+}
+.refund-btn {
+  background: #6a0dad;
+  color: #ffd700;
+}
+.refund-btn:hover:not([disabled]) {
+  transform: scale(1.05);
+}
+
+/* Popup Forms */
+.form-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 25px 35px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 1000;
+  width: 90%;
+  max-width: 450px;
+}
+.form-popup h3 {
+  text-align: center;
+  color: #6a0dad;
+  margin-bottom: 15px;
+}
+.form-popup input, .form-popup textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+.form-popup button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  background: linear-gradient(90deg, #6a0dad, #ffd700);
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.form-popup button:hover {
+  transform: scale(1.05);
+}
+
+/* Confirmation Popup */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #6a0dad;
+  color: #fff;
+  padding: 25px 35px;
+  border-radius: 15px;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+.popup button {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #ffd700;
+  color: #6a0dad;
+  font-weight: 600;
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+    text-align: left;
+  }
+  .tracking-form {
+    justify-content: left;
+  }
+  .tracking-form input[type="text"] {
+    width: 150px;
+  }
+
+  .status-cards {
+    flex-direction: column;
+    align-items: flex-start; /* align left */
+  }
+
+  .status-card {
+    width: 50%;
+    margin: 8px 0;
+    padding: 10px 15px;
+  }
+
+  .orders-table th, .orders-table td {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+  }
+
+  .track-order-container {
+    padding: 20px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tracking-form {
+    flex-direction: column;
+    align-items: flex-start; /* align left */
+  }
+
+  .tracking-form input[type="text"],
+  .tracking-form button {
+    width: 100%;
+  }
+
+  .status-card {
+    width: 100%;
+    min-width: unset;
+    margin: 6px 0;
+  }
+
+  .orders-table th, .orders-table td {
+    font-size: 0.75rem;
+    padding: 6px 8px;
+  }
+
+  .track-order-container {
+    padding: 15px 8px;
+  }
+}

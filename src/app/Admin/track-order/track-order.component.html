@@ -1,0 +1,92 @@
+<div class="admin-orders-container">
+
+  <!-- Add Order Form -->
+  <section class="form-card">
+    <h2>➕ Upload Order</h2>
+    <form (ngSubmit)="addOrder()">
+      <input type="text" placeholder="Name" [(ngModel)]="newOrder.name" name="name" required>
+      <input type="text" placeholder="Phone Number" [(ngModel)]="newOrder.phone" name="phone" required>
+      <input type="number" placeholder="Amount" [(ngModel)]="newOrder.amount" name="amount" required>
+      <input type="number" placeholder="Number of Items" [(ngModel)]="newOrder.numItems" name="numItems" required>
+
+      <select [(ngModel)]="newOrder.category" name="category" required>
+        <option value="">Select Category</option>
+        <option value="imports">Imports</option>
+        <option value="craft">Crafts</option>
+      </select>
+
+      <select [(ngModel)]="newOrder.type" name="type" required>
+        <option value="">Select Type</option>
+        <option value="available">Available</option>
+        <option value="preorder">Preorder</option>
+      </select>
+
+      <button type="submit">✨ Add Order</button>
+    </form>
+  </section>
+
+  <!-- Orders Table -->
+  <section class="orders-table-section">
+    <h2>📦 All Orders</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Tracking</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Amount</th>
+          <th>Items</th>
+          <th>Category</th>
+          <th>Type</th>
+          <th>Date Ordered</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{order.trackingnumber}}</td>
+          <td>{{order.name}}</td>
+          <td>{{order.phone}}</td>
+          <td>{{order.amount}}</td>
+          <td>{{order.num_items}}</td>
+          <td>{{order.category}}</td>
+          <td>{{order.type}}</td>
+          <td>{{ order.date_ordered | date:'short' }}</td>
+          <td>
+            <select [(ngModel)]="order.status" (change)="changeStatus(order, order.status)">
+              <option *ngFor="let s of statuses" [value]="s">{{s}}</option>
+            </select>
+          </td>
+          <td>
+            <button (click)="editOrder(order)">✏ Edit</button>
+            <button (click)="deleteOrder(order.id)">🗑 Delete</button>
+          </td>
+        </tr>
+
+        <!-- Inline editing -->
+        <tr *ngIf="editingOrder">
+          <td colspan="9">
+            <form (ngSubmit)="updateOrder()">
+              <input type="text" [(ngModel)]="editingOrder.name" name="editName">
+              <input type="text" [(ngModel)]="editingOrder.phone" name="editPhone">
+              <input type="number" [(ngModel)]="editingOrder.amount" name="editAmount">
+              <input type="number" [(ngModel)]="editingOrder.numItems" name="editNumItems">
+              <select [(ngModel)]="editingOrder.category" name="editCategory">
+                <option value="imports">Imports</option>
+                <option value="craft">Crafts</option>
+              </select>
+              <select [(ngModel)]="editingOrder.type" name="editType">
+                <option value="available">Available</option>
+                <option value="preorder">Preorder</option>
+              </select>
+              <button type="submit">💾 Save</button>
+              <button type="button" (click)="editingOrder=null">❌ Cancel</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>

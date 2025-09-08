@@ -1,0 +1,93 @@
+<div class="products-admin">
+
+  <!-- Add Product Form -->
+  <section class="form-card">
+    <h2>➕ Add New Product</h2>
+    <form (ngSubmit)="addProduct()" enctype="multipart/form-data">
+      <div class="form-grid">
+        <input type="text" placeholder="👑 Product Name" [(ngModel)]="newProduct.name" name="name" required />
+        <input type="text" placeholder="📜 Description" [(ngModel)]="newProduct.description" name="description" required />
+        <input type="number" placeholder="💰 Price" [(ngModel)]="newProduct.price" name="price" required />
+
+        <!-- Category Dropdown -->
+        <select [(ngModel)]="newProduct.category" name="category" required>
+          <option *ngFor="let cat of categories" [value]="cat">{{ cat | titlecase }}</option>
+        </select>
+
+        <!-- Type Dropdown -->
+        <select [(ngModel)]="newProduct.type" name="type" required>
+          <option *ngFor="let t of types" [value]="t">{{ t | titlecase }}</option>
+        </select>
+
+        <!-- File Upload -->
+        <input type="file" (change)="onFileSelected($event)" name="image" accept="image/*" />
+      </div>
+      <button type="submit" class="btn-add">✨ Add Product</button>
+    </form>
+  </section>
+
+  <!-- Products List -->
+  <section class="products-table-section">
+    <h2>📦 All Products</h2>
+    <div class="table-wrapper">
+      <table class="products-table">
+        <thead>
+          <tr>
+            <th>Preview</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price (USD)</th>
+            <th>Category</th>
+            <th>Type</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Show products -->
+          <tr *ngFor="let product of products">
+            <td><img [src]="'http://localhost:5000/' + product.image_url"  alt="{{ product.name }}" class="thumb" /></td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price }}frs</td>
+            <td>{{ product.category | titlecase }}</td>
+            <td>{{ product.type | titlecase }}</td>
+            <td class="actions">
+              <button class="btn-edit" (click)="editProduct(product)">✏ Edit</button>
+              <button class="btn-delete" (click)="deleteProduct(product.id)">🗑 Delete</button>
+            </td>
+          </tr>
+
+          <!-- Inline editing -->
+          <tr *ngIf="editingProduct">
+            <td colspan="7">
+              <form (ngSubmit)="updateProduct()" class="edit-form" enctype="multipart/form-data">
+                <input type="text" [(ngModel)]="editingProduct.name" name="editName" placeholder="Name" />
+                <input type="text" [(ngModel)]="editingProduct.description" name="editDesc" placeholder="Description" />
+                <input type="number" [(ngModel)]="editingProduct.price" name="editPrice" placeholder="Price" />
+
+                <select [(ngModel)]="editingProduct.category" name="editCategory">
+                  <option *ngFor="let cat of categories" [value]="cat">{{ cat | titlecase }}</option>
+                </select>
+
+                <select [(ngModel)]="editingProduct.type" name="editType">
+                  <option *ngFor="let t of types" [value]="t">{{ t | titlecase }}</option>
+                </select>
+
+                <input type="file" (change)="onEditFileSelected($event)" name="editImage" accept="image/*" />
+                <button type="submit" class="btn-save">💾 Save</button>
+                <button type="button" class="btn-cancel" (click)="editingProduct = null">❌ Cancel</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">⬅ Prev</button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next ➡</button>
+    </div>
+  </section>
+</div>

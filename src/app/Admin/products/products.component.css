@@ -1,0 +1,153 @@
+.products-admin {
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  color: #f5f5f5;
+  background: linear-gradient(to bottom right, #1a1a1d, #2e003e);
+}
+
+/* Form Card */
+.form-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid gold;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+.form-card h2 {
+  color: gold;
+  margin-bottom: 1rem;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 1rem;
+}
+.form-card input {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background: #222;
+  color: white;
+}
+.btn-add {
+  margin-top: 1rem;
+  background: gold;
+  color: #1a1a1d;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-add:hover {
+  background: #ffd700;
+  transform: scale(1.05);
+}
+
+/* Products Table */
+.table-wrapper {
+  overflow-x: auto;
+}
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.products-table th,
+.products-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.products-table th {
+  background: rgba(255,215,0,0.1);
+  color: gold;
+  font-weight: 600;
+}
+.products-table td {
+  color: #eee;
+}
+.thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Actions */
+.actions button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-edit {
+  background: #4a148c;
+  color: white;
+}
+.btn-edit:hover {
+  background: #6a1b9a;
+}
+.btn-delete {
+  background: crimson;
+  color: white;
+}
+.btn-delete:hover {
+  background: darkred;
+}
+
+/* Edit Form Row */
+.edit-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.edit-form input {
+  flex: 1;
+  min-width: 150px;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #111;
+  color: white;
+}
+.btn-save {
+  background: gold;
+  color: black;
+  font-weight: bold;
+}
+.btn-cancel {
+  background: gray;
+  color: white;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.pagination button {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid gold;
+  background: transparent;
+  color: gold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.pagination button:hover:not(:disabled) {
+  background: gold;
+  color: black;
+}
+.pagination span {
+  color: #ddd;
+}

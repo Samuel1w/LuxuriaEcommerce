@@ -1,0 +1,51 @@
+<div class="admin-scenes-container">
+  <h2>Luxuria Behind-the-Scenes Management</h2>
+
+  <form #sceneForm="ngForm" (ngSubmit)="submitScene(sceneForm)" enctype="multipart/form-data">
+    <input type="text" placeholder="Title" [(ngModel)]="scene.title" name="title" required>
+    <textarea placeholder="Description" [(ngModel)]="scene.description" name="description" required></textarea>
+    <select [(ngModel)]="scene.type" name="type" required>
+      <option value="" disabled selected>Select Type</option>
+      <option value="import">Import</option>
+      <option value="craft">Craft</option>
+    </select>
+    <input type="file" (change)="onFileSelected($event)" name="video" accept="video/*">
+    <button type="submit">{{ editMode ? 'Update' : 'Add' }} Behind-the-Scenes</button>
+    <button type="button" class="cancel-btn" (click)="resetForm(sceneForm)" *ngIf="editMode">Cancel</button>
+  </form>
+
+  <div class="table-wrapper">
+    <table class="scenes-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Video</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th>Date Uploaded</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of scenes">
+          <td>{{ s.id }}</td>
+          <td>
+            <video width="150" controls>
+              <source [src]="'http://localhost:5000' + s.video_url" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td >{{ s.title }}</td>
+          <td>{{ s.description }}</td>
+          <td>{{ s.type }}</td>
+          <td>{{ s.created_at | date:'short' }}</td>
+          <td>
+            <button class="edit-btn" (click)="editScene(s)">Edit</button>
+            <button class="delete-btn" (click)="deleteScene(s.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

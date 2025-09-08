@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<section class="blogs-hero">
+  <h1>Luxuria Empire News & Blogs</h1>
+  <p >Your royal source for luxury insights, trends, and inspiration</p>
+</section>
+
+
+<section class="blog-section">
+  <div class="blog-cards">
+    <div class="card" *ngFor="let blog of blogs" (click)="openBlog(blog)">
+      <div class="card-img">
+        <img [src]="'http://localhost:5000' + blog.image_url" alt="Blog Image" />
+        <span class="date">{{ blog.date_published | date:'short'}}</span>
+      </div>
+      <div class="card-content">
+        <h3>{{ blog.title }}</h3>
+        <p>{{ blog.excerpt }}</p>
+        <a (click)="openBlog(blog)" class="read-more">Read More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

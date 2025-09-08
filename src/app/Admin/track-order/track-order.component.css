@@ -1,0 +1,176 @@
+/* ================== Admin Orders Page ================== */
+.admin-orders-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1a1a1a;
+  background: #fefefe;
+}
+
+/* --------- Form Card --------- */
+.form-card {
+  background: linear-gradient(145deg, #6a0dad, #f3c623);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  margin-bottom: 50px;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+.form-card:hover {
+  transform: translateY(-5px);
+}
+.form-card h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.9rem;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+.form-card form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+.form-card input,
+.form-card select {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
+.form-card input:focus,
+.form-card select:focus {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+.form-card button {
+  grid-column: span 2;
+  padding: 12px 20px;
+  background: #fff;
+  color: #6a0dad;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+.form-card button:hover {
+  background: #6a0dad;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* --------- Orders Table --------- */
+.orders-table-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #6a0dad;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+.orders-table-section table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.orders-table-section th,
+.orders-table-section td {
+  padding: 12px 15px;
+  text-align: center;
+}
+.orders-table-section th {
+  background: #6a0dad;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.orders-table-section tr:nth-child(even) {
+  background: #f9f0ff;
+}
+.orders-table-section tr:hover {
+  background: #f3c623;
+  color: #000;
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+}
+
+/* --------- Status Dropdown --------- */
+.orders-table-section select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.orders-table-section select:hover {
+  border-color: #6a0dad;
+  background: #f3c623;
+  color: #fff;
+}
+
+/* --------- Action Buttons --------- */
+.orders-table-section button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 2px;
+  transition: 0.3s;
+}
+.orders-table-section button:hover {
+  transform: scale(1.1);
+}
+.orders-table-section button:nth-child(1) { /* Edit */
+  background: #6a0dad;
+  color: #fff;
+}
+.orders-table-section button:nth-child(1):hover {
+  background: #f3c623;
+  color: #000;
+}
+.orders-table-section button:nth-child(2) { /* Delete */
+  background: #ff4d4f;
+  color: #fff;
+}
+.orders-table-section button:nth-child(2):hover {
+  background: #a50000;
+}
+
+/* --------- Inline Edit Form --------- */
+.orders-table-section tr form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  align-items: center;
+}
+.orders-table-section tr form input,
+.orders-table-section tr form select {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.orders-table-section tr form button {
+  padding: 6px 10px;
+  font-size: 0.9rem;
+}
+
+/* --------- Responsive --------- */
+@media (max-width: 900px) {
+  .form-card form {
+    grid-template-columns: 1fr;
+  }
+  .orders-table-section table,
+  .orders-table-section th,
+  .orders-table-section td {
+    font-size: 0.9rem;
+  }
+}

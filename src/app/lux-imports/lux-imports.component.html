@@ -1,0 +1,91 @@
+<app-header></app-header>
+
+<section class="hero-section" [ngStyle]="{'background-image': 'url(' + bgImages[currentBgIndex] + ')'}">
+  <div class="hero-overlay"></div>
+
+  <!-- Circular Image Selectors -->
+  <div class="bg-thumbnail-list">
+    <div 
+      *ngFor="let bg of bgImages; let i = index"
+      [class.active-thumb]="i === currentBgIndex"
+      class="thumb"
+      [style.backgroundImage]="'url(' + bg + ')'"
+      (click)="selectBg(i)">
+    </div>
+  </div>
+</section>
+
+<div class="layout" style="margin-top: 2%;">
+  <!-- Sidebar -->
+  <aside class="sidebar" style="border-right: 0.3px solid purple; padding: 13px;">
+    
+   <div class="logo" style="display: flex;">
+    <img src="assets/importsLogo.jpeg" style="border-radius: 50%; width: 40px; height: 40px;">
+    <Span style="font-family: 'Times New Roman', Times, serif; font-weight: bolder; margin-top: 10px;">Luxuria_Imports</Span>
+  </div>
+    <ul class="sidebar-tabs">
+      <li 
+        [class.active]="activeSidebarTab === 'products'" 
+        (click)="selectSidebarTab('products')">Products</li>
+
+      <li 
+        [class.active]="activeSidebarTab === 'track-order'" 
+        (click)="selectSidebarTab('track-order')">Track Order</li>
+
+      <li 
+        [class.active]="activeSidebarTab === 'learn-importation'" 
+        (click)="selectSidebarTab('learn-importation')">Learn Importation</li>
+    </ul>
+  </aside>
+
+  <!-- Right Content Area -->
+  <div class="content-area">
+    <!-- If Products is active show 3 tabs -->
+    <ng-container *ngIf="activeSidebarTab === 'products'">
+      <!-- Tabs -->
+      <div class="tab-wrapper">
+        <div class="tabs">
+          <div 
+            class="tab" 
+            [class.active]="activeTab === 'preorder'" 
+            (click)="selectTab('preorder')">Pre-Order Products</div>
+
+          <div 
+            class="tab" 
+            [class.active]="activeTab === 'available'" 
+            (click)="selectTab('available')">Available Products</div>
+
+          <div 
+            class="tab" 
+            [class.active]="activeTab === 'bts'" 
+            (click)="selectTab('bts')">BTS</div>
+
+          <div class="tab-underline" [style.transform]="'translateX(' + tabPosition + '%)'"></div>
+        </div>
+      </div>
+
+      <!-- Tab Content -->
+        <section class="main-content">
+      <!-- Instead of app-preorder & app-available, we just drop our product-list -->
+      <app-product-list *ngIf="activeTab === 'preorder'" category="imports" type="preorder"></app-product-list>
+      <app-product-list *ngIf="activeTab === 'available'" category="imports" type="available"></app-product-list>
+      <app-bts-crochet type="imports" *ngIf="activeTab === 'bts'"></app-bts-crochet>
+    </section>
+    </ng-container>
+
+    <!-- If Track Order is active -->
+    <ng-container *ngIf="activeSidebarTab === 'track-order'">
+      <section class="main-content">
+        <app-track></app-track>
+      </section>
+    </ng-container>
+
+    <!-- If Learn Importation is active -->
+    <ng-container *ngIf="activeSidebarTab === 'learn-importation'">
+      <section class="main-content">
+        <app-learn></app-learn>
+      </section>
+    </ng-container>
+  </div>
+</div>
+

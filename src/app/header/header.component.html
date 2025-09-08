@@ -1,0 +1,67 @@
+<!-- Top Contact Strip -->
+<div class="top-bar">
+  <span>Call Us: +237 673249374</span>
+  <div class="promo">
+    <span>Sign up and GET 25% OFF for your first order. <a href="#">Sign up now</a></span>
+  </div>
+</div>
+
+<!-- Header Section -->
+<header class="main-header">
+   <!-- Hamburger Icon -->
+    <div style ="display: flex">
+    <div class="menu-toggle" (click)="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
+  <!-- Logo -->
+  <div class="logo">
+    <img src="assets/luxEmpire.jpeg" alt="Luxuria Empire Logo">
+    <span>LuxuriaEmpire</span>
+  </div>
+  </div>
+
+  <!-- Desktop Navigation -->
+  <nav class="desktop-nav">
+    <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/import" routerLinkActive="active-link">Imports</a>
+    <a routerLink="/craft" routerLinkActive="active-link">Crafts</a>
+    <a routerLink="/tech" routerLinkActive="active-link">Tech-Hub</a>
+    <a routerLink="/music" routerLinkActive="active-link">Lux-Music</a>
+    <a routerLink="/about" routerLinkActive="active-link">About</a>
+    <a routerLink="/contact" routerLinkActive="active-link">Contact</a>
+    <a routerLink="/blog" routerLinkActive="active-link">Blog</a>
+  </nav>
+
+  <!-- Right Icons -->
+  <div class="right-icons">
+    <button class="notification-btn" aria-label="Notifications">
+      <i class="fas fa-bell"></i>
+      <span class="badge">4</span>
+    </button>
+    
+   
+  </div>
+</header>
+
+<!-- Mobile Sidebar -->
+<div class="mobile-sidebar" [class.show]="sidebarOpen">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <img src="assets/luxEmpire.jpeg" alt="Luxuria Empire Logo">
+      <span>LuxuriaEmpire</span>
+    </div>
+    <button class="close-btn" (click)="closeSidebar()"><i class="fas fa-times"></i></button>
+  </div>
+
+<nav class="mobile-nav">
+  <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" (click)="closeSidebar()">🏠 Home</a>
+  <a routerLink="/import" routerLinkActive="active-link" (click)="closeSidebar()">📦 Imports</a>
+  <a routerLink="/craft" routerLinkActive="active-link" (click)="closeSidebar()">🎨 Crafts</a>
+  <a routerLink="/tech" routerLinkActive="active-link" (click)="closeSidebar()">💻 Tech-Hub</a>
+  <a routerLink="/music" routerLinkActive="active-link" (click)="closeSidebar()">🎵 Lux-Music</a>
+  <a routerLink="/about" routerLinkActive="active-link" (click)="closeSidebar()">ℹ️ About</a>
+  <a routerLink="/contact" routerLinkActive="active-link" (click)="closeSidebar()">📞 Contact</a>
+  <a routerLink="/blog" routerLinkActive="active-link" (click)="closeSidebar()">📝 Blog</a>
+</nav>
+
+</div>

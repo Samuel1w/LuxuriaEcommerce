@@ -1,0 +1,138 @@
+<app-header></app-header>
+
+<section class="hero-section" [ngStyle]="{'background-image': 'url(' + bgImages[currentBgIndex] + ')'}">
+  <div class="hero-overlay"></div>
+
+  <!-- Circular Image Selectors -->
+  <div class="bg-thumbnail-list">
+    <div 
+      *ngFor="let bg of bgImages; let i = index"
+      [class.active-thumb]="i === currentBgIndex"
+      class="thumb"
+      [style.backgroundImage]="'url(' + bg + ')'"
+      (click)="selectBg(i)">
+    </div>
+  </div>
+</section>
+
+
+<div class="layout">
+  <!-- Sidebar with categories -->
+<aside class="sidebar">
+    <div class="logo" style="display: flex;">
+    <img src="assets/luxEmpire.jpeg" style="border-radius: 50%; width: 40px; height: 40px;">
+    <Span style="font-family: 'Times New Roman', Times, serif;">Luxuria_Craft</Span>
+  </div>
+  <h4>Categories</h4>
+
+  <h5>Wearables</h5>
+  <ul>
+    <li><a href="#">Cardigans</a></li>
+    <li><a href="#">Pullovers</a></li>
+    <li><a href="#">Sweaters</a></li>
+    <li><a href="#">Crop Tops</a></li>
+    <li><a href="#">Vests</a></li>
+    <li><a href="#">Shrugs</a></li>
+    <li><a href="#">Dresses</a></li>
+    <li><a href="#">Skirts</a></li>
+    <li><a href="#">Ponchos</a></li>
+    <li><a href="#">Hoodies</a></li>
+    <li><a href="#">Tube Tops</a></li>
+    <li><a href="#">Bralettes</a></li>
+    <li><a href="#">Kimonos</a></li>
+    <li><a href="#">Jumpsuits</a></li>
+    <li><a href="#">Shawls</a></li>
+  </ul>
+
+  <h5>Accessories</h5>
+  <ul>
+    <li><a href="#">Hats</a></li>
+    <li><a href="#">Beanies</a></li>
+    <li><a href="#">Headbands</a></li>
+    <li><a href="#">Scarves</a></li>
+    <li><a href="#">Socks</a></li>
+    <li><a href="#">Gloves</a></li>
+    <li><a href="#">Mittens</a></li>
+    <li><a href="#">Leg Warmers</a></li>
+    <li><a href="#">Hair Scrunchies</a></li>
+    <li><a href="#">Neck Warmers</a></li>
+  </ul>
+
+  <h5>Baby & Kids</h5>
+  <ul>
+    <li><a href="#">Baby Booties</a></li>
+    <li><a href="#">Baby Blankets</a></li>
+    <li><a href="#">Baby Rompers</a></li>
+    <li><a href="#">Baby Dresses</a></li>
+    <li><a href="#">Baby Hats</a></li>
+    <li><a href="#">Baby Bibs</a></li>
+    <li><a href="#">Baby Cardigans</a></li>
+    <li><a href="#">Baby Toys</a></li>
+  </ul>
+
+  <h5>Bags & Carriers</h5>
+  <ul>
+    <li><a href="#">Tote Bags</a></li>
+    <li><a href="#">Clutch Purses</a></li>
+    <li><a href="#">Crossbody Bags</a></li>
+    <li><a href="#">Backpacks</a></li>
+    <li><a href="#">Market Bags</a></li>
+    <li><a href="#">Coin Pouches</a></li>
+    <li><a href="#">Drawstring Bags</a></li>
+  </ul>
+
+  <h5>Home Decor</h5>
+  <ul>
+    <li><a href="#">Pillow Covers</a></li>
+    <li><a href="#">Blankets & Throws</a></li>
+    <li><a href="#">Rugs</a></li>
+    <li><a href="#">Table Runners</a></li>
+    <li><a href="#">Coasters</a></li>
+    <li><a href="#">Wall Hangings</a></li>
+    <li><a href="#">Baskets</a></li>
+    <li><a href="#">Curtains</a></li>
+  </ul>
+
+  <h5>Fun & Others</h5>
+  <ul>
+    <li><a href="#">Crochet Jewelry</a></li>
+    <li><a href="#">Stuffed Animals (Amigurumi)</a></li>
+  </ul>
+</aside>
+
+  <!-- Right Content Area -->
+  <div class="content-area">
+    <!-- Tabs -->
+    <div class="tab-wrapper">
+      <div class="tabs">
+        <div 
+          class="tab" 
+          [class.active]="activeTab === 'preorder'" 
+          (click)="selectTab('preorder')">Pre-Order Craft-Designs</div>
+
+        <div 
+          class="tab" 
+          [class.active]="activeTab === 'available'" 
+          (click)="selectTab('available')">Available Craft-Designs</div>
+
+        <div 
+          class="tab" 
+          [class.active]="activeTab === 'bts'" 
+          (click)="selectTab('bts')">BTS</div>
+
+        <div class="tab-underline" [style.transform]="'translateX(' + tabPosition + '%)'"></div>
+      </div>
+    </div>
+
+    <!-- Tab Content -->
+    <section class="main-content">
+      <!-- Instead of app-preorder & app-available, we just drop our product-list -->
+      <app-product-list *ngIf="activeTab === 'preorder'" category="craft" type="preorder"></app-product-list>
+      <app-product-list *ngIf="activeTab === 'available'" category="craft" type="available"></app-product-list>
+      <app-bts-crochet type="craft" *ngIf="activeTab === 'bts'"></app-bts-crochet>
+    </section>
+  </div>
+</div>
+
+
+

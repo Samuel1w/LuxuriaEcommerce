@@ -1,0 +1,64 @@
+<app-header></app-header>
+
+<section class="contact-section">
+    <div style="margin-left: 799px; display: flex;  font-weight: bold; margin-top: 30px;">
+       
+        <h2 style="  text-shadow: 0 0 10px purple;">Contact Us</h2>
+        
+    </div>
+  
+  <p class="breadcrumb" style="color: gold; font-style: italic;">Home / Contact Us</p>
+
+  <div class="contact-wrapper">
+    <!-- Form -->
+    <form class="contact-form"  (ngSubmit)="onSubmit()" #contactForm="ngForm">
+      <h1 style="font-weight: bold; font-size: 30px;">Get in Touch</h1>
+      <p>Your email address will not be published. Required fields are marked *</p>
+
+      <div class="form-group" style="margin-top: 20px;">
+        <div>
+            <label style="font-weight: bold;">Enter name*</label>
+            <input type="text" name="name" placeholder="Your Name*" ngModel required>
+        </div>
+        <div>
+            <label style="font-weight: bold;">Email*</label>
+ <input type="email" name="email" placeholder="Enter Email" ngModel required>
+        </div>
+       
+      </div>
+<div>
+    <label style="font-weight: bold;">Subject*</label>
+     <input type="text" name="subject" placeholder="Enter Subject" ngModel>
+    </div>
+     <div>
+        <label style="font-weight: bold;">Your Message*</label>
+         <textarea name="message" placeholder="Enter message" rows="4" ngModel required></textarea>
+
+     </div>
+     
+      <button style="background: purple;" type="submit">Send Message</button>
+    </form>
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <p style="padding-bottom: 80px;"><strong>Address</strong><br>Buea,Cameroon - Checkpoint</p>
+      <p style="padding-bottom: 80px;"><strong>Contact</strong><br>Phone: +237 673249374<br>Email: dc-imports &#64; gmail.com</p>
+ <p style="padding-bottom: 80px;"><strong>Open Time</strong><br>Mon–Fri: 10:00 - 20:00<br>Saturday - Sunday: 10:00 - 16:00</p>
+      <p  style="padding-top: 50px;"><strong>Stay Connected</strong></p>
+      <div class="social-icons" style="display: flex; gap: 10px;">
+        <span style="background: #ffdb58; border-radius: 50px; padding: 10px;"><i style="padding: 5px; border-radius: 50px; background: purple;" class="fab fa-facebook-f"></i></span>
+        <span style="background: #ffdb58; border-radius: 50px; padding: 10px;"> <i style="padding: 5px; border-radius: 50px; background: purple;" class="fab fa-instagram"></i></span>
+        <span style="background: #ffdb58; border-radius: 50px; padding: 10px;"> <i style="padding: 5px; border-radius: 50px; background: purple;" class="fab fa-twitter"></i></span>
+        <span style="background: #ffdb58; border-radius: 50px; padding: 10px;"> <i style="padding: 5px; border-radius: 50px; background: purple;" class="fab fa-youtube"></i></span>
+        
+       
+       
+        
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+<app-footer></app-footer>

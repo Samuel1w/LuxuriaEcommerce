@@ -1,0 +1,199 @@
+
+
+
+
+
+.hero-section {
+  position: relative;
+  height: 50vh;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 1.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  padding: 4rem;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  color: white;
+  animation: fadeIn 2s ease;
+}
+
+.hero-content .tag {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content .highlight {
+  color: purple;
+}
+
+.cta-buttons button {
+  margin-right: 1rem;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: purple;
+  color: black;
+}
+
+.secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+}
+
+.ratings {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.ratings img {
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 5px;
+  border: 2px solid white;
+}
+
+.bg-thumbnail-list {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2;
+}
+
+.thumb {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid white;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.thumb:hover, .active-thumb {
+  transform: scale(1.1);
+  opacity: 1;
+  border: 3px solid purple;
+  width: 80px;
+  height: 80px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.layout {
+  display: flex;
+  height: 100%;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li a {
+  text-decoration: none;
+  color: #444;
+  font-size: 14px;
+  display: block;
+  padding: 8px 0;
+}
+
+/* Right Side Content */
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Tabs */
+.tab-wrapper {
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+  position: relative;
+  border-bottom: 2px solid #eee;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 24px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  color: #555;
+  transition: color 0.3s;
+}
+
+.tab.active {
+  color: purple;
+}
+
+.tab-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100px; /* Width of one tab */
+  background-color: purple;
+  transition: transform 0.3s ease-in-out;
+}
+
+
+/* Tab Content */
+.main-content {
+  flex: 1;
+}

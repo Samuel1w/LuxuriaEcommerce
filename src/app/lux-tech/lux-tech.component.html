@@ -1,0 +1,383 @@
+<app-header></app-header>
+<!-- Angular Component HTML for Luxuria Tech Section with Video Background -->
+<section class="reactor-section">
+  <video autoplay muted loop playsinline class="background-video">
+    <source src="../../assets/techubvid.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="reactor-overlay">
+    <div class="reactor-content">
+      <h2 class="program-title">LUXURIA TECH HUB</h2>
+      <h1 class="program-heading">
+        Empowering businesses and individuals through <br />
+        modern technology and expert-led innovation.
+      </h1>
+      <p class="program-description">
+        A forward-thinking digital agency offering cutting-edge web development, personalized tech tutoring,
+        and scalable digital solutions to elevate your online presence and technical skills.
+      </p>
+      <a [routerLink]="[]" fragment="tech-services" class="cta-button" >OUR TECH SERVICES →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Angular Component HTML for Luxuria Tech Section: SME Activate/Mission/Vision Style -->
+
+
+<!-- Angular Component HTML for Luxuria Tech Section: SME Activate/Mission/Vision Style + Programs Grid -->
+<section class="luxuria-split-section">
+  <div class="left-pane">
+    <img src="../../assets/maingirl.jpeg" alt="Tech Woman at Computer" class="split-image" />
+    <div class="image-overlay"></div>
+    <div class="left-content">
+      <h2 class="section-highlight">LUXURIA LAUNCH</h2>
+      <h3 class="section-title">Empowering Tech Careers & Startups</h3>
+      <p class="section-description">
+        Boost your tech journey with Luxuria Launch — our innovation-driven accelerator program that supports individuals and startups. We help you scale web projects, master in-demand skills, and build transformative solutions with real-world impact.
+      </p>
+      <button class="section-button">JOIN LUXURIA LAUNCH</button>
+    </div>
+  </div>
+
+  <div class="right-pane">
+    <div class="right-box">
+      <h3 class="section-highlight">OUR MISSION</h3>
+      <p class="section-description">
+        To provide accessible tech services and education that fuel innovation and unlock global opportunities for African developers and entrepreneurs.
+      </p>
+    </div>
+    <div class="right-box">
+      <h3 class="section-highlight">OUR VISION</h3>
+      <p class="section-description">
+        To become a top-tier digital innovation hub—empowering a new generation of creatives, coders, and change-makers to shape the future of technology.
+      </p>
+      <button class="section-button">JOIN OUR PROGRAMS</button>
+    </div>
+     <div class="right-box">
+      <h3 class="section-highlight">OUR VALUES</h3>
+      <p class="section-description">
+        To become a top-tier digital innovation hub—empowering a new generation of creatives, coders, and change-makers to shape the future of technology.
+      </p>
+      <button class="section-button">JOIN OUR PROGRAMS</button>
+    </div>
+  </div>
+</section>
+
+<!-- Luxuria Tech Hub Programs Cards Section -->
+<section class="luxuria-programs">
+  <div class="programs-grid">
+     <div class="program-card">
+      <div class="card-icon lightbulb"></div>
+      <h3 class="program-title">Skill up and Skill connect</h3>
+      <p class="program-desc">
+        Expose yourself to modern day opportunities in the tech world
+      </p>
+      <button class="card-button">Join Now</button>
+    </div>
+     <div class="program-card">
+      <div class="card-icon lightbulb"></div>
+      <h3 class="program-title">win prizes</h3>
+      <p class="program-desc">
+       Build outstanding solutions using tech and stand a chance to win big prizes from LUXURIA TECH HUB
+      </p>
+      <button class="card-button">Join Now</button>
+    </div>
+    <div class="program-card">
+      <div class="card-icon globe"></div>
+      <h3 class="program-title">Tech Starter Clinic</h3>
+      <p class="program-desc">
+        Diagnose digital gaps, discover tech strategies, and ignite innovation for early-stage projects and teams.
+      </p>
+      <button class="card-button">Learn More</button>
+    </div>
+    <div class="program-card">
+      <div class="card-icon mobile"></div>
+      <h3 class="program-title">Mobile Solutions Lab</h3>
+      <p class="program-desc">
+        Build user-friendly mobile apps and prototypes with expert guidance and real-world use cases.
+      </p>
+      <button class="card-button">Click To Learn More</button>
+    </div>
+    <div class="program-card">
+      <div class="card-icon lightbulb"></div>
+      <h3 class="program-title">Tech Mentorship</h3>
+      <p class="program-desc">
+        Join tailored learning tracks, connect with mentors, and master the skills needed to thrive in tech careers.
+      </p>
+      <button class="card-button">Join Now</button>
+    </div>
+    <div class="program-card">
+      <div class="card-icon code"></div>
+      <h3 class="program-title">CodeUp Accelerator</h3>
+      <p class="program-desc">
+        Fast-track your web development journey with intense bootcamps and hands-on project work.
+      </p>
+      <button class="card-button">Enroll Today</button>
+    </div>
+    <div class="program-card">
+      <div class="card-icon cloud"></div>
+      <h3 class="program-title">Cloud & DevOps Hub</h3>
+      <p class="program-desc">
+        Learn cloud infrastructure, deployment, and scalable system design from industry pros.
+      </p>
+      <button class="card-button">Explore Hub</button>
+    </div>
+    <div class="program-card">
+      <div class="card-icon rocket"></div>
+      <h3 class="program-title">Startup Launchpad</h3>
+      <p class="program-desc">
+        Take your tech startup to the next level with funding prep, MVP development, and launch strategy.
+      </p>
+      <button class="card-button">Get Started</button>
+    </div>
+  </div>
+  
+  
+</section>
+
+
+<section class="why-luxuria-section">
+  <h2 class="why-heading">WHY CHOOSE LUXURIA HUB</h2>
+  <p class="why-subtitle">
+    At Luxuria Hub, we redefine fine living with unmatched service, elegant experiences, and a touch of royalty in everything we offer.
+  </p>
+
+  <div class="why-cards">
+    <div class="why-card" *ngFor="let item of whyLuxuria">
+      <div class="why-icon">
+        <img [src]="item.icon" alt="icon" />
+      </div>
+      <h3 class="why-title">{{ item.title }}</h3>
+      <p class="why-text">{{ item.description }}</p>
+    </div>
+  </div>
+</section>
+<section class="upcoming-events-section">
+  <h2 class="section-title">Upcoming Events</h2>
+  <div class="events-container">
+    <div class="event-card" *ngFor="let event of events">
+      <div class="event-date">
+        <div class="day">{{ event.day }}</div>
+        <div class="month">{{ event.month }}</div>
+      </div>
+      <div class="event-details">
+        <h3 class="event-title">{{ event.title }}</h3>
+        <p class="event-time">🕒 {{ event.time }}</p>
+        <p class="event-description">{{ event.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services-section" id="tech-services">
+  <h2 class="section-title">OUR TECH SERVICES</h2>
+  <div class="services-grid">
+    <div class="service-card" *ngFor="let service of services">
+      <div class="icon">{{ service.icon }}</div>
+      <h3 class="title">{{ service.title }}</h3>
+      <p class="desc">{{ service.description }}</p>
+      
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COMPLETED PROJECTS SECTION ===================== -->
+<section class="completed-projects-section">
+  <h2 class="section-title">✨ Our Completed Projects ✨</h2>
+  <p class="section-subtitle">A showcase of Luxuria’s proud creations — premium websites & digital experiences we’ve built.</p>
+
+  <div class="projects-grid">
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800" alt="E-commerce Website" />
+      <div class="project-overlay">
+        <h3>Luxury E-Commerce Store</h3>
+        <a href="https://shopify.com" target="_blank" class="view-link">View Project →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1504691342899-8d2d2d80c5c2?w=800" alt="NGO Website" />
+      <div class="project-overlay">
+        <h3>NGO Community Platform</h3>
+        <a href="https://www.redcross.org" target="_blank" class="view-link">View Project →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800" alt="Real Estate Website" />
+      <div class="project-overlay">
+        <h3>Real Estate Hub</h3>
+        <a href="https://www.zillow.com" target="_blank" class="view-link">View Project →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800" alt="Portfolio Website" />
+      <div class="project-overlay">
+        <h3>Personal Portfolio</h3>
+        <a href="https://dribbble.com" target="_blank" class="view-link">View Project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BEHIND THE SCENES SECTION ===================== -->
+<section class="behind-scenes-section">
+  <div class="behind-container">
+    <div class="behind-text">
+      <h2 class="section-title">🚀 Behind the Scenes at Luxuria Tech</h2>
+      <p>
+        Innovation is born where creativity meets passion. From brainstorming over coffee to all-night coding sprints,
+        Luxuria Tech Hub is more than a workspace — it’s a family of dreamers and builders shaping tomorrow.
+      </p>
+      <p>
+        Step inside our world: where ideas sparkle, teamwork thrives, and technology turns into magic.
+      </p>
+    </div>
+
+    <div class="behind-gallery">
+      <div class="gallery-item">
+        <img src="assets/kids.jpeg" alt="Team Collaboration" />
+      </div>
+      <div class="gallery-item tall">
+        <img src="assets/bts2.JPG" alt="Workspace" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/bts3.JPG" alt="Hackathon" />
+      </div>
+      <div class="gallery-item wide">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200" alt="Creative Session" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="education-section">
+  <div class="section-title">Kids Tutoring & Tech Bootcamps</div>
+
+  <div class="education-content">
+    <div class="image-block">
+      <img src="../../assets/kids.jpeg" alt="Teaching kids HTML">
+    </div>
+
+    <div class="text-block">
+      <h3>Empowering the Next Generation</h3>
+      <p>
+        At Luxuria Tech Hub, we believe in starting early. Our <strong>Kids Coding Program</strong> introduces children aged 8–15 to the world of tech through fun and practical lessons in <em>HTML, CSS, Scratch & Robotics</em>.
+      </p>
+      <p>
+        For teens and young adults, our <strong>Tech Bootcamps</strong> offer intensive, hands-on training in Web Development, Mobile App Development, and UI/UX Design. Perfect for beginners and future innovators!
+      </p>
+      <div class="btn-group">
+        <button class="btn purple">Enroll a Child</button>
+        <button class="btn gold">Join Bootcamp</button>
+      </div>
+    </div>
+  </div>
+<section class="education-section">
+  <div class="education-content">
+    
+
+    <div class="text-block" style="margin-left: 120px;">
+      <h3>Private Mentorship Programs</h3>
+      <p>
+        Unlock your full potential with our <strong>1-on-1 mentorship sessions</strong> led by experienced developers, designers, and tech coaches. Whether you're just starting out or want to specialize in Angular, Flutter, or UI/UX — we've got you covered.
+      </p>
+      <p>
+        Get career advice, code reviews, and live project support from mentors who care about your growth.
+      </p>
+      <div class="btn-group">
+        <button class="btn purple">Book a Mentor</button>
+      </div>
+    </div>
+    <div class="image-block">
+      <img src="../../assets/mentors.jpeg" alt="Mentorship Program">
+    </div>
+  </div>
+</section>
+<section class="education-section">
+  <div class="education-content">
+    <div class="image-block">
+      <img src="../../assets/hack.jpeg" alt="Mentorship Program">
+    </div>
+
+    <div class="text-block">
+  <h3>Hackathons & Innovation Challenges</h3>
+      <p>
+    Join our thrilling <strong>monthly hackathons</strong> and solve real-world problems in teams! Compete, build, and pitch ideas that could shape the future — while sharpening your development, teamwork, and product thinking skills.
+  </p>
+  <p>
+    Top winners earn recognition, mentorship, prizes, and even opportunities to build MVPs for startups or communities.
+  </p>
+      <div class="btn-group">
+        <button class="btn purple">Register for Hackathon</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="education-section">
+  <div class="education-content">
+  
+
+    <div class="text-block" style="margin-left: 120px;">
+  <h3>Tech for Women & Girls</h3>
+  <p>
+    At Luxuria Tech Hub, we’re proud to create safe and supportive spaces for <strong>young women and girls</strong> to excel in tech. Through tailored workshops, mentorship, and leadership development, we empower female innovators to break barriers and thrive.
+  </p>
+  <p>
+    Let’s change the narrative — one brilliant coder, designer, and builder at a time.
+  </p>    <div class="btn-group">
+        <button class="btn purple">Join the Movement</button>
+      </div>
+    </div>
+      <div class="image-block">
+      <img src="../../assets/women.jpeg" alt="Mentorship Program">
+    </div>
+  </div>
+</section>
+<section class="education-section">
+  <div class="education-content">
+    <div class="image-block">
+      <img src="../../assets/tech training.jpeg" alt="Mentorship Program">
+    </div>
+
+    <div class="text-block">
+  <h3>Tech & Entrepreneurship Training</h3>
+  <p>
+    Learn how to turn your tech skills into income! Our <strong>Techpreneur Bootcamps</strong> teach students and professionals how to start freelancing, launch products, build portfolios, or create startups that solve real problems.
+  </p>
+  <p>
+    From idea to execution — we guide you with practical business tools, branding tips, and monetization strategies.
+  </p>
+      <div class="btn-group">
+        <button class="btn purple">Start Your Techpreneur Journey</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="education-section">
+  <div class="education-content">
+   
+
+    <div class="text-block" style="margin-left: 120px;">
+  <h3>Internship & Job Placement Support</h3>
+  <p>
+    Graduates from our programs get access to exclusive <strong>internships, freelance projects, and job referrals</strong>. We work with local businesses and global startups to place skilled talents in roles that match their growth path.
+  </p>
+  <p>
+    Build real-world experience, grow your resume, and step confidently into the tech workforce.
+  </p>
+     <div class="btn-group">
+        <button class="btn purple">Apply for Internship</button>
+      </div>
+    </div>
+     <div class="image-block">
+      <img src="../../assets/internship.jpeg" alt="Mentorship Program">
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

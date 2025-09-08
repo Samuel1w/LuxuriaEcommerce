@@ -1,0 +1,134 @@
+<app-header></app-header>
+
+<!-- ============= Our Story Section ============= -->
+<section class="story-section">
+  <div class="story-content">
+    <h2 class="story-title">Our Story <span>& Vision</span></h2>
+    <p class="story-text">
+      Luxuria Empire is more than a company — it is a dynasty of dreams. Built upon four royal houses, 
+      we unite the world of <strong>luxury importation</strong>, the brilliance of <strong>technology</strong>, 
+      the artistry of <strong>handmade craft</strong>, and the soul of <strong>music</strong>.
+    </p>
+    <p class="story-text">
+      From its foundation, Luxuria Empire has stood as a symbol of elegance, innovation, and timeless creativity. 
+      We envision a future where luxury is not just owned but experienced, 
+      where technology meets art, and where culture dances with innovation. 
+      Our mission is to inspire, to build, and to reign as the true beacon of excellence.
+    </p>
+  </div>
+</section>
+
+<!-- ============= Four Pillars Section ============= -->
+<section class="pillars-section">
+  <h2 class="section-title">The Four <span>Pillars of Luxuria Empire</span></h2>
+  <div class="pillars-container">
+    <div class="pillar">
+      <h3>🏛 Luxuria Imports</h3>
+      <p>Delivering elegance through world-class importation of luxury goods, 
+      redefining trust and sophistication.</p>
+    </div>
+    <div class="pillar">
+      <h3>💻 Luxuria Techub</h3>
+      <p>Where innovation meets creativity — empowering digital growth and building futuristic solutions.</p>
+    </div>
+    <div class="pillar">
+      <h3>🧶 Luxuria Craft</h3>
+      <p>Handmade crochets crafted with passion, blending tradition with modern artistry.</p>
+    </div>
+    <div class="pillar">
+      <h3>🎶 Luxuria Music</h3>
+      <p>Amplifying voices and rhythms, nurturing talent, and creating a symphony of inspiration.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============= The People Behind Section ============= -->
+<section class="people-section">
+  <h2 class="section-title">The Guardians <span>Behind The Empire</span></h2>
+  <div class="people-container">
+    <div class="person" *ngFor="let person of peopleList">
+      <div class="person-img">
+        <img [src]="person.image" [alt]="person.name" />
+      </div>
+      <div class="person-info">
+        <h3>{{ person.name }}</h3>
+        <p class="role">{{ person.role }}</p>
+        <p class="bio">{{ person.bio }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= Our Partners Section ============= -->
+<section class="partners-section">
+  <h2 class="section-title">Our Esteemed <span>Partners</span></h2>
+  <div class="partners-logos">
+    <img *ngFor="let partner of partnersList" [src]="partner.logo" [alt]="partner.name" />
+  </div>
+</section>
+
+<!-- ============= Core Values Section ============= -->
+<section class="values-section">
+  <h2 class="section-title">The Core <span>Virtues of Our Empire</span></h2>
+  <div class="values-container">
+    <div class="value" *ngFor="let value of valuesList">
+      <div class="icon">{{ value.icon }}</div>
+      <h3>{{ value.title }}</h3>
+      <p>{{ value.desc }}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Existing FAQ + Newsletter -->
+<section class="faq-section">
+  <p class="faq-subtitle">— Faqs</p>
+  <h2 class="faq-title">Luxuria Empire? <span>Look here.</span></h2>
+
+  <div class="faq-container">
+    <div 
+      class="faq-item" 
+      *ngFor="let item of faqList; let i = index"
+      [class.active]="activeIndex === i"
+      (click)="toggleFAQ(i)">
+      
+      <div class="faq-question">
+        {{ item.question }}
+        <span class="icon">{{ activeIndex === i ? '−' : '+' }}</span>
+      </div>
+
+      <div class="faq-answer" *ngIf="activeIndex === i">
+        {{ item.answer }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="newsletter-modal">
+  <div class="modal-image">
+    <img src="assets/prod1.jpg" alt="Room Image" />
+  </div>
+  <div class="modal-content">
+    <button class="close-btn">&times;</button>
+    <p class="small-heading">📬 Subscribe To Our Newsletter</p>
+    <h2 class="main-heading">Get Weekly Newsletter</h2>
+    <p class="description">
+      Discover exclusive updates, inspiring stories, and royal moments from Luxuria Empire.
+    </p>
+    <form class="newsletter-form">
+      <label for="name">Name *</label>
+      <input type="text" id="name" placeholder="Enter Your Name" required />
+
+      <label for="email">Email *</label>
+      <input type="email" id="email" placeholder="Enter Email Address" required />
+
+      <div class="checkbox-wrapper">
+        <input type="checkbox" id="terms" required />
+        <label for="terms">
+          Agree with <a href="#">Terms & Condition</a> and <a href="#">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button class="subscribe-btn" type="submit">Subscribe Now</button>
+    </form>
+  </div>
+</div>

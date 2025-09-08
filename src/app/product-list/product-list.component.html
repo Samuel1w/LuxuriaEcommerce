@@ -1,0 +1,83 @@
+<section class="lux-products">
+  <!-- Header / Counters -->
+  <div class="lux-toolbar" role="region" aria-label="Products toolbar">
+    <div class="count">
+      <span *ngIf="!loading && !error">{{ totalItems }} items</span>
+      <span *ngIf="loading">Loading…</span>
+      <span *ngIf="error" class="error-text">Couldn’t load products</span>
+    </div>
+
+    <div class="filters">
+      <span class="badge cat" *ngIf="category">{{ category | titlecase }}</span>
+      <span class="badge type" *ngIf="type">{{ type | titlecase }}</span>
+
+      <label class="pagesize" for="pageSize">Per page</label>
+      <select id="pageSize" [(ngModel)]="pageSize" (change)="onPageSizeChange()">
+        <option [value]="8">8</option>
+        <option [value]="12">12</option>
+        <option [value]="16">16</option>
+        <option [value]="24">24</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Grid -->
+ <div class="grid" [class.loading]="loading" [attr.aria-busy]="loading">
+
+    <!-- Skeletons -->
+    <ng-container *ngIf="loading">
+      <div class="card skeleton" *ngFor="let s of skeletons"></div>
+    </ng-container>
+
+    <!-- Error -->
+    <div class="state error" *ngIf="!loading && error">
+      <h3>Something went wrong</h3>
+      <p>{{ error }}</p>
+      <button (click)="reload()">Try again</button>
+    </div>
+
+    <!-- Empty -->
+    <div class="state empty" *ngIf="!loading && !error && products.length === 0">
+      <h3>No products yet</h3>
+      <p>Check back soon or explore another category.</p>
+    </div>
+
+    <!-- Cards -->
+    <article
+      class="card"
+      *ngFor="let product of products; trackBy: trackByProductId"
+      [attr.aria-label]="product.name"
+    >
+      <a [routerLink]="['/product', product.id]" class="image-wrap" [attr.aria-label]="'View ' + product.name">
+        <img [src]="'http://localhost:5000/' + product.image_url" [alt]="product.name" loading="lazy" />
+        <span class="ribbon" *ngIf="type === 'preorder'">Pre-Order</span>
+        <span class="ribbon available" *ngIf="type === 'available'">Available</span>
+      </a>
+
+      <div class="content">
+        <h3 class="title">{{ product.name}}</h3>
+        <div class="meta">
+          <span class="pill">{{ category | titlecase }}</span>
+          <span class="pill dark">{{ type | titlecase }}</span>
+        </div>
+        <div class="price-row">
+          <span class="price">{{ product.price | number }} frs</span>
+          <a class="btn" [routerLink]="['/product', product.id]">View details</a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Pagination -->
+  <nav class="pager" *ngIf="!loading && totalPages > 1" aria-label="Pagination">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Prev</button>
+    <button
+      *ngFor="let p of pages"
+      (click)="goToPage(p)"
+      [class.active]="currentPage === p"
+      [attr.aria-current]="currentPage === p ? 'page' : null">
+      {{ p }}
+    </button>
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+  </nav>
+</section>

@@ -1,0 +1,67 @@
+<div class="admin-deliveries-container">
+  <h2>🚚 Admin Delivery Management</h2>
+
+  <!-- Pending Deliveries -->
+  <section class="pending-deliveries">
+    <h3>Pending Deliveries</h3>
+    <table class="deliveries-table">
+      <thead>
+        <tr>
+          <th>S/N</th>
+          <th>Tracking Number</th>
+          <th>Customer Name</th>
+          <th>Number</th>
+          <th>Amount</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let delivery of pendingDeliveries; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ delivery.trackingNumber }}</td>
+          <td>{{ delivery.customerName }}</td>
+          <td>{{ delivery.number }}</td>
+          <td>{{ delivery.amount | currency:'XAF' }}</td>
+          <td>
+            <button (click)="viewItems(delivery)">📦 View Items</button>
+            <button (click)="markAsDone(delivery)">✅ Mark as Done</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Selected Delivery Details -->
+  <div *ngIf="selectedDelivery" class="delivery-details-popup">
+    <h3>Items in Order: {{ selectedDelivery.trackingNumber }}</h3>
+    <ul>
+      <li *ngFor="let item of selectedDelivery.items">{{ item }}</li>
+    </ul>
+    <button (click)="closeDetails()">Close</button>
+  </div>
+
+  <!-- Completed Deliveries -->
+  <section class="completed-deliveries">
+    <h3>Completed Deliveries</h3>
+    <table class="deliveries-table completed">
+      <thead>
+        <tr>
+          <th>S/N</th>
+          <th>Tracking Number</th>
+          <th>Customer Name</th>
+          <th>Number</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let delivery of completedDeliveries; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ delivery.trackingNumber }}</td>
+          <td>{{ delivery.customerName }}</td>
+          <td>{{ delivery.number }}</td>
+          <td>{{ delivery.amount | currency:'XAF' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

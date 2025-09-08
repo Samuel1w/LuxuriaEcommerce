@@ -1,0 +1,109 @@
+<div class="track-order-container">
+  <h2 class="title">Track Your Order</h2>
+
+  <!-- Tracking Form -->
+  <form (ngSubmit)="trackOrder()" class="tracking-form">
+    <input type="text" placeholder="Enter Tracking Number" [(ngModel)]="trackingNumber" name="trackingNumber" required>
+    <button type="submit">Track</button>
+  </form>
+
+  <!-- Orders Section -->
+  <div *ngIf="userOrders" class="orders-section">
+    <!-- Status Summary -->
+    <div class="status-cards">
+      <div class="status-card" *ngFor="let status of statusSummary">
+        <h3>{{ status.label }}</h3>
+        <p>{{ status.count }}</p>
+      </div>
+    </div>
+
+    <!-- Orders Table -->
+    <table class="orders-table">
+      <thead>
+        <tr>
+          <th>S/N</th>
+          <th>Tracking Number</th>
+          <th>Num Items</th>
+          <th>Amount</th>
+          <th>Date Ordered</th>
+          <th>Status</th>
+          <th>Apply Delivery</th>
+          <th>Apply Refund</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of userOrders; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ order.trackingnumber }}</td>
+          <td>{{ order.num_items }}</td>
+          <td>{{ order.amount | currency:'XAF' }}</td>
+          <td>{{ order.date_ordered | date:'short'}}</td>
+          <td>{{ order.status }}</td>
+          <td>
+            <button 
+              [disabled]="order.status !== 'Arrived'" 
+              (click)="openDeliveryForm(order)"
+              class="delivery-btn">
+              Apply
+            </button>
+          </td>
+          <td>
+            <button 
+              [disabled]="order.status !== 'Arrived'" 
+              (click)="openRefundForm(order)"
+              class="refund-btn">
+              Apply
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Delivery Form Popup -->
+  <div *ngIf="showDeliveryForm" class="form-popup">
+    <h3>Delivery Details</h3>
+    <form (ngSubmit)="submitDeliveryForm()">
+      <input type="text" placeholder="Name" [(ngModel)]="deliveryForm.name" name="name" required>
+      <input type="text" placeholder="Phone Number" [(ngModel)]="deliveryForm.number" name="number" required>
+      <input type="text" placeholder="Tracking Number" [(ngModel)]="deliveryForm.trackingNumber" name="trackingNumber" readonly>
+
+      <div class="location-options">
+        <label><input type="radio" name="locationType" [(ngModel)]="deliveryForm.locationType" value="in" required> In Buea</label>
+        <label><input type="radio" name="locationType" [(ngModel)]="deliveryForm.locationType" value="out"> Out of Buea</label>
+      </div>
+
+      <div *ngIf="deliveryForm.locationType === 'in'">
+        <textarea placeholder="Exact Location" [(ngModel)]="deliveryForm.exactLocation" name="exactLocation" rows="3"></textarea>
+        <label>
+          <input type="checkbox" [(ngModel)]="deliveryForm.agreeToPay" name="agreeToPay" required> I agree to pay 500frs on delivery
+        </label>
+      </div>
+
+      <div *ngIf="deliveryForm.locationType === 'out'">
+        <input type="text" placeholder="Town" [(ngModel)]="deliveryForm.town" name="town">
+        <input type="text" placeholder="Agency to Use" [(ngModel)]="deliveryForm.agency" name="agency">
+      </div>
+
+      <button type="submit">Submit Delivery</button>
+    </form>
+  </div>
+
+  <!-- Refund Form Popup -->
+  <div *ngIf="showRefundForm" class="form-popup">
+    <h3>Refund Request</h3>
+    <form (ngSubmit)="submitRefundForm()">
+      <input type="text" placeholder="Name" [(ngModel)]="refundForm.name" name="refundName" required>
+      <input type="text" placeholder="Phone Number" [(ngModel)]="refundForm.number" name="refundNumber" required>
+      <input type="text" placeholder="Tracking Number" [(ngModel)]="refundForm.trackingNumber" name="refundTrackingNumber" readonly>
+      <textarea placeholder="Reason for Refund" [(ngModel)]="refundForm.reason" name="refundReason" rows="3" required></textarea>
+      <button type="submit">Submit Refund</button>
+    </form>
+  </div>
+
+  <!-- Confirmation Popup -->
+  <div *ngIf="showConfirmation" class="popup">
+    <p>Your request has been submitted successfully!</p>
+    <button (click)="closeConfirmation()">OK</button>
+  </div>
+</div>
