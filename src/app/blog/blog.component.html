@@ -8,7 +8,7 @@
 
 <section class="blog-section">
   <div class="blog-cards">
-    <div class="card" *ngFor="let blog of blogs" (click)="openBlog(blog)">
+    <div class="card" *ngFor="let blog of blogs" (click)="blog.id !== undefined && goToBlog(blog.id)">
       <div class="card-img">
         <img [src]="'http://localhost:5000' + blog.image_url" alt="Blog Image" />
         <span class="date">{{ blog.date_published | date:'short'}}</span>
@@ -16,7 +16,7 @@
       <div class="card-content">
         <h3>{{ blog.title }}</h3>
         <p>{{ blog.excerpt }}</p>
-        <a (click)="openBlog(blog)" class="read-more">Read More →</a>
+        <a (click)="blog.id !== undefined && goToBlog(blog.id)" class="read-more">Read More →</a>
       </div>
     </div>
   </div>

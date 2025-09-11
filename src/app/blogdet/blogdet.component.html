@@ -1,16 +1,31 @@
 <app-header></app-header>
 
 <section class="blog-details">
-  <div class="blog-hero" [style.backgroundImage]="'url(' + blog?.image_url + ')'">
-    <div class="overlay">
-      <h1>{{ blog?.title }}</h1>
-      <span class="date">{{ blog?.date_published}}</span>
-    </div>
+  <!-- Blog Title -->
+  <div class="blog-header">
+    <h1 class="blog-title">{{ blog?.title }}</h1>
+    <span class="blog-date">
+      <i class="fas fa-calendar-alt"></i> {{ blog?.date_published }}
+    </span>
   </div>
 
-  <div class="blog-content">
-    <p>{{ blog?.content }}</p>
-    <a routerLink="/blogs" class="back-btn">← Back to Blogs</a>
+  <!-- Featured Image -->
+  <div class="blog-image">
+    <img [src]="'http://localhost:5000' + blog?.image_url" alt="{{ blog?.title }}">
+  </div>
+
+  <!-- Blog Content -->
+  <div class="blog-body">
+    <div class="content-card">
+      <p>{{ blog?.content }}</p>
+    </div>
+
+    <!-- Back Button -->
+    <div class="back-link">
+      <a routerLink="/blogs" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Blogs
+      </a>
+    </div>
   </div>
 </section>
 

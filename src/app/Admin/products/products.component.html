@@ -20,7 +20,8 @@
         </select>
 
         <!-- File Upload -->
-        <input type="file" (change)="onFileSelected($event)" name="image" accept="image/*" />
+        <input type="file" (change)="onFileSelected($event)" name="image_url" accept="image/*" />
+        <input type="file" (change)="onSubImagesSelected($event)" name="sub_images" multiple accept="image/*" />
       </div>
       <button type="submit" class="btn-add">✨ Add Product</button>
     </form>
@@ -45,7 +46,7 @@
         <tbody>
           <!-- Show products -->
           <tr *ngFor="let product of products">
-            <td><img [src]="'http://localhost:5000/' + product.image_url"  alt="{{ product.name }}" class="thumb" /></td>
+            <td><img [src]="'http://localhost:5000' + product.image_url"  alt="{{ product.name }}" class="thumb" /></td>
             <td>{{ product.name }}</td>
             <td>{{ product.description }}</td>
             <td>{{ product.price }}frs</td>
@@ -61,19 +62,22 @@
           <tr *ngIf="editingProduct">
             <td colspan="7">
               <form (ngSubmit)="updateProduct()" class="edit-form" enctype="multipart/form-data">
-                <input type="text" [(ngModel)]="editingProduct.name" name="editName" placeholder="Name" />
-                <input type="text" [(ngModel)]="editingProduct.description" name="editDesc" placeholder="Description" />
-                <input type="number" [(ngModel)]="editingProduct.price" name="editPrice" placeholder="Price" />
+                <input type="text" [(ngModel)]="editingProduct.name" name="name" placeholder="Name" />
+                <input type="text" [(ngModel)]="editingProduct.description" name="description" placeholder="Description" />
+                <input type="number" [(ngModel)]="editingProduct.price" name="price" placeholder="Price" />
 
-                <select [(ngModel)]="editingProduct.category" name="editCategory">
+                <select [(ngModel)]="editingProduct.category" name="category">
                   <option *ngFor="let cat of categories" [value]="cat">{{ cat | titlecase }}</option>
                 </select>
 
-                <select [(ngModel)]="editingProduct.type" name="editType">
+                <select [(ngModel)]="editingProduct.type" name="type">
                   <option *ngFor="let t of types" [value]="t">{{ t | titlecase }}</option>
                 </select>
 
-                <input type="file" (change)="onEditFileSelected($event)" name="editImage" accept="image/*" />
+                <input type="file" (change)="onEditFileSelected($event)" name="image_url" accept="image/*" />
+               <input type="file" (change)="onEditSubImagesSelected($event)" name="sub_images" multiple accept="image/*" />
+
+
                 <button type="submit" class="btn-save">💾 Save</button>
                 <button type="button" class="btn-cancel" (click)="editingProduct = null">❌ Cancel</button>
               </form>

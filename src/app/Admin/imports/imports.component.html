@@ -1,35 +1,58 @@
-<div class="admin-container">
-  <h2>Importation Students</h2>
+<div class="students-admin">
 
-  
-  <div class="table-wrapper">
-    <table class="students-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Full Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Interest</th>
-          <th>Preferred Time</th>
-          <th>Date Registered</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let student of students ; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ student.full_name }}</td>
-          <td>{{ student.email }}</td>
-          <td>{{ student.phone }}</td>
-          <td>{{ student.interest }}</td>
-          <td>{{ student.preferred_time }}</td>
-          <td>{{ student.date_registered | date:'medium' }}</td>
-          <td>
-            <button class="delete-btn" (click)="deleteStudent(student.id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <!-- Students Table -->
+  <section class="students-table-section">
+    <h2>📋 All Importation Students</h2>
+    <div class="table-wrapper">
+      <table class="students-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Interest</th>
+            <th>Preferred Time</th>
+            <th>Date Registered</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ student.full_name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.phone }}</td>
+            <td>{{ student.interest }}</td>
+            <td>{{ student.preferred_time }}</td>
+            <td>{{ student.date_registered | date:'medium' }}</td>
+            <td>
+              <button class="delete-btn" (click)="deleteStudent(student.id)">Delete</button>
+              <button class="edit-btn" (click)="editStudent(student)">Edit</button>
+            </td>
+          </tr>
+
+          <!-- Optional: Inline editing form -->
+          <tr *ngIf="editingStudent">
+            <td colspan="8">
+              <form (ngSubmit)="updateStudent()">
+                <input type="text" [(ngModel)]="editingStudent.full_name" name="full_name" placeholder="Full Name" required />
+                <input type="email" [(ngModel)]="editingStudent.email" name="email" placeholder="Email" required />
+                <input type="text" [(ngModel)]="editingStudent.phone" name="phone" placeholder="Phone" />
+                <select [(ngModel)]="editingStudent.interest" name="interest">
+                  <option value="">Select Interest</option>
+                  <option value="imports">Imports</option>
+                  <option value="export">Export</option>
+                </select>
+                <input type="text" [(ngModel)]="editingStudent.preferred_time" name="preferred_time" placeholder="Preferred Time" />
+                <button type="submit">💾 Save</button>
+                <button type="button" (click)="cancelEdit()">❌ Cancel</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
 </div>

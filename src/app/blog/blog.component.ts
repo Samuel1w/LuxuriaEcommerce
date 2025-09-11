@@ -33,7 +33,11 @@ export class BlogComponent implements OnInit {
     });
   }
 
-  openBlog(blog: Blog) {
-    this.router.navigate(['/blog', blog.id]);
+ 
+   goToBlog(id:number | undefined){
+    if(id === undefined) return;
+    console.log('Navigating to blog id:', id);
+    this.router.navigate(['/blogdet', id]);
+
   }
 }

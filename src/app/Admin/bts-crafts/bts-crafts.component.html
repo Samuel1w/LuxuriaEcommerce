@@ -6,7 +6,7 @@
     <textarea placeholder="Description" [(ngModel)]="scene.description" name="description" required></textarea>
     <select [(ngModel)]="scene.type" name="type" required>
       <option value="" disabled selected>Select Type</option>
-      <option value="import">Import</option>
+      <option value="imports">Import</option>
       <option value="craft">Craft</option>
     </select>
     <input type="file" (change)="onFileSelected($event)" name="video" accept="video/*">

@@ -1,39 +1,62 @@
-<!--- <div class="admin-container">
-  <h2>Importation Students</h2>
+<div class="booking-admin">
 
-  
-  <div class="table-wrapper">
-    <table class="students-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Full Name</th>
-          <th>Email</th>
-          <th>Class Type</th>
-          
-          <th>Aditional notes</th>
-          <th>Date registered</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let student of students ; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ student.full_name }}</td>
-          <td>{{ student.email }}</td>
-          <td>{{ student.classType}}</td>
-          <td>{{ student.addition }}</td>
-          <td>{{ student.preferred_time }}</td>
-          <td>{{ student.date_registered | date:'medium' }}</td>
 
-          <td>
-            
-            <button class="delete-btn" (click)="deleteStudent(student.id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div> 
 
--->
+  <!-- Bookings Table -->
+  <section class="bookings-table-section">
+    <h2>📋 All Bookings</h2>
+    <div class="table-wrapper">
+      <table class="bookings-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Class Type</th>
+            <th>Message</th>
+            <th>Created At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let b of bookings; let i = index">
+            <td>{{ i + 1 + (currentPage - 1) * pageSize }}</td>
+            <td>{{ b.name }}</td>
+            <td>{{ b.email }}</td>
+            <td>{{ b.class_type | titlecase }}</td>
+            <td>{{ b.message }}</td>
+            <td>{{ b.created_at | date:'short' }}</td>
+            <td class="actions">
+              <button class="btn-edit" (click)="editBooking(b)">✏ Edit</button>
+              <button class="btn-delete" (click)="deleteBooking(b.id)">🗑 Delete</button>
+            </td>
+          </tr>
+
+          <!-- Inline Editing -->
+          <tr *ngIf="editingBooking">
+            <td colspan="7">
+              <form (ngSubmit)="updateBooking()" class="edit-form">
+                <input type="text" [(ngModel)]="editingBooking.name" name="editName" required />
+                <input type="email" [(ngModel)]="editingBooking.email" name="editEmail" required />
+                <select [(ngModel)]="editingBooking.class_type" name="editClass" required>
+                  <option value="vocals">Vocals</option>
+                  <option value="piano">Piano</option>
+                  <option value="guitar">Guitar</option>
+                  <option value="drums">Drums</option>
+                  <option value="theory">Music Theory</option>
+                </select>
+                <textarea [(ngModel)]="editingBooking.message" name="editMessage" rows="2"></textarea>
+                <button type="submit" class="btn-save">💾 Save</button>
+                <button type="button" class="btn-cancel" (click)="cancelEdit()">❌ Cancel</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+   
+  </section>
+
+</div>

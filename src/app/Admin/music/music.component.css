@@ -1,77 +1,92 @@
-.admin-container {
-  padding: 40px;
-  background: linear-gradient(135deg, #0a043c, #3b0a45);
-  color: #f7f1ff;
+.booking-admin {
   font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
+  color: #3c1361; /* deep purple */
+  padding: 20px;
+  background: #fff;
 }
 
 h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  color: #d4af37; /* gold */
+  text-align: center;
   margin-bottom: 20px;
-  color: #ffd700; /* royal gold */
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
 }
 
-.search-box {
-  padding: 10px 15px;
-  margin-bottom: 25px;
-  width: 100%;
-  max-width: 400px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+.form-card, .bookings-table-section {
+  background: #f7f0ff; /* light purple */
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-.table-wrapper {
-  overflow-x: auto;
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
 }
 
-.students-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: rgba(255,255,255,0.05);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-  border-radius: 15px;
-  overflow: hidden;
+.form-grid input, .form-grid select, .form-grid textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d4af37;
+  font-size: 14px;
 }
 
-.students-table th, .students-table td {
-  padding: 15px 20px;
-  text-align: left;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+textarea {
+  grid-column: span 2;
 }
 
-.students-table th {
-  background: rgba(255,215,0,0.2); /* subtle golden header */
-  color: #ffd700;
-  font-weight: 600;
-  font-size: 1rem;
-  text-transform: uppercase;
-}
-
-.students-table tr:hover {
-  background: rgba(255,215,0,0.1);
-  transform: scale(1.02);
-  transition: 0.3s;
-}
-
-.delete-btn {
-  padding: 8px 15px;
-  background-color: #ff0044;
-  color: #fff;
+button {
+  cursor: pointer;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  padding: 10px 15px;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
-.delete-btn:hover {
-  background-color: #ff1a66;
-  transform: scale(1.05);
-  transition: 0.2s;
+.btn-add {
+  background-color: #3c1361;
+  color: #d4af37;
+  grid-column: span 2;
+}
+
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.bookings-table th, .bookings-table td {
+  padding: 12px;
+  border-bottom: 1px solid #d4af37;
+  text-align: left;
+}
+
+.bookings-table th {
+  background-color: #3c1361;
+  color: #fff;
+}
+
+.actions button {
+  margin-right: 5px;
+  padding: 5px 8px;
+}
+
+.btn-edit { background-color: #d4af37; color: #3c1361; }
+.btn-delete { background-color: #e74c3c; color: #fff; }
+.btn-save { background-color: #3c1361; color: #d4af37; }
+.btn-cancel { background-color: #ccc; color: #3c1361; }
+
+.pagination {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.pagination button {
+  background-color: #3c1361;
+  color: #d4af37;
+  margin: 0 5px;
+  padding: 5px 10px;
+  border-radius: 6px;
 }

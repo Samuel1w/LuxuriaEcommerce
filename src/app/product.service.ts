@@ -2,15 +2,18 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
+
 export interface Product {
   id: string;
   name: string;
-  description:string;
+  description: string;
   price: number;
   image_url: string;
+  sub_images?: string[]; // ➕ new property
   category: 'imports' | 'craft';
   type: 'preorder' | 'available';
 }
+
 
 export interface Paginated<T> {
   items: T[];
@@ -49,12 +52,12 @@ export class ProductService {
 
 /** ➕ Add new product with file upload */
 addProduct(formData: FormData): Observable<any> {
-  return this.http.post(this.base, formData); // remove <Product>
+  return this.http.post(this.base, formData);
 }
 
-/** ✏ Update product with file upload */
 updateProduct(id: string, formData: FormData): Observable<any> {
-  return this.http.put(`${this.base}/${id}`, formData); // remove <Product>
+  return this.http.put(`${this.base}/${id}`, formData);
+
 }
 
   /** 🗑 Delete product */

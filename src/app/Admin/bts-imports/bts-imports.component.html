@@ -1,1 +1,20 @@
-<p>bts-imports works!</p>
+<div class="empire-admin">
+  <h2>⚔️ Empire Showcase Admin</h2>
+
+  <!-- Add New Item -->
+  <form (ngSubmit)="addEmpire()" class="admin-form">
+    <input type="text" placeholder="Enter Title" [(ngModel)]="newEmpire.title" name="title" />
+    <input type="file" (change)="onFileSelected($event)" />
+    <button type="submit">Add</button>
+  </form>
+  
+
+  <!-- List -->
+  <div class="empire-list">
+    <div *ngFor="let item of empireItems" class="empire-item">
+      <img [src]="'http://localhost:5000' + item.image_url" [alt]="item.title" />
+      <h3>{{ item.title }}</h3>
+      <button (click)="deleteEmpire(item.id)">Delete</button>
+    </div>
+  </div>
+</div>

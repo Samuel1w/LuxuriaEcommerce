@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from '../footer/footer.component';
+import { HttpClient } from '@angular/common/http';
+import { Blog, BlogService } from '../blog.service';
 
+interface Empire {
+  id: number;
+  title: string;
+  image_url: string;
+}
 @Component({
   selector: 'app-home',
   imports: [HeaderComponent,RouterModule,CommonModule,FormsModule,FooterComponent],
@@ -12,57 +19,24 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+blogs: Blog[] = [];
+    loading = true;
+    error: string | null = null;
+  
   isPaused = false;
 
   galleryImages = [
-    'assets/prod20.jpg', 'assets/prod13.jpg', 'assets/prod18.jpg',
-    'assets/prod17.jpg', 'assets/prod26.jpg', 'assets/prod33.jpg',
-    'assets/prod51.jpg', 'assets/prod40.jpg', 'assets/prod36.jpg',
-    'assets/prod43.jpg', 'assets/prod56.jpg', 'assets/prod49.jpg'
+    'assets/instagram.png', 'assets/tiktok.png', 'assets/social.png',
+    'assets/youtube.png', 'assets/linkedin.png', 'assets/facebook.png',
+    
   ];
 
-  
-  blogs = [
-  {
-    title: 'The Rise of Luxuria Empire',
-    excerpt: 'A look into how Luxuria started...',
-    description: 'This article goes deeper into the foundation and vision of Luxuria Empire.',
-    date: '2025-09-09',
-    image: 'assets/importsLogo.jpeg',
-    link: '/blog/1'
-  },
-  {
-    title: 'Our Craft Journey',
-    excerpt: 'How Luxuria Craft is shaping creativity...',
-    description: 'Luxuria Craft is redefining artisan excellence through innovation.',
-    date: '2025-08-25',
-    image: 'assets/importsLogo.jpeg',
-    link: '/blog/2'
-  }
-];
-
-
-  socials = [
-    { name: 'Facebook', image: 'assets/prod1.jpg', icon: 'fab fa-facebook-f' },
-    { name: 'Instagram', image: 'assets/prod3.jpg', icon: 'fab fa-instagram' },
-    { name: 'YouTube', image: 'assets/prod6.jpg', icon: 'fab fa-youtube' },
-    { name: 'TikTok', image: 'assets/prod8.jpg', icon: 'fab fa-tiktok' },
-    { name: 'WhatsApp', image: 'assets/prod10.jpg', icon: 'fab fa-whatsapp' }
-  ];
 
   testimonials = [
     { name: 'Jane Doe', message: 'Luxuria Empire is unmatched in excellence!' },
     { name: 'John Smith', message: 'Their dedication and vision are inspiring.' },
     { name: 'Mary Johnson', message: 'Truly a world-class experience.' }
   ];
-
-  featuredProducts = [
-    { name: 'Lux Bag', description: 'Handcrafted elegance', image: 'assets/prod28.jpg' },
-    { name: 'Tech Widget', description: 'Future ready', image: 'assets/prod29.jpg' },
-    { name: 'Craft Jewelry', description: 'Luxury woven', image: 'assets/prod30.jpg' }
-  ];
-
  upcomingEvents = [
   {
     title: 'Luxury Gala Night',
@@ -86,42 +60,10 @@ export class HomeComponent implements OnInit {
 
  milestones = [
     { icon: 'fas fa-box-open', count: 1200, label: 'Products Delivered' },
-    { icon: 'fas fa-users', count: 850, label: 'Happy Customers' },
-    { icon: 'fas fa-gem', count: 25, label: 'Awards & Recognitions' },
-    { icon: 'fas fa-music', count: 500, label: 'Music Lessons Completed' }
+    { icon: 'fas fa-users', count: 250, label: 'Happy Customers' },
+    { icon: 'fas fa-gem', count: 3, label: 'Awards & Recognitions' },
+    { icon: 'fas fa-music', count: 4, label: 'Music Lessons Completed' }
   ];
-
-
- behindScenes = [
-  {
-    title: 'Tech Innovation Lab',
-    description: 'Sneak peek into Luxuria’s cutting-edge technology projects.',
-    type: 'image',
-    image: 'assets/bts/tech-lab.jpg'
-  },
-  {
-    title: 'Crochet Workshop',
-    description: 'Behind the scenes of crafting elegant crochet designs.',
-    type: 'video',
-    video: 'assets/bts/crochet-workshop.mp4',
-    image: '' // optional fallback
-  },
-  {
-    title: 'Imports Showcase',
-    description: 'A look into our premium import collections.',
-    type: 'image',
-    image: 'assets/bts/imports.jpg'
-  },
-  {
-    title: 'Music Lessons',
-    description: 'Experience the vibes of our musical instrument classes.',
-    type: 'video',
-    video: 'assets/bts/music-lesson.mp4',
-    image: ''
-  }
-];
-
-
   subscriberEmail: string = '';
 
   hoveredEvent: any = null;
@@ -130,16 +72,43 @@ export class HomeComponent implements OnInit {
   currentIndex: number = 0;
   imagesPerView: number = 4;
 
-  ngOnInit() {
-    this.updateVisibleImages();
-  }
+ 
 
   // Scroll to section
   scrollTo(sectionId: string) {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   }
 
-  // Pause/Resume gallery scroll
+ empireItems: Empire[] = [];
+  baseUrl = 'http://localhost:5000/api/empire';
+
+
+
+  constructor(private http: HttpClient,private blogService: BlogService, private router: Router) {}
+
+  ngOnInit() {
+    this.fetchEmpire();
+       this.updateVisibleImages();
+       this.blogService.getBlogs().subscribe({
+        next: (res: Blog[]) => {
+          this.blogs = res;
+          this.loading = false;
+        },
+        error: (err: any) => {
+          console.error(err);
+          this.error = 'Failed to load blogs';
+          this.loading = false;
+        }
+      });
+  }
+
+  fetchEmpire() {
+    this.http.get<Empire[]>(this.baseUrl).subscribe({
+      next: res => this.empireItems = res,
+      error: err => console.error(err)
+    });
+  }
+
   pauseScroll() {
     this.isPaused = true;
   }
@@ -148,18 +117,19 @@ export class HomeComponent implements OnInit {
     this.isPaused = false;
   }
 
-  // Open blog link
-  goToBlog(link: string) {
-    window.open(link, '_blank');
-  }
-
-  // Newsletter subscription
-  subscribeNewsletter() {
-    if(this.subscriberEmail) {
-      alert(`Thank you for subscribing: ${this.subscriberEmail}`);
-      this.subscriberEmail = '';
+  
+ 
+  
+   
+   
+     goToBlog(id:number | undefined){
+      if(id === undefined) return;
+      console.log('Navigating to blog id:', id);
+      this.router.navigate(['/blogdet', id]);
+  
     }
-  }
+
+
 
   // Event hover logic
   hoverEvent(event: any) {

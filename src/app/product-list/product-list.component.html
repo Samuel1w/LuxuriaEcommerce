@@ -48,8 +48,8 @@
       *ngFor="let product of products; trackBy: trackByProductId"
       [attr.aria-label]="product.name"
     >
-      <a [routerLink]="['/product', product.id]" class="image-wrap" [attr.aria-label]="'View ' + product.name">
-        <img [src]="'http://localhost:5000/' + product.image_url" [alt]="product.name" loading="lazy" />
+      <a [routerLink]="['/prodet', product.id]" class="image-wrap" [attr.aria-label]="'View ' + product.name">
+        <img [src]="'http://localhost:5000' + product.image_url" [alt]="product.name" loading="lazy" />
         <span class="ribbon" *ngIf="type === 'preorder'">Pre-Order</span>
         <span class="ribbon available" *ngIf="type === 'available'">Available</span>
       </a>
@@ -62,7 +62,7 @@
         </div>
         <div class="price-row">
           <span class="price">{{ product.price | number }} frs</span>
-          <a class="btn" [routerLink]="['/product', product.id]">View details</a>
+          <a class="btn" [routerLink]="['/prodet', product.id]">View details</a>
         </div>
       </div>
     </article>

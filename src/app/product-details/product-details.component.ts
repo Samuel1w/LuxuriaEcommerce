@@ -1,20 +1,35 @@
-import { Component, Input } from '@angular/core';
+import { Component} from '@angular/core';
+import { ProductService, Product } from '../product.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-product-details',
+   imports: [FormsModule,CommonModule,RouterModule, FooterComponent,HeaderComponent],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent {
-  @Input() product: any; // product passed from parent (list or router)
+product!: Product;
+mainImage!: string;
+constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
+ngOnInit() {
+  const id = this.route.snapshot.paramMap.get('id')!;
+  this.productService.getProductById(id).subscribe(data => {
+    this.product = data;
+    this.mainImage = data.image_url; // default main image
+  });
+}
 
-  addToCart(product: any) {
-    console.log('Added to cart:', product);
-    // TODO: integrate with cart service
-  }
+setMainImage(img: string) {
+  this.mainImage = img;
+}
 
-  preOrder(product: any) {
-    console.log('Pre-ordered:', product);
-    // TODO: connect to pre-order backend
-  }
 }
