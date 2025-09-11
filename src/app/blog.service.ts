@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 export interface Blog {
   id: number;
@@ -17,7 +18,9 @@ export interface Blog {
   providedIn: 'root'
 })
 export class BlogService {
-  private apiUrl = 'http://localhost:5000/api/blogs'; // adjust if backend runs elsewhere
+  
+
+  private apiUrl= `${environment.apiUrl}/api/blogs`;
 
   constructor(private http: HttpClient) {}
 

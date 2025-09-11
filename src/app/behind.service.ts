@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 export interface Behind {
   id: number;
@@ -14,8 +15,9 @@ export interface Behind {
 
 @Injectable({ providedIn: 'root' })
 export class BehindService {
-  private base = 'http://localhost:5000/api/behind';
+ 
 
+   private base= `${environment.apiUrl}/api/behind`;
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Behind[]> {
