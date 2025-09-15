@@ -1,4 +1,88 @@
 
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 400px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-item {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Optional banner content styling */
+.banner-content {
+  position: absolute;
+  top: 45%;
+  left: 14%;
+  color: rgba(255, 255, 255, 0.938);
+  max-width: 600px;
+}
+
+
+
+.banner-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.banner-text {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+
+
+.banner-btn:hover {
+  background-color: gold;
+}
+
+
+.carousel-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+.Cultural-carousel{
+  width: 100%;
+}
+
+.carousel-dots span {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-dots span.active {
+  background-color: #3ebd58;
+}
+
+
 
 /* === WOW SECTION BASE === */
 .wow-section {
@@ -81,7 +165,7 @@
 }
 .insta-item {
   position: relative;
-  min-width: 220px;
+  min-width: 120px;
   border-radius: 16px;
   overflow: hidden;
   transition: transform .3s;
@@ -141,10 +225,12 @@
 .testimonial-card p {
   color: #F6B73C;
 }
+
 .quote-icon {
-  font-size: 2rem;
+  font-size: 28px;
   color: purple;
-  margin-bottom: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 /* === UPCOMING EVENTS (Timeline) === */
@@ -304,6 +390,10 @@
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+ 
+}
+.mapy{
+   width :1200px; height :550px; border:0;
 }
 
 
@@ -542,6 +632,10 @@ section { padding: 6rem 2rem; }
   .stats-grid{grid-template-columns: repeat(2,1fr)}
   .magazine-grid .card{grid-column: span 12}
   .product-grid .featured-card{grid-column: span 12}
+  .mapy{
+    width: 400px;
+    height: 500px;
+  }
 } 
 /* Responsive */
 @media (max-width: 900px) {

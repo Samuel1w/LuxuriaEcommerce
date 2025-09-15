@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { FooterComponent } from '../footer/footer.component';
 import { HttpClient } from '@angular/common/http';
 import { Blog, BlogService } from '../blog.service';
+import { AvailableComponent } from '../available/available.component';
 
 interface Empire {
   id: number;
@@ -14,7 +15,7 @@ interface Empire {
 }
 @Component({
   selector: 'app-home',
-  imports: [HeaderComponent,RouterModule,CommonModule,FormsModule,FooterComponent],
+  imports: [HeaderComponent,RouterModule,CommonModule,FormsModule,FooterComponent,AvailableComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -22,9 +23,84 @@ export class HomeComponent implements OnInit {
 blogs: Blog[] = [];
     loading = true;
     error: string | null = null;
+    currentSlide = 0;
+  intervalId: any;
+  
+  
+ 
+
+  goToSlide(index: number) {
+    this.currentSlide = index;
+  }
+  
+  ngOnDestroy() {
+    clearInterval(this.intervalId);}
   
   isPaused = false;
 
+
+  culturalSlides = [
+    
+    {
+      image: 'assets/importsLogo.jpeg',
+      alt: "women's latest fashion sale",
+      content: {
+       
+        title: "Chief Esuka Enderley and his Royal entourage always present at various FMCC events",
+       
+      }
+    },
+   
+    {
+      image: 'assets/importsLogo.jpeg',
+      alt: 'modern sunglasses',
+      content: {
+       
+        title: 'Cultural Dances and perfomances from the Fako people',
+       
+      }
+    },
+   
+    {
+      image: 'assets/importsLogo.jpeg',
+ 
+      content: {
+     
+        title: 'Football friendly matches, between several fako teams, blessed by the presence of the paramount cheif himself',
+       
+      }
+    },
+     
+    {
+      image: 'assets/Mbando/3D4A9376.JPG',
+    
+      content: {
+    
+        title: "Event Hosting grounds, with multiple partipants, A day for CULTURE!",
+       
+      }
+    },
+   
+    {
+      image: 'assets/Mbando/3D4A9380.JPG',
+      alt: 'modern sunglasses',
+      content: {
+       
+        title: 'Friendly Associations between the elderly, so much love and respect among the fako people',
+       
+      }
+    },
+   
+    {
+      image: 'assets/coro.jpeg',
+      alt: 'new fashion summer sale',
+      content: {
+        
+        title: 'Cultural Events Happily celebrated with friends and loved ones, to remind us of our roots',
+       
+      }
+    }
+  ];
   galleryImages = [
     'assets/instagram.png', 'assets/tiktok.png', 'assets/social.png',
     'assets/youtube.png', 'assets/linkedin.png', 'assets/facebook.png',
@@ -59,11 +135,12 @@ blogs: Blog[] = [];
 ];
 
  milestones = [
-    { icon: 'fas fa-box-open', count: 1200, label: 'Products Delivered' },
-    { icon: 'fas fa-users', count: 250, label: 'Happy Customers' },
-    { icon: 'fas fa-gem', count: 3, label: 'Awards & Recognitions' },
-    { icon: 'fas fa-music', count: 4, label: 'Music Lessons Completed' }
-  ];
+  { icon: 'inventory_2', count: 1200, label: 'Products Delivered' },
+  { icon: 'groups', count: 250, label: 'Happy Customers' },
+  { icon: 'diamond', count: 3, label: 'Awards & Recognitions' },
+  { icon: 'music_note', count: 4, label: 'Music Lessons Completed' }
+];
+
   subscriberEmail: string = '';
 
   hoveredEvent: any = null;
@@ -100,6 +177,10 @@ blogs: Blog[] = [];
           this.loading = false;
         }
       });
+
+      this.intervalId = setInterval(() => {
+      this.currentSlide = (this.currentSlide + 1) % this.culturalSlides.length;
+    }, 8000);
   }
 
   fetchEmpire() {

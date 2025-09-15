@@ -1,9 +1,21 @@
 <app-header></app-header>
 
-<!-- ============= Our Story Section ============= -->
+<!-- ===================== HERO SECTION ===================== -->
+<section class="hero-section">
+  <video autoplay muted loop class="hero-video">
+    <source src="assets/musicvid.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay">
+    <h1>Welcome to <span>Luxuria Empire</span></h1>
+    <p>Where luxury, innovation, craft, and music unite in royal excellence.</p>
+    <a href="#journey-section" class="scroll-btn">Our Journey</a>
+  </div>
+</section>
+
+<!-- ===================== OUR STORY ===================== -->
 <section class="story-section">
   <div class="story-content">
-    <h2 class="story-title">Our Story <span>& Vision</span></h2>
+    <h2 class="story-title" style="text-align: center;" >Our Story <span>& Vision</span></h2>
     <p class="story-text">
       Luxuria Empire is more than a company — it is a dynasty of dreams. Built upon four royal houses, 
       we unite the world of <strong>luxury importation</strong>, the brilliance of <strong>technology</strong>, 
@@ -18,33 +30,33 @@
   </div>
 </section>
 
-<!-- ============= Four Pillars Section ============= -->
+<!-- ===================== FOUR PILLARS ===================== -->
 <section class="pillars-section">
-  <h2 class="section-title">The Four <span>Pillars of Luxuria Empire</span></h2>
+  <h2 class="section-title" style="text-shadow: 0 0 10px gold; color: gold; text-align: center;">The Four <span>Pillars of Luxuria Empire</span></h2>
   <div class="pillars-container">
-    <div class="pillar">
-      <h3>🏛 Luxuria Imports</h3>
-      <p>Delivering elegance through world-class importation of luxury goods, 
-      redefining trust and sophistication.</p>
-    </div>
-    <div class="pillar">
-      <h3>💻 Luxuria Techub</h3>
-      <p>Where innovation meets creativity — empowering digital growth and building futuristic solutions.</p>
-    </div>
-    <div class="pillar">
-      <h3>🧶 Luxuria Craft</h3>
-      <p>Handmade crochets crafted with passion, blending tradition with modern artistry.</p>
-    </div>
-    <div class="pillar">
-      <h3>🎶 Luxuria Music</h3>
-      <p>Amplifying voices and rhythms, nurturing talent, and creating a symphony of inspiration.</p>
+    <div class="pillar" *ngFor="let pillar of pillarsList">
+      <h3>{{ pillar.icon }} {{ pillar.name }}</h3>
+      <p>{{ pillar.desc }}</p>
     </div>
   </div>
 </section>
 
-<!-- ============= The People Behind Section ============= -->
+<!-- ===================== JOURNEY / TIMELINE ===================== -->
+<section id="journey-section" class="timeline-section">
+  <h2 class="section-title" style="text-shadow: 0 0 10px purple; color: purple; text-align: center;">Our Royal <span>Journey</span></h2>
+  <div class="timeline-container">
+    <div class="timeline-item" *ngFor="let step of journeyList; let i = index" [class.right]="i % 2 === 0" [class.left]="i % 2 !== 0">
+      <div class="timeline-content">
+        <h3>{{ step.year }}</h3>
+        <p>{{ step.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE PEOPLE ===================== -->
 <section class="people-section">
-  <h2 class="section-title">The Guardians <span>Behind The Empire</span></h2>
+  <h2 class="section-title" style="text-shadow: 0 0 10px gold; color: gold; text-align: center;">The Guardians <span>Behind The Empire</span></h2>
   <div class="people-container">
     <div class="person" *ngFor="let person of peopleList">
       <div class="person-img">
@@ -59,17 +71,10 @@
   </div>
 </section>
 
-<!-- ============= Our Partners Section ============= -->
-<section class="partners-section">
-  <h2 class="section-title">Our Esteemed <span>Partners</span></h2>
-  <div class="partners-logos">
-    <img *ngFor="let partner of partnersList" [src]="partner.logo" [alt]="partner.name" />
-  </div>
-</section>
 
-<!-- ============= Core Values Section ============= -->
+<!-- ===================== CORE VALUES ===================== -->
 <section class="values-section">
-  <h2 class="section-title">The Core <span>Virtues of Our Empire</span></h2>
+  <h2 class="section-title" style="text-shadow: 0 0 10px purple; color: purple; text-align: center;">The Core <span>Virtues of Our Empire</span></h2>
   <div class="values-container">
     <div class="value" *ngFor="let value of valuesList">
       <div class="icon">{{ value.icon }}</div>
@@ -79,11 +84,10 @@
   </div>
 </section>
 
-<!-- Existing FAQ + Newsletter -->
+<!-- ===================== FAQ ===================== -->
 <section class="faq-section">
   <p class="faq-subtitle">— Faqs</p>
-  <h2 class="faq-title">Luxuria Empire? <span>Look here.</span></h2>
-
+  <h2 class="faq-title" style="text-shadow: 0 0 10px purple; color: purple; text-align: center;">Luxuria Empire? <span>Look here.</span></h2>
   <div class="faq-container">
     <div 
       class="faq-item" 
@@ -103,14 +107,24 @@
   </div>
 </section>
 
-<div class="newsletter-modal">
+
+<!-- ===================== PARTNERS ===================== -->
+<section class="partners-section">
+  <h2 class="section-title" style="text-shadow: 0 0 10px gold; color: gold; text-align: center;">Our Esteemed <span>Partners</span></h2>
+  <div class="partners-logos">
+    <img *ngFor="let partner of partnersList" [src]="partner.logo" [alt]="partner.name" />
+  </div>
+</section>
+
+<!-- ===================== NEWSLETTER ===================== -->
+<section class="newsletter-modal">
   <div class="modal-image">
     <img src="assets/prod1.jpg" alt="Room Image" />
   </div>
   <div class="modal-content">
     <button class="close-btn">&times;</button>
     <p class="small-heading">📬 Subscribe To Our Newsletter</p>
-    <h2 class="main-heading">Get Weekly Newsletter</h2>
+    <h2 class="main-heading" style="text-shadow: 0 0 10px purple; color: purple; text-align: center;">Get Weekly Newsletter</h2>
     <p class="description">
       Discover exclusive updates, inspiring stories, and royal moments from Luxuria Empire.
     </p>
@@ -131,4 +145,6 @@
       <button class="subscribe-btn" type="submit">Subscribe Now</button>
     </form>
   </div>
-</div>
+</section>
+
+<app-footer></app-footer>

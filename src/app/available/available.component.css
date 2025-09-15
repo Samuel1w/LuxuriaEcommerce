@@ -1,89 +1,143 @@
-.product-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 20px;
-  gap: 20px;
+.hot-offers {
+  padding: 100px 8%;
+  background: linear-gradient(135deg, #ffffff, #fdf5e6, #f9f0ff);
+  text-align: center;
+  overflow: hidden;
 }
 
-.sidebar {
-  width: 400px;
-  padding: 20px;
-  border-right: 1px solid #eee;
-}
-
-.sidebar h4 {
-  font-size: 16px;
+.section-title {
+  font-size: 3rem;
   font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #5a189a;
+  text-shadow: 0 0 8px rgba(90, 24, 154, 0.4);
 }
 
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
+.section-title span {
+  color: #d4af37;
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
 }
 
-.sidebar li a {
-  text-decoration: none;
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 60px;
   color: #444;
-  font-size: 14px;
 }
 
-.main-content {
-  flex: 1;
-  padding: 20px;
-}
-
-.top-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.pagination button {
-  padding: 6px 10px;
-  margin: 0 2px;
-  border: 1px solid #ccc;
-  background: white;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.pagination button.active {
-  border-color: black;
-  background-color: gold;
-  color: white;
-}
-
-.product-grid {
+.offers-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 40px;
 }
 
-.product-card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: white;
-  border-radius: 8px;
+.offer {
+  position: relative;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  backdrop-filter: blur(15px);
+  padding: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.offer:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
-.product-card img {
+.offer-image img {
   width: 100%;
-  border-radius: 5px;
+  height: 200px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.offer-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  animation: badgeGlow 3s infinite alternate;
+}
+
+.offer-badge.Crafted { background: linear-gradient(135deg, #ff7f50, #ffb347); }
+.offer-badge.Imported { background: linear-gradient(135deg, #0096c7, #48cae4); }
+.offer-badge.Tech { background: linear-gradient(135deg, #7209b7, #f72585); }
+.offer-badge.Music { background: linear-gradient(135deg, #ff006e, #fb5607); }
+
+@keyframes badgeGlow {
+  0% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
+  100% { box-shadow: 0 0 20px rgba(255,255,255,0.8); }
+}
+
+.offer-details {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.offer-details h3 {
+  font-size: 1.6rem;
+  color: #5a189a;
   margin-bottom: 10px;
 }
 
-.product-card p {
-  font-size: 14px;
-  color: #333;
-  text-align: center;
+.offer-details p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.time-box {
+  background: rgba(212, 175, 55, 0.15);
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  width: 65px;
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  box-shadow: inset 0 0 12px rgba(212, 175, 55, 0.3);
+}
+
+.time-box span {
+  font-size: 1.3rem;
+  color: #d4af37;
+}
+
+.time-box small {
+  font-size: 0.7rem;
+  color: #5a189a;
+}
+
+.shop-btn {
+  background: linear-gradient(135deg, #d4af37, #ffdd55);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #5a189a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.shop-btn:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #ffdd55, #d4af37);
 }

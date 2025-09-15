@@ -1,178 +1,168 @@
 <app-header></app-header>
 
-
-<section class="music-banner">
-  <div class="banner-content">
-    <h1>
-      Bringing Music to <span class="highlight">Everywhere You Are</span>
-    </h1>
+<!-- HERO SECTION with Background Video -->
+<section class="hero">
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="../../assets/musicvid.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>🎶 Experience <span>Royal Music</span> Like Never Before</h1>
     <p>
-      At <strong>Luxuria Imports</strong>, we help you learn music from anywhere in the world.  
-      If you are in <strong>Cameroon</strong>, you can also reach out to hire our live music band  
-      for weddings, birthday parties, and other special events.
+      Luxuria Imports brings you music lessons, live bands, and unforgettable performances.  
+      From Cameroon to the world 🌍 — Music for every moment.
     </p>
-<a href="https://wa.me/237683702677" target="_blank">
-  <button class="btn-primary">Hire a Band</button>
-</a>
-
-  </div>
-
-  <div class="banner-images">
-    <img src="../../assets/av1.jpeg" alt="Child with guitar" />
-    <img src="../../assets/av2.jpeg" alt="Live band" />
-    <img src="../../assets/av3.jpeg" alt="Singer" />
-    <img src="../../assets/av4.jpeg" alt="Kids band" />
-    <img src="../../assets/av5.jpeg" alt="Drummer" />
+    <a href="https://wa.me/237683702677" target="_blank">
+      <button class="btn-primary">Hire a Band</button>
+    </a>
   </div>
 </section>
 
-<!-- Keep your existing hero banner component exactly as is -->
-
-
-<!-- ABOUT (Diagonal image + floating card) -->
-<section class="about slant">
-  <div class="about-wrap">
-    <div class="about-image"></div>
-    <div class="about-card">
-      <h2>About Luxuria Music</h2>
-      <p>
-        We bring music closer — learn from anywhere in the world with our online lessons,
-        or book a live band in Cameroon for weddings, birthdays, and corporate events.
-      </p>
-      <ul>
-        <li>Online lessons: guitar, piano, drums, vocals</li>
-        <li>Flexible schedules and pro tutors</li>
-        <li>Premium live performances on demand</li>
-      </ul>
+<!-- SECTION 1: Royal Highlights -->
+<section class="highlights">
+  <h2 class="section-title">Our Royal Highlights</h2>
+  <div class="stats">
+    <div class="stat">
+      <h3>100+</h3>
+      <p style="color: white;">Students Trained</p>
+    </div>
+    <div class="stat">
+      <h3>120+</h3>
+      <p style="color: white;">Events Performed</p>
+    </div>
+    <div class="stat">
+      <h3>15+</h3>
+      <p style="color: white;">Professional Tutors</p>
+    </div>
+    <div class="stat">
+      <h3>4 Years</h3>
+      <p style="color: white;">Of Excellence</p>
     </div>
   </div>
 </section>
 
-<!-- FEATURES (Diamond/zig-zag glass tiles) -->
-<section class="features wave-top">
-  <h2 class="section-title">Learn Anywhere, Play Everywhere</h2>
-  <div class="diamonds">
-    <div class="diamond">
-      <div class="diamond-inner">
-        <span class="icon">🎸</span>
-        <h3>Instruments</h3>
-        <p>Guitar • Piano • Drums • Vocals</p>
-      </div>
+<!-- SECTION 2: Featured Albums / Tracks -->
+<!-- ============= Albums Section ============= -->
+<section class="albums">
+  <h2 class="section-title">Featured Albums & Tracks</h2>
+  <div class="album-grid">
+    <div class="album-card">
+      <video controls poster="../../assets/av1.jpeg">
+        <source src="../../assets/bts.MP4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h3>Golden Strings</h3>
+      <p style="color: white;">Pure guitar vibes with royal energy.</p>
     </div>
 
-    <div class="diamond offset-up">
-      <div class="diamond-inner">
-        <span class="icon">🌍</span>
-        <h3>Global</h3>
-        <p>Learn from anywhere, any device</p>
-      </div>
+    <div class="album-card">
+      <video controls poster="../../assets/av2.jpeg">
+        <source src="../../assets/tec.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h3>Voices of Luxuria</h3>
+      <p style="color: white;">Powerful vocals for every soul.</p>
     </div>
 
-    <div class="diamond offset-down">
-      <div class="diamond-inner">
-        <span class="icon">🎧</span>
-        <h3>1:1 Coaching</h3>
-        <p>Personalized guidance, fast progress</p>
-      </div>
-    </div>
-
-    <div class="diamond">
-      <div class="diamond-inner">
-        <span class="icon">🎤</span>
-        <h3>Hire a Band</h3>
-        <p>Cameroon-wide events & shows</p>
-      </div>
+    <div class="album-card">
+      <video controls poster="../../assets/av3.jpeg">
+        <source src="../../assets/musi.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h3>Drums of Glory</h3>
+      <p style="color: white;">The heartbeat of every celebration.</p>
     </div>
   </div>
 </section>
 
-<!-- BAND SHOWCASE (Spotlight + scroll-snap carousel) -->
-<section class="band spotlight">
-  <h2 class="section-title">Our Band in Action</h2>
 
-  <div class="carousel" tabindex="0">
-    <article class="slide wedding">
-      <div class="label">Weddings</div>
-    </article>
-    <article class="slide birthday">
-      <div class="label">Birthdays</div>
-    </article>
-    <article class="slide corporate">
-      <div class="label">Corporate</div>
-    </article>
-  </div>
-
-  <div class="dots">
-    <span></span><span></span><span></span>
+<!-- SECTION 3: Upcoming Events -->
+<section class="events">
+  <h2 class="section-title">Upcoming Events</h2>
+  <div class="timeline">
+    <div class="event">
+      <span class="date">Oct 20, 2025</span>
+      <p style="color: white;">🎤 Live Concert – Buea Grand Hall</p>
+    </div>
+    <div class="event">
+      <span class="date">Nov 12, 2025</span>
+      <p style="color: white;">🎹 Piano Masterclass – Online</p>
+    </div>
+    <div class="event">
+      <span class="date">Dec 5, 2025</span>
+      <p style="color: white;">🥁 Drumming Night – Douala</p>
+    </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS (Floating speech bubbles) -->
-<section class="testimonials float">
+<!-- SECTION 4: Gallery Showcase -->
+<section class="gallery">
+  <h2 class="section-title">Gallery Showcase</h2>
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <img src="../../assets/mus1.jpeg" alt="Gallery 1" />
+      <img src="../../assets/mus2.jpeg" alt="Gallery 2" />
+      <img src="../../assets/mus4.jpeg" alt="Gallery 3" />
+      <img src="../../assets/mus5.jpeg" alt="Gallery 4" />
+      <img src="../../assets/av5.jpeg" alt="Gallery 5" />
+    </div>
+    <button class="carousel-btn prev">&#10094;</button>
+    <button class="carousel-btn next">&#10095;</button>
+  </div>
+</section>
+
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
   <h2 class="section-title">What People Say</h2>
   <div class="bubbles">
-    <div class="bubble b1">
-      <img class="avatar" src="../../assets/car1.jpeg" alt="avatar">
-      <p>“Luxuria made our wedding magical — flawless live music!”</p>
-      <span class="name">— Sarah & Daniel</span>
+    <div class="bubble">
+      <p style="color: white;">“Luxuria made our wedding magical — flawless live music!”</p>
+      <span>— Sarah & Daniel</span>
     </div>
-    <div class="bubble b2">
-      <img class="avatar" src="../../assets/car2.jpeg" alt="avatar">
-      <p>“I played my first full song in 6 weeks. Tutors are 🔥.”</p>
-      <span class="name">— Michael</span>
+    <div class="bubble">
+      <p style="color: white;">“I played my first full song in 6 weeks. Tutors are 🔥.”</p>
+      <span>— Michael</span>
     </div>
-    <div class="bubble b3">
-      <img class="avatar" src="../../assets/car3.jpeg" alt="avatar">
-      <p>“Professional stage presence. Our corporate gala was a hit.”</p>
-      <span class="name">— Linda</span>
+    <div class="bubble">
+      <p style="color: white;">“Professional stage presence. Our corporate gala was a hit.”</p>
+      <span>— Linda</span>
     </div>
   </div>
 </section>
 
-<!-- 🎶 Booking Form Section -->
-<section class="booking-section" style="border-top: 7px solid black">
+<!-- BOOKING FORM -->
+<section class="booking">
   <div class="form-container">
     <h2>🎵 Book Your Music Classes</h2>
-    <p class="subtitle">
-      Learn music from anywhere in the world. Fill out the form below to get started.
-    </p>
+    <p class="subtitle">Learn music from anywhere in the world. Fill out the form below to get started.</p>
 
     <form class="booking-form" (ngSubmit)="submitBooking()">
-      <div  class="form-group">
+      <div class="form-group">
         <label for="name">Full Name</label>
-        
-         <input id="name" [(ngModel)]="booking.name" name="name" placeholder="Full Name" required />
+        <input id="name" [(ngModel)]="booking.name" name="name" placeholder="Full Name" required />
       </div>
-
       <div class="form-group">
         <label for="email">Email Address</label>
- <input id="email" [(ngModel)]="booking.email" name="email" placeholder="Email" type="email" required />
+        <input id="email" [(ngModel)]="booking.email" name="email" placeholder="Email" type="email" required />
       </div>
-
       <div class="form-group">
         <label for="classType">Class Type</label>
-          <select id="classType" [(ngModel)]="booking.classType" name="classType" required>
-    <option value="">Select a class</option>
-    <option value="vocals">Vocals</option>
-    <option value="piano">Piano</option>
-    <option value="guitar">Guitar</option>
-    <option value="drums">Drums</option>
-    <option value="theory">Music Theory</option>
-  </select>
+        <select id="classType" [(ngModel)]="booking.classType" name="classType" required>
+          <option value="">Select a class</option>
+          <option value="vocals">Vocals</option>
+          <option value="piano">Piano</option>
+          <option value="guitar">Guitar</option>
+          <option value="drums">Drums</option>
+          <option value="theory">Music Theory</option>
+        </select>
       </div>
-
       <div class="form-group">
         <label for="message">Additional Notes</label>
-          <textarea id="message" [(ngModel)]="booking.message" name="message" rows="4" placeholder="Tell us more..."></textarea>
-       
+        <textarea id="message" [(ngModel)]="booking.message" name="message" rows="4" placeholder="Tell us more..."></textarea>
       </div>
-
       <button type="submit" class="submit-btn">Book Now</button>
     </form>
-
-
-    <!-- booking.component.html -->
-
 
     <p class="whatsapp-note">
       💬 In case of slow feedback, reach us directly on WhatsApp:  
@@ -180,4 +170,5 @@
     </p>
   </div>
 </section>
+
 <app-footer></app-footer>

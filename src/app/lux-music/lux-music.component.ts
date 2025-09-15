@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./lux-music.component.css']
 
 })
-export class LuxMusicComponent {
+export class LuxMusicComponent implements AfterViewInit, OnDestroy {
   booking = {
     name: '',
     email: '',
@@ -33,5 +33,43 @@ export class LuxMusicComponent {
       });
   }
 
+  currentSlide = 0;
+  intervalId: any;
+
+  ngAfterViewInit() {
+    const track = document.querySelector('.carousel-track') as HTMLElement;
+    const slides = Array.from(track.children) as HTMLElement[];
+    const prevButton = document.querySelector('.carousel-btn.prev') as HTMLElement;
+    const nextButton = document.querySelector('.carousel-btn.next') as HTMLElement;
+
+    const updateCarousel = () => {
+      track.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+    };
+
+    const nextSlide = () => {
+      this.currentSlide = (this.currentSlide + 1) % slides.length;
+      updateCarousel();
+    };
+
+    const prevSlide = () => {
+      this.currentSlide = (this.currentSlide - 1 + slides.length) % slides.length;
+      updateCarousel();
+    };
+
+    nextButton.addEventListener('click', nextSlide);
+    prevButton.addEventListener('click', prevSlide);
+
+    // Auto-play every 3000ms
+    this.intervalId = setInterval(nextSlide, 3000);
+  }
+
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+
 
 }
+
+

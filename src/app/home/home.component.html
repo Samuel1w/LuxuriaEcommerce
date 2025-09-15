@@ -95,23 +95,7 @@
 <div class="royal-divider" aria-hidden="true"></div>
 
 
-<section class="empire-showcase-section royal-section" id="empire">
-  <h2 style="text-align: center; text-shadow: 0 0 10px purple; color: purple;" class="section-title crown-title">
-    Empire Showcase
-  </h2>
-  <p style="text-align: center;" class="section-subtitle">A glimpse into our daily domination</p>
 
-  <div class="scroll-frame">
-    <div class="scroll-container" (mouseenter)="pauseScroll()" (mouseleave)="resumeScroll()">
-      <div class="scroll-track" [style.animationPlayState]="isPaused ? 'paused' : 'running'">
-        <div *ngFor="let empire of empireItems" class="empire-card">
-          <img [src]=" 'http://localhost:5000' + empire.image_url" [alt]="empire.title" />
-          <h4>{{ empire.title }}</h4>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- CEO MESSAGE (glass split) -->
 <section id="ceo" class="ceo-section royal-section">
@@ -155,24 +139,23 @@
 <section class="luxuria-home-sections">
 
   <!-- ACHIEVEMENTS & MILESTONES -->
-  <div class="milestones-section royal-section">
-    <div class="section-header">
-      <h2 class="crown-title" style="text-shadow: 0 0 10px purple; color: purple; " >Our Achievements & Milestones</h2>
-      <p class="subtitle">See the impact Luxuria Empire has made across all our verticals.</p>
-    </div>
-
-    <div class="milestones-grid">
-      <div class="milestone-card" *ngFor="let milestone of milestones">
-        <div class="icon-wrapper">
-          <i [class]="milestone.icon"></i>
-        </div>
-        <h3 class="count" style="text-shadow: 0 0 10px gold; color: gold; ">{{ milestone.count | number }}</h3>
-        <p style="text-shadow: 0 0 10px black; color: black; ">{{ milestone.label }}</p>
-      </div>
-    </div>
+   <section class="milestones-section royal-section">
+  <div class="section-header">
+    <h2 class="crown-title" style="text-shadow: 0 0 10px purple; color: purple; ">Our Achievements & Milestones</h2>
+    <p class="subtitle">See the impact Luxuria Empire has made across all our verticals.</p>
   </div>
 
+  <div class="milestones-grid">
+    <div *ngFor="let milestone of milestones" class="milestone-card">
+            <h3 class="count" style="text-shadow: 0 0 10px gold; color: gold; ">{{ milestone.count | number }}</h3>
+      <p style="text-shadow: 0 0 10px black; color: black; ">{{ milestone.label }}</p>
+    </div>
+  </div>
+</section>
+
+<app-available></app-available>
   <!-- VISIT OUR SHOP -->
+   
   <div class="shop-visit-section royal-section">
     <div class="section-header">
       <h2 class="crown-title" style="text-shadow: 0 0 10px purple; color: purple; ">Visit Our Shop</h2>
@@ -194,7 +177,7 @@
       </div>
 
       <div class="shop-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.315314498657!2d9.281200915575024!3d4.158274848091537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x106131e8f48703c5%3A0xd02532771845b379!2sLuxuria_Empire!5e0!3m2!1sen!2scm!4v1757354826032!5m2!1sen!2scm" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="mapy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.315314498657!2d9.281200915575024!3d4.158274848091537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x106131e8f48703c5%3A0xd02532771845b379!2sLuxuria_Empire!5e0!3m2!1sen!2scm!4v1757354826032!5m2!1sen!2scm"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
        
       </div>
     </div>
@@ -202,7 +185,10 @@
 
 </section>
 
+ 
+
 <!-- TESTIMONIALS (Glassmorphism Cards) -->
+
 <section class="testimonials-section wow-section">
   <div class="section-header center">
     <h2 class="crown-title" style="text-shadow: 0 0 10px purple; color: purple; ">💬 Client Praise</h2>
@@ -211,12 +197,14 @@
 
   <div class="testimonial-wrapper">
     <div class="testimonial-card" *ngFor="let testimonial of testimonials">
-      <i class="fas fa-quote-left quote-icon"></i>
+      
       <p>"{{ testimonial.message }}"</p>
-      <h4>- {{ testimonial.name }}</h4>
+      <h4 style="color: white;">- {{ testimonial.name }}</h4>
     </div>
   </div>
 </section>
+
+
 
 
 
@@ -268,7 +256,7 @@
 <!-- INSTAGRAM FOLLOW (Auto Carousel Showcase) -->
 <section class="follow-section wow-section">
   <div class="section-header center">
-    <h2 style="text-shadow: 0 0 10px purple; color: purple; " class="crown-title"><i class="fab fa-instagram"></i> Follow Us on All Socials</h2>
+    <h2 style="text-shadow: 0 0 10px purple; color: purple; " class="crown-title"> Follow Us on All Socials</h2>
     <p class="subtitle">Peek into our world of creativity & luxury moments.</p>
   </div>
 

@@ -1,24 +1,45 @@
+<section class="hot-offers">
+  <h2 class="section-title">🔥 Hot <span>Offers</span></h2>
+  <p class="subtitle">Exclusive limited-time deals across Imports, Crafts, Tech & Music!</p>
 
-  <section class="main-content">
-    <div class="top-info">
-      <span>{{ paginatedProducts.length }} of {{ allProducts.length }} Items</span>
-      <div class="pagination">
-        <button (click)="prevPage()">Prev</button>
-        <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
-          <button [class.active]="currentPage === i + 1" (click)="goToPage(i + 1)">
-            {{ i + 1 }}
-          </button>
-        </ng-container>
-        <button (click)="nextPage()">Next</button>
+  <div class="offers-wrapper">
+    <div class="offer" *ngFor="let offer of offers">
+      <!-- Image showcase -->
+      <div class="offer-image">
+        <img [src]="offer.image" alt="{{ offer.title }}" />
+      </div>
+
+      <!-- Badge -->
+      <div class="offer-badge" [ngClass]="offer.type">{{ offer.type }}</div>
+
+      <!-- Details -->
+      <div class="offer-details">
+        <h3>{{ offer.title }}</h3>
+        <p>{{ offer.description }}</p>
+
+        <!-- Countdown -->
+        <div class="countdown">
+          <div class="time-box">
+            <span>{{ offer.remainingTime.days }}</span>
+            <small>Days</small>
+          </div>
+          <div class="time-box">
+            <span>{{ offer.remainingTime.hours }}</span>
+            <small>Hrs</small>
+          </div>
+          <div class="time-box">
+            <span>{{ offer.remainingTime.minutes }}</span>
+            <small>Mins</small>
+          </div>
+          <div class="time-box">
+            <span>{{ offer.remainingTime.seconds }}</span>
+            <small>Sec</small>
+          </div>
+        </div>
+<a href="https://wa.me/237683702677" target="_blank">
+        <button class="shop-btn">✨ Claim Offer</button>
+        </a>
       </div>
     </div>
-
-    <div class="product-grid">
-      <div class="product-card" *ngFor="let product of paginatedProducts">
-        <img [src]="product.img" alt="Sofa Image">
-        <p>{{ product.title }}</p>
-         <p style="color: black; font-weight: bold;">{{ product.price }}frs</p>
-      </div>
-    </div>
-  </section>
-
+  </div>
+</section>

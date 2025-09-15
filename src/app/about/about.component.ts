@@ -1,16 +1,45 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-about',
-  imports: [HeaderComponent,CommonModule],
+  imports: [HeaderComponent,CommonModule,FooterComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
 export class AboutComponent {
-faqList = [
-  {
+
+
+  // Four Pillars
+  pillarsList = [
+    { icon: '🏛', name: 'Luxuria Imports', desc: 'Delivering elegance through world-class importation of luxury goods, redefining trust and sophistication.' },
+    { icon: '💻', name: 'Luxuria Techub', desc: 'Where innovation meets creativity — empowering digital growth and building futuristic solutions.' },
+    { icon: '🧶', name: 'Luxuria Craft', desc: 'Handmade crochets crafted with passion, blending tradition with modern artistry.' },
+    { icon: '🎶', name: 'Luxuria Music', desc: 'Amplifying voices and rhythms, nurturing talent, and creating a symphony of inspiration.' }
+  ];
+
+  // Journey / Timeline
+  journeyList = [
+    { year: '2022', description: 'Luxuria Music was born, nurturing intrumental talents and producing royal melodies.' },
+    { year: '2022', description: 'The birth of Luxuria Imports – founded on the vision of expanding our reach.' },
+    { year: '2023', description: 'First major importation deal sealed, setting a new standard for trust and sophistication.' },
+    { year: '2024', description: 'Launched Luxuria Techub, empowering innovation and digital transformation.' },
+    { year: '2025', description: 'Expanded into handmade crafts, blending cultural artistry with modern trends.' },
+   { year: '2025', description: 'The birth of Luxuria Empire – founded on the vision of blending luxury, technology, craft, and music.' },
+    { year: '2025', description: 'Formed partnerships with global brands' },
+    { year: '2025', description: 'Recognition – Luxuria Empire became a dynasty of excellence .' },
+    { year: '2025', description: 'Present & Beyond – embarking on new royal journeys, expanding globally, and fueling inspirations.' }
+  ];
+
+  // FAQ
+  faqList = [
+    { question: 'What is Luxuria Empire?', answer: 'Luxuria Empire is a multi-vertical company uniting luxury importation, tech, crafts, and music.' },
+    { question: 'Where are you based?', answer: 'We are headquartered in Cameroon with global reach.' },
+    { question: 'Can I book music classes?', answer: 'Yes, check out Luxuria Music to book online or live sessions.' },
+   {
+   
     question: 'What services does Luxuria_Imports offer?',
     answer: 'Luxuria Imports specializes in high-quality international products, offering pre-orders, local availability, and limited-time hot deals.'
   },
@@ -30,31 +59,32 @@ faqList = [
     question: 'Can I track my order across Luxuria brands?',
     answer: 'Absolutely! You’ll receive updates and can track every order from any of the Luxuria branches.'
   }
-];
+  ];
+  activeIndex = -1;
+  toggleFAQ(index: number) {
+    this.activeIndex = this.activeIndex === index ? -1 : index;
+  }
 
-activeIndex: number | null = null;
-
-toggleFAQ(index: number) {
-  this.activeIndex = this.activeIndex === index ? null : index;
-}
-
+  // People and Partners (add your own data)
   peopleList = [
-    { name: 'Atouba Dalina M', role: 'CEO & Founder', bio: 'Visionary leader redifining excellence and consitentcy throughout all four houses.', image: 'assets/CEO.JPG' },
+ { name: 'Atouba Dalina M', role: 'CEO & Founder', bio: 'Visionary leader redifining excellence and consitentcy throughout all four houses.', image: 'assets/CEO.JPG' },
     { name: 'Samuel Moka K', role: 'Operations Director', bio: 'Drives Luxuria Empire’s branding and customer experience strategies.', image: 'assets/COO.JPG' },
-    { name: 'Peleke Fritz F', role: 'Business Mentor', bio: 'Incharge of Legal Domains and Proper business running', image: 'assets/abtfritz.JPG' }
+    { name: 'Peleke Fritz F', role: 'Business Mentor', bio: 'Ensures Proper business running', image: 'assets/abtfritz.JPG' }
   ];
 
-  partnersList = [
+
+  
+partnersList = [
     { name: 'MJDigitalz', logo: 'assets/mu.PNG' },
-    { name: 'GlobalX', logo: 'assets/mu.PNG' }
+    
     
   ];
-
   valuesList = [
-    { icon: '✨', title: 'Excellence', desc: 'We deliver with the highest standards of quality and trust.' },
-    { icon: '🤝', title: 'Integrity', desc: 'Transparency and honesty define our every transaction.' },
-    { icon: '🌍', title: 'Global Reach', desc: 'We connect clients to the world’s finest luxury imports.' },
-    { icon: '💎', title: 'Luxury', desc: 'Every detail of our service is designed to reflect elegance.' }
+    { icon: '💎', title: 'Excellence', desc: 'We pursue the highest standards in everything.' },
+    { icon: '🌟', title: 'Innovation', desc: 'Creative solutions for a modern world.' },
+    { icon: '🤝', title: 'Integrity', desc: 'Trust and transparency at the core.' },
+    { icon: '🎨', title: 'Creativity', desc: 'Blending artistry with strategy.' }
   ];
-
 }
+
+
