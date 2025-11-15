@@ -2,277 +2,226 @@
 
 <app-header></app-header>
 
-<!-- ======================= HERO SECTION (UNTOUCHED) ======================= -->
-<section class="hero-section">
-  <div class="hero-overlay">
-    <div class="hero-left">
-      <img src="assets/luxEmpire.jpeg" alt="Empress" class="empress-img" />
-    </div>
-    <div class="hero-right">
-      <div class="orb-icons">
-        <img src="assets/importsLogo.jpeg" alt="Imports" class="orb-icon imports" />
-        <img src="assets/craftLogo.jpeg" alt="Craft" class="orb-icon craft" />
-        <img src="assets/luxMusic.jpeg" alt="TechHub" class="orb-icon tech" />
-        <img src="assets/luxMusic.jpeg" alt="Music" class="orb-icon music" />
-      </div>
-      <h1 class="hero-title">Welcome to Luxuria_Empire</h1>
-      <p class="hero-subtitle">Where Dreams are Forged into Dynasties & Excellence speaks volumes</p>
-      <div class="hero-buttons">
-        <button (click)="scrollTo('houses')" class="btn gold">✨ Enter the Realm</button>
-        <button (click)="scrollTo('empire')" class="btn ghost">✨ Empire Showcase</button>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ===================== END HERO SECTION (UNTOUCHED) ===================== -->
-
-<!-- Royal divider -->
-<div class="royal-divider" aria-hidden="true"></div>
-
-<!-- FOUR ROYAL HOUSES (enhanced presentation) -->
-<section id="houses" class="houses-section royal-section">
-  <div class="section-header-wrap">
-    <h2 class="section-title crown-title" style="text-shadow: 0 0 10px purple; color: purple; ">Meet the Royal Houses</h2>
-    <p class="section-subtitle">These are not just brands — they are dynasties.</p>
-  </div>
-
-  <div class="houses-container royal-grid">
-    <div class="house-card imports royal-card">
-      <div class="gilded-border"></div>
-      <div class="house-icon">
-        <img src="assets/importsLogo.jpeg" alt="House of Imports Icon" />
-      </div>
-      <h3 style="color: purple;" class="house-name">House of Imports</h3>
-      <p style="color: black;" class="tagline">Trade. Dominate. Repeat.</p>
-      <div class="house-bg-visual imports-bg"></div>
-      <button class="explore-btn">Enter House</button>
-    </div>
-
-    <div class="house-card craft royal-card">
-      <div class="gilded-border"></div>
-      <div class="house-icon">
-        <img src="assets/craftLogo.jpeg" alt="House of Craft Icon" />
-      </div>
-      <h3 style="color: purple;" class="house-name">House of Craft</h3>
-      <p style="color: black;" class="tagline">Elegance woven in every thread.</p>
-      <div class="house-bg-visual craft-bg"></div>
-      <button class="explore-btn">Enter House</button>
-    </div>
-
-    <div class="house-card techhub royal-card">
-      <div class="gilded-border"></div>
-      <div class="house-icon">
-        <img src="assets/luxMusic.jpeg" alt="House of TechHub Icon" />
-      </div>
-      <h3 style="color: purple;" class="house-name">House of Tech</h3>
-      <p style="color: black;"class="tagline">Code the Future. Rule the Matrix.</p>
-      <div class="house-bg-visual techhub-bg"></div>
-      <button class="explore-btn">Enter House</button>
-    </div>
-
-    <div class="house-card music royal-card">
-      <div class="gilded-border"></div>
-      <div class="house-icon">
-        <img src="assets/luxMusic.jpeg" alt="House of Music Icon" />
-      </div>
-      <h3 style="color: purple;" class="house-name">House of Music</h3>
-      <p style="color: black;" class="tagline">Soundtracks of Greatness.</p>
-      <div class="house-bg-visual music-bg"></div>
-      <button class="explore-btn">Enter House</button>
-    </div>
-  </div>
-</section>
-
-<!-- BIBLE SCRIPTURE (gilded parchment) -->
-<section class="bible-section royal-parchment">
-  <div class="bible-card parchment">
-    <h3 style="text-align: center;">Business Wisdom</h3>
-    <p style="text-shadow: 0 0 10px gold; color: gold; ">"Commit to the Lord whatever you do, and he will establish your plans." - Proverbs 16:3</p>
-  </div>
-</section>
-
-<!-- Royal divider -->
-<div class="royal-divider" aria-hidden="true"></div>
-
-
-
-
-<!-- CEO MESSAGE (glass split) -->
-<section id="ceo" class="ceo-section royal-section">
-  <div class="section-header-wrap">
-    <h2  class="section-title crown-title" style="text-align: center; text-shadow: 0 0 10px purple; color: purple; font-size: 34px;">A Heartfelt Journey of Luxuria Empire</h2>
-    <p style="text-align: center;" class="section-subtitle">Message from our CEO</p>
-  </div>
-  <div class="ceo-container ceo-glass">
-    <img src="assets/imports3.jpeg" alt="CEO Portrait" class="ceo-img" />
-    <div class="ceo-text" style="color: black;">
-      <p style="color: black;">
-        "From humble beginnings to building a multi-faceted empire, our journey has been one of dedication, faith, and innovation. At Luxuria Empire, we turn dreams into legacies. Join us as we continue to create excellence across Imports, Crafts, TechHub, and Music."
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- Optional added band: Royal Stats (non-destructive) -->
-<section class="stats-section royal-section" aria-label="Royal Stats" style="background: black;">
-  <div class="stats-grid">
-    <div class="stat">
-      <div class="stat-num">4</div>
-      <div class="stat-label" style="text-shadow: 0 0 10px gold; color: gold; ">Royal Houses</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">1000+ </div>
-      <div class="stat-label" style="text-shadow: 0 0 10px gold; color: gold; " >Clients Served</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">3</div>
-      <div class="stat-label" style="text-shadow: 0 0 10px gold; color: gold; ">Countries Reached</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">∞</div>
-      <div class="stat-label" style="text-shadow: 0 0 10px gold; color: gold; ">Ambition</div>
-    </div>
-  </div>
-</section>
-
-<!-- ================== ACHIEVEMENTS & VISIT OUR SHOP ================== -->
-<section class="luxuria-home-sections">
-
-  <!-- ACHIEVEMENTS & MILESTONES -->
-   <section class="milestones-section royal-section">
-  <div class="section-header">
-    <h2 class="crown-title" style="text-shadow: 0 0 10px purple; color: purple; ">Our Achievements & Milestones</h2>
-    <p class="subtitle">See the impact Luxuria Empire has made across all our verticals.</p>
-  </div>
-
-  <div class="milestones-grid">
-    <div *ngFor="let milestone of milestones" class="milestone-card">
-            <h3 class="count" style="text-shadow: 0 0 10px gold; color: gold; ">{{ milestone.count | number }}</h3>
-      <p style="text-shadow: 0 0 10px black; color: black; ">{{ milestone.label }}</p>
-    </div>
-  </div>
-</section>
-
-<app-available></app-available>
-  <!-- VISIT OUR SHOP -->
-   
-  <div class="shop-visit-section royal-section">
-    <div class="section-header">
-      <h2 class="crown-title" style="text-shadow: 0 0 10px purple; color: purple; ">Visit Our Shop</h2>
-      <p class="subtitle">
-        Come experience Luxuria Empire in person! Explore our Imports, Craft creations, TechHub innovations, and Music lessons.
-      </p>
-    </div>
-
-    <div class="shop-visit-content" style="align-items: center;">
-      <div class="shop-info">
-        <h3>Our Location</h3>
-        <p>Luxuria Empire Physical Store</p>
-        <p><strong>Address:</strong> Behind PaperGate LTD, Buea, Cameroon</p>
-        <p><strong>Opening Hours:</strong> Monday - Saturday, 9:00 AM - 6:00 PM</p>
-        <p><strong>Contact:</strong> +237 676516888/673249374 | linapowers237#&64gmail.com</p>
-        <a href="https://www.google.com/maps/place/123+Main+Street+Limbe+Cameroon" target="_blank" class="btn-pill">
-          Get Directions
-        </a>
-      </div>
-
-      <div class="shop-map">
-        <iframe class="mapy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.315314498657!2d9.281200915575024!3d4.158274848091537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x106131e8f48703c5%3A0xd02532771845b379!2sLuxuria_Empire!5e0!3m2!1sen!2scm!4v1757354826032!5m2!1sen!2scm"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-       
-      </div>
-    </div>
-  </div>
-
-</section>
-
+<div class="app-shell">
+  <!-- LEFT NAV -->
+<aside class="left-nav">
  
 
-<!-- TESTIMONIALS (Glassmorphism Cards) -->
-
-<section class="testimonials-section wow-section">
-  <div class="section-header center">
-    <h2 class="crown-title" style="text-shadow: 0 0 10px purple; color: purple; ">💬 Client Praise</h2>
-    <p class="subtitle">See what our happy clients say about Luxuria Empire.</p>
-  </div>
-
-  <div class="testimonial-wrapper">
-    <div class="testimonial-card" *ngFor="let testimonial of testimonials">
-      
-      <p>"{{ testimonial.message }}"</p>
-      <h4 style="color: white;">- {{ testimonial.name }}</h4>
+  <nav class="nav-menu">
+    <div class="nav-item active" title="Home">
+      <i class="fas fa-home"></i>
+      <span routerLink="/" routerLinkActive="active-link">Home</span>
     </div>
+    <div class="nav-item" title="Orders">
+      <i class="fas fa-box"></i>
+      <span routerLink="/order" routerLinkActive="active-link">Orders</span>
+    </div>
+    <div class="nav-item" title="Products">
+      <i class="fas fa-shopping-bag"></i>
+      <span routerLink="/tracking" routerLinkActive="active-link">Track</span>
+    </div>
+    <div class="nav-item" title="Suppliers">
+      <i class="fas fa-industry"></i>
+      <span routerLink="/learn" routerLinkActive="active-link">Learn Importation</span>
+    </div>
+    <div class="nav-item" title="Cross-border">
+      <i class="fas fa-globe"></i>
+      <span >Cameroon Products</span>
+    </div>
+    <div class="nav-item" title="Channels">
+      <i class="fas fa-network-wired"></i>
+      <span>Channels</span>
+    </div>
+    <div class="nav-item" title="My">
+      <i class="fas fa-user"></i>
+      <span routerLink="/acc" routerLinkActive="active-link">Account</span>
+    </div>
+  </nav>
+</aside>
+
+
+  <!-- MAIN AREA -->
+  <main class="main-area">
+    <header class="header container">
+      <div class="header-row">
+        
+        <div class="search-container">
+  <div class="search-box">
+    <input
+      class="search-input"
+      [(ngModel)]="query"
+      (input)="search()"
+      placeholder="Search for products, e.g. autumn hoodie"
+    />
+    <button class="search-btn" (click)="search()">Search</button>
   </div>
-</section>
+  <button class="camera-btn" title="Search by Image">📷 Image Search</button>
+</div>
 
-
-
-
-
-
-<!-- BLOGS (Masonry Grid with Hover Reveal) -->
-<section class="blog-section wow-section">
-  <div class="section-header">
-    <h2 style="text-shadow: 0 0 10px purple; color: purple; " class="crown-title">✨ Latest News & Blogs</h2>
-    <p class="subtitle">Discover trends, guides & inspirations from <strong>Luxuria Empire</strong>.</p>
+       <div class="icon-container">
+  <div class="icon-btn" title="Notifications">
+    <i class="fas fa-bell"></i>
   </div>
+ <div class="icon-btn cart-icon" title="Cart" (click)="goToCart()">
+  <i class="fas fa-shopping-cart"></i>
+  <span class="badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
+</div>
 
-  <div class="blog-masonry">
-    <div class="blog-card" *ngFor="let blog of blogs" (click)="blog.id !== undefined && goToBlog(blog.id)">
-      <div class="blog-image">
-        <img [src]="'http://localhost:5000' + blog.image_url" alt="{{ blog.title }}">
-        <div class="blog-overlay">
-          <span class="blog-date">{{ blog.date_published | date:'short'}}</span>
-          <h3>{{ blog.title }}</h3>
-          <p>{{ blog.excerpt }}</p>
-          <a href="#" class="read-btn">Read More →</a>
+  <div class="icon-btn" title="Profile" (click)="goToUser()">
+    <i class="fas fa-user-circle"></i>
+  </div>
+</div>
+
+      </div>
+    </header>
+
+    <div class="content container">
+      <!-- Left column (categories) -->
+      <div class="left-column">
+        <div class="categories shadow">
+          <div style="font-weight:700;margin-bottom:8px;color:#6b3fa0">Categories</div>
+          <div *ngFor="let c of categories" class="cat-item" (click)="selectCategory(c)">
+            <i>⌘</i>
+            <div>
+              <div style="font-weight:600">{{c}}</div>
+              <div style="font-size:12px;color:#777">Explore {{c}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="categories shadow">
+          <div style="font-weight:700;margin-bottom:8px;color:#6b3fa0">Deals & Services</div>
+          <div class="cat-item"><i>🏷️</i><div><div>One-click sourcing</div><div style="font-size:12px;color:#777">Fast quotes</div></div></div>
+          <div class="cat-item"><i>🚚</i><div><div>Fast shipping</div><div style="font-size:12px;color:#777">Multiple carriers</div></div></div>
         </div>
       </div>
+
+      <!-- CENTER -->
+      <div class="center-column">
+        <section class="hero shadow">
+          <div class="hero-grid">
+           <div class="hero-main">
+  <div class="carousel">
+    <div class="carousel-inner">
+      <img src="assets/lb1.jpeg" alt="hero 1" class="active" />
+      <img src="assets/lb2.png" alt="hero 2" />
+      <img src="assets/lb3.JPG" alt="hero 3" />
+      <img src="assets/lb4.JPG" alt="hero 4" />
     </div>
-  </div>
-</section>
-
-<!-- UPCOMING EVENTS (Luxury Timeline Style) -->
-<section class="upcoming-events wow-dark">
-  <div class="section-header center">
-    <h2 style="text-shadow: 0 0 10px purple; color: purple; " class="crown-title">📅 Upcoming Events</h2>
-    <p class="subtitle">Stay tuned for moments of style, learning & inspiration.</p>
+    <button class="carousel-btn prev">&#10094;</button>
+    <button class="carousel-btn next">&#10095;</button>
   </div>
 
-  <div class="timeline" >
-    <div class="timeline-item" *ngFor="let event of upcomingEvents">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <img [src]="event.image" alt="{{ event.title }} flyer">
-        <div class="text">
-          <h3>{{ event.title }}</h3>
-          <span class="date">{{ event.date | date:'longDate' }}</span>
-          <p>{{ event.description }}</p>
+  <!-- Fullscreen modal viewer -->
+  <div class="lightbox" id="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" />
+  </div>
+</div>
+
+            <div class="hero-side">
+              <div class="tile"><img src="assets/prod2.jpeg" style="width:100%;height:100%;object-fit:cover"/></div>
+              <div class="tile"><img src="assets/prod2 (2).jpeg" style="width:100%;height:100%;object-fit:cover"/></div>
+            </div>
+
+           
+          </div>
+
+          <div class="quick-links">
+            <div class="pill">Flash Deals</div>
+            <div class="pill">Premium Suppliers</div>
+            <div class="pill">New Arrivals</div>
+            <div class="pill">Top Picks</div>
+          </div>
+        </section>
+
+        <div class="toolbar">
+          
+          <div style="font-weight:700;color:#6b3fa0">New Arrivals</div>
+          <div style="font-size:13px;color:#666">Showing {{filtered.length}} items</div>
         </div>
+
+       <div class="grid">
+  <div class="card" *ngFor="let p of filtered">
+    <a [routerLink]="['/prodet', p.id]" class="card-link">
+      <div class="thumb">
+        <img [src]="'http://localhost:5000' + p.thumbnail" [alt]="p.title" />
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- INSTAGRAM FOLLOW (Auto Carousel Showcase) -->
-<section class="follow-section wow-section">
-  <div class="section-header center">
-    <h2 style="text-shadow: 0 0 10px purple; color: purple; " class="crown-title"> Follow Us on All Socials</h2>
-    <p class="subtitle">Peek into our world of creativity & luxury moments.</p>
-  </div>
-
-  <div class="insta-carousel">
-    <button class="nav-btn left" (click)="prevSlide()">‹</button>
-    <div class="insta-track">
-      <div class="insta-item" *ngFor="let image of visibleImages">
-        <img [src]="image" alt="Instagram Post">
-        <div class="overlay">Open</div>
+      <div class="body" >
+        <div class="title">{{ p.title }}</div>
+        <div class="price">{{ p.price }} FRS</div>
       </div>
-    </div>
-    <button class="nav-btn right" (click)="nextSlide()">›</button>
+    </a>
+
+   <div class="actions"
+     style="
+       display:flex;
+       flex-direction:row;
+       justify-content:flex-end;
+       align-items:center;
+       width:100%;
+       gap:8px;
+     ">
+
+  <button class="action-btn add-cart"
+          (click)="addToCart(p); $event.stopPropagation()">
+    <i class="fa fa-shopping-cart"></i>
+  </button>
+
+  <a class="action-btn whatsapp"
+     [href]="whatsappLink(p)"
+     target="_blank"
+     (click)="$event.stopPropagation()">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+</div>
+
   </div>
-</section>
+</div>
 
 
+      </div>
+
+  
+
+
+      <!-- RIGHT -->
+      <aside class="right-column">
+        <div class="account-box shadow">
+          <h3>Welcome to the Luxuria</h3>
+          <div style="font-size:13px;color:#666">Sign in to view personalized recommendations and faster checkout.</div>
+          <a class="login-btn" routerLink="/login" routerLinkActive="active-link">Sign in / Register</a>
+
+          <div style="height:12px"></div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <div style="padding:8px;border-radius:8px;border:1px solid #efe6f6">Orders</div>
+            <div style="padding:8px;border-radius:8px;border:1px solid #efe6f6">Favorites</div>
+            <div style="padding:8px;border-radius:8px;border:1px solid #efe6f6">Messages</div>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="categories shadow">
+          <div style="font-weight:700;margin-bottom:6px;color:#6b3fa0">Featured Collections</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <img src="assets/prod3.jpeg" style="width:90px;height:60px;object-fit:cover;border-radius:6px"/>
+            <img src="assets/prod6.jpeg" style="width:90px;height:60px;object-fit:cover;border-radius:6px"/>
+            <img src="assets/prod7.jpeg" style="width:90px;height:60px;object-fit:cover;border-radius:6px"/>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+</div>
 
 
 <app-footer></app-footer>

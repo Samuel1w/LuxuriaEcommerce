@@ -1,0 +1,25 @@
+<h2>Order Management</h2>
+
+<div class="users-list">
+  <h3>Select User</h3>
+  <select [(ngModel)]="selectedUserId" (change)="selectUser(selectedUserId)">
+    <option *ngFor="let user of users" [value]="user.id">
+      {{ user.name }} ({{ user.email }})
+    </option>
+  </select>
+</div>
+
+<div class="user-orders" *ngIf="selectedUserId">
+  <h3>Orders for user #{{ selectedUserId }}</h3>
+  <ul>
+    <li *ngFor="let order of orders">
+      {{ order.title }} - Qty: {{ order.quantity }} - Price: {{ order.price }}
+      <button class="delete-btn" (click)="deleteOrder(order.id)">Delete</button>
+    </li>
+  </ul>
+
+  <h4>Add Order</h4>
+  <input #prodId type="number" placeholder="Product ID">
+  <input #qty type="number" placeholder="Quantity">
+  <button (click)="addOrder(+prodId.value, +qty.value)">Add Order</button>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   
   // Sidebar open state
   sidebarOpen = false;
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     // No direct DOM manipulation needed here for toggle logic
@@ -27,5 +28,10 @@ export class HeaderComponent implements OnInit {
   // Close sidebar
   closeSidebar() {
     this.sidebarOpen = false;
+  }
+ 
+
+   goTodit() {
+    this.router.navigate(['/digital']);
   }
 }

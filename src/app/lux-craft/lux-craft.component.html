@@ -1,138 +1,214 @@
 <app-header></app-header>
 
-<section class="hero-section" [ngStyle]="{'background-image': 'url(' + bgImages[currentBgIndex] + ')'}">
-  <div class="hero-overlay"></div>
+<div class="app-shell">
+  <!-- LEFT NAV -->
+<aside class="left-nav">
+ 
 
-  <!-- Circular Image Selectors -->
-  <div class="bg-thumbnail-list">
-    <div 
-      *ngFor="let bg of bgImages; let i = index"
-      [class.active-thumb]="i === currentBgIndex"
-      class="thumb"
-      [style.backgroundImage]="'url(' + bg + ')'"
-      (click)="selectBg(i)">
+  <nav class="nav-menu">
+    <div class="nav-item active" title="Home">
+      <i class="fas fa-home"></i>
+      <span routerLink="/" routerLinkActive="active-link">Home</span>
     </div>
-  </div>
-</section>
-
-
-<div class="layout">
-  <!-- Sidebar with categories -->
-<aside class="sidebar">
-    <div class="logo" style="display: flex;">
-    <img src="assets/luxEmpire.jpeg" style="border-radius: 50%; width: 40px; height: 40px;">
-    <Span style="font-family: 'Times New Roman', Times, serif;">Luxuria_Craft</Span>
-  </div>
-  <h4>Categories</h4>
-
-  <h5>Wearables</h5>
-  <ul>
-    <li><a href="#">Cardigans</a></li>
-    <li><a href="#">Pullovers</a></li>
-    <li><a href="#">Sweaters</a></li>
-    <li><a href="#">Crop Tops</a></li>
-    <li><a href="#">Vests</a></li>
-    <li><a href="#">Shrugs</a></li>
-    <li><a href="#">Dresses</a></li>
-    <li><a href="#">Skirts</a></li>
-    <li><a href="#">Ponchos</a></li>
-    <li><a href="#">Hoodies</a></li>
-    <li><a href="#">Tube Tops</a></li>
-    <li><a href="#">Bralettes</a></li>
-    <li><a href="#">Kimonos</a></li>
-    <li><a href="#">Jumpsuits</a></li>
-    <li><a href="#">Shawls</a></li>
-  </ul>
-
-  <h5>Accessories</h5>
-  <ul>
-    <li><a href="#">Hats</a></li>
-    <li><a href="#">Beanies</a></li>
-    <li><a href="#">Headbands</a></li>
-    <li><a href="#">Scarves</a></li>
-    <li><a href="#">Socks</a></li>
-    <li><a href="#">Gloves</a></li>
-    <li><a href="#">Mittens</a></li>
-    <li><a href="#">Leg Warmers</a></li>
-    <li><a href="#">Hair Scrunchies</a></li>
-    <li><a href="#">Neck Warmers</a></li>
-  </ul>
-
-  <h5>Baby & Kids</h5>
-  <ul>
-    <li><a href="#">Baby Booties</a></li>
-    <li><a href="#">Baby Blankets</a></li>
-    <li><a href="#">Baby Rompers</a></li>
-    <li><a href="#">Baby Dresses</a></li>
-    <li><a href="#">Baby Hats</a></li>
-    <li><a href="#">Baby Bibs</a></li>
-    <li><a href="#">Baby Cardigans</a></li>
-    <li><a href="#">Baby Toys</a></li>
-  </ul>
-
-  <h5>Bags & Carriers</h5>
-  <ul>
-    <li><a href="#">Tote Bags</a></li>
-    <li><a href="#">Clutch Purses</a></li>
-    <li><a href="#">Crossbody Bags</a></li>
-    <li><a href="#">Backpacks</a></li>
-    <li><a href="#">Market Bags</a></li>
-    <li><a href="#">Coin Pouches</a></li>
-    <li><a href="#">Drawstring Bags</a></li>
-  </ul>
-
-  <h5>Home Decor</h5>
-  <ul>
-    <li><a href="#">Pillow Covers</a></li>
-    <li><a href="#">Blankets & Throws</a></li>
-    <li><a href="#">Rugs</a></li>
-    <li><a href="#">Table Runners</a></li>
-    <li><a href="#">Coasters</a></li>
-    <li><a href="#">Wall Hangings</a></li>
-    <li><a href="#">Baskets</a></li>
-    <li><a href="#">Curtains</a></li>
-  </ul>
-
-  <h5>Fun & Others</h5>
-  <ul>
-    <li><a href="#">Crochet Jewelry</a></li>
-    <li><a href="#">Stuffed Animals (Amigurumi)</a></li>
-  </ul>
+    <div class="nav-item" title="Orders">
+      <i class="fas fa-box"></i>
+      <span>Orders</span>
+    </div>
+    <div class="nav-item" title="Products">
+      <i class="fas fa-shopping-bag"></i>
+      <span routerLink="/tracking" routerLinkActive="active-link">BTS</span>
+    </div>
+    <div class="nav-item" title="Suppliers">
+      <i class="fas fa-industry"></i>
+      <span routerLink="/learn" routerLinkActive="active-link">Learn Crocheting</span>
+    </div>
+    <div class="nav-item" title="Cross-border">
+      <i class="fas fa-globe"></i>
+      <span >Cameroon Products</span>
+    </div>
+    <div class="nav-item" title="Channels">
+      <i class="fas fa-network-wired"></i>
+      <span>Channels</span>
+    </div>
+    <div class="nav-item" title="My">
+      <i class="fas fa-user"></i>
+      <span>Account</span>
+    </div>
+  </nav>
 </aside>
 
-  <!-- Right Content Area -->
-  <div class="content-area">
-    <!-- Tabs -->
-    <div class="tab-wrapper">
-      <div class="tabs">
-        <div 
-          class="tab" 
-          [class.active]="activeTab === 'preorder'" 
-          (click)="selectTab('preorder')">Pre-Order Craft-Designs</div>
 
-        <div 
-          class="tab" 
-          [class.active]="activeTab === 'available'" 
-          (click)="selectTab('available')">Available Craft-Designs</div>
+  <!-- MAIN AREA -->
+  <main class="main-area">
+    <header class="header container">
+      <div class="header-row">
+        
+        <div class="search-container">
+  <div class="search-box">
+    <input
+      class="search-input"
+      [(ngModel)]="query"
+      (input)="search()"
+      placeholder="Search for products, e.g. autumn hoodie"
+    />
+    <button class="search-btn" (click)="search()">Search</button>
+  </div>
+  <button class="camera-btn" title="Search by Image">📷 Image Search</button>
+</div>
 
-        <div 
-          class="tab" 
-          [class.active]="activeTab === 'bts'" 
-          (click)="selectTab('bts')">BTS</div>
-
-        <div class="tab-underline" [style.transform]="'translateX(' + tabPosition + '%)'"></div>
-      </div>
-    </div>
-
-    <!-- Tab Content -->
-    <section class="main-content">
-      <!-- Instead of app-preorder & app-available, we just drop our product-list -->
-      <app-product-list *ngIf="activeTab === 'preorder'" category="craft" type="preorder"></app-product-list>
-      <app-product-list *ngIf="activeTab === 'available'" category="craft" type="available"></app-product-list>
-      <app-bts-crochet type="craft" *ngIf="activeTab === 'bts'"></app-bts-crochet>
-    </section>
+       <div class="icon-container">
+  <div class="icon-btn" title="Notifications">
+    <i class="fas fa-bell"></i>
+  </div>
+  <div class="icon-btn" title="Cart">
+    <i class="fas fa-shopping-cart"></i>
+  </div>
+  <div class="icon-btn" title="Profile">
+    <i class="fas fa-user-circle"></i>
   </div>
 </div>
 
+      </div>
+    </header>
+
+    <div class="content container">
+      <!-- Left column (categories) -->
+      <div class="left-column">
+        <div class="categories shadow">
+          <div style="font-weight:700;margin-bottom:8px;color:#6b3fa0">Categories</div>
+          <div *ngFor="let c of categories" class="cat-item" (click)="selectCategory(c)">
+            <i>⌘</i>
+            <div>
+              <div style="font-weight:600">{{c}}</div>
+              <div style="font-size:12px;color:#777">Explore {{c}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="categories shadow">
+          <div style="font-weight:700;margin-bottom:8px;color:#6b3fa0">Deals & Services</div>
+          <div class="cat-item"><i>🏷️</i><div><div>One-click sourcing</div><div style="font-size:12px;color:#777">Fast quotes</div></div></div>
+          <div class="cat-item"><i>🚚</i><div><div>Fast shipping</div><div style="font-size:12px;color:#777">Multiple carriers</div></div></div>
+        </div>
+      </div>
+
+      <!-- CENTER -->
+      <div class="center-column">
+        <section class="hero shadow">
+          <div class="hero-grid">
+           <div class="hero-main">
+  <div class="carousel">
+    <div class="carousel-inner">
+      <img src="assets/chet1.jpeg" alt="hero 1" class="active" />
+      <img src="assets/chet2.jpeg" alt="hero 2" />
+      <img src="assets/chet3.jpeg" alt="hero 3" />
+      <img src="assets/chet4.jpeg" alt="hero 3" />
+    </div>
+    <button class="carousel-btn prev">&#10094;</button>
+    <button class="carousel-btn next">&#10095;</button>
+  </div>
+
+  <!-- Fullscreen modal viewer -->
+  <div class="lightbox" id="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" />
+  </div>
+</div>
+
+            <div class="hero-side">
+              <div class="tile"><img src="assets/chet5.jpeg" style="width:100%;height:100%;object-fit:cover"/></div>
+              <div class="tile"><img src="assets/chet6.jpeg" style="width:100%;height:100%;object-fit:cover"/></div>
+            </div>
+
+           
+          </div>
+
+          <div class="quick-links">
+            <div class="pill">Flash Deals</div>
+            <div class="pill">Premium Suppliers</div>
+            <div class="pill">New Arrivals</div>
+            <div class="pill">Top Picks</div>
+          </div>
+        </section>
+
+        <div class="toolbar">
+          
+          <div style="font-weight:700;color:#6b3fa0">New Arrivals</div>
+          <div style="font-size:13px;color:#666">Showing {{filtered.length}} items</div>
+        </div>
+
+        <div class="grid">
+  <!-- Show products if available -->
+  <div class="card" *ngFor="let p of filtered" (click)="viewProduct(p)">
+    <div class="thumb">
+      <img [src]="'http://localhost:5000' + p.thumbnail" [alt]="p.title" />
+    </div>
+
+    <div class="body">
+      <div class="title">{{ p.title }}</div>
+      <div class="price">{{ p.price }} FRS</div>
+
+      <div class="actions">
+        <button class="action-btn add-cart" (click)="addToCart(p)">
+          <i class="fa fa-shopping-cart"></i>
+        </button>
+        <a class="action-btn whatsapp" [href]="whatsappLink(p)" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NO PRODUCTS MESSAGE -->
+  <div class="no-products" *ngIf="!filtered || filtered.length === 0">
+    <div class="no-products-inner">
+      <i class="fas fa-box-open"></i>
+      <h3>No available products yet</h3>
+      <p>We’re updating our catalog — please check back later or try another category.</p>
+    </div>
+  </div>
+</div>
+
+      </div>
+
+  
+
+
+      <!-- RIGHT -->
+      <aside class="right-column">
+        <div class="account-box shadow">
+          <h3>Welcome to the Luxuria</h3>
+          <div style="font-size:13px;color:#666">Sign in to view personalized recommendations and faster checkout.</div>
+          <a class="login-btn" href="#">Sign in / Register</a>
+
+          <div style="height:12px"></div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <div style="padding:8px;border-radius:8px;border:1px solid #efe6f6">Orders</div>
+            <div style="padding:8px;border-radius:8px;border:1px solid #efe6f6">Favorites</div>
+            <div style="padding:8px;border-radius:8px;border:1px solid #efe6f6">Messages</div>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="categories shadow">
+          <div style="font-weight:700;margin-bottom:6px;color:#6b3fa0">Featured Collections</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <img src="assets/chet7.jpeg" style="width:90px;height:60px;object-fit:cover;border-radius:6px"/>
+            <img src="assets/prod6.jpeg" style="width:90px;height:60px;object-fit:cover;border-radius:6px"/>
+            <img src="assets/prod7.jpeg" style="width:90px;height:60px;object-fit:cover;border-radius:6px"/>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+</div>
+<app-footer></app-footer>
 
 

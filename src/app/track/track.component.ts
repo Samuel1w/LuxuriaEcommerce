@@ -5,11 +5,13 @@ import { OrderService } from '../order.service';// adjust path
   import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FooterComponent } from '../footer/footer.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-track',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule,FooterComponent,HeaderComponent],
   templateUrl: './track.component.html',
   styleUrls: ['./track.component.css']
 })

@@ -1,0 +1,38 @@
+<div class="orders-container">
+  <h2>Your Orders</h2>
+<div class="back-arrow" (click)="goBack()">
+  ← Back
+</div>
+  <table class="orders-table" *ngIf="orders.length > 0; else noOrders">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price (FRS)</th>
+        <th>Subtotal (FRS)</th>
+        <th>Order Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.title }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>{{ order.price | number:'1.2-2' }}</td>
+        <td>{{ (order.quantity * order.price) | number:'1.2-2' }}</td>
+        <td>{{ order.created_at | date:'medium' }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" class="total-label">Total:</td>
+        <td colspan="2" class="total-value">{{ totalAmount | number:'1.2-2' }} FRS</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <ng-template #noOrders>
+    <p class="no-orders">You have not placed any orders yet.</p>
+  </ng-template>
+</div>
+
+<app-footer></app-footer>

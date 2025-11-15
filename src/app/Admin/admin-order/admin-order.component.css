@@ -1,0 +1,173 @@
+/* Base styling */
+h2, h3, h4 {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #4B0082; /* deep purple */
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 20px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+h4 {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: #6A0DAD; /* slightly brighter purple */
+}
+
+/* Layout */
+.users-list, .user-orders {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 16px;
+  box-shadow: 0 4px 12px rgba(106, 13, 173, 0.15);
+}
+
+/* Users list */
+.users-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.users-list li {
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f9f6ff;
+  color: #4B0082;
+}
+
+.users-list li:hover {
+  background: #6A0DAD;
+  color: white;
+  transform: translateX(4px);
+}
+
+/* User Orders */
+.user-orders ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+}
+
+.user-orders li {
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: #f3e8ff;
+  color: #4B0082;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+/* Inputs */
+.user-orders input[type="number"] {
+  padding: 10px 12px;
+  margin-right: 10px;
+  border-radius: 8px;
+  border: 1px solid #6A0DAD;
+  width: 120px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.user-orders input[type="number"]:focus {
+  border-color: #4B0082;
+}
+
+/* Add order button */
+.user-orders button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #6A0DAD;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.user-orders button:hover {
+  background: #4B0082;
+  transform: translateY(-2px);
+}
+.users-list select {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.user-orders ul {
+  list-style: none;
+  padding: 0;
+}
+
+.user-orders li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.delete-btn {
+  background-color: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.delete-btn:hover {
+  background-color: #ff1a3c;
+}
+
+/* Responsive layout */
+@media (max-width: 900px) {
+  .users-list, .user-orders {
+    margin: 12px;
+    padding: 16px;
+  }
+
+  .user-orders input[type="number"] {
+    width: 100px;
+    margin-bottom: 8px;
+  }
+
+  .user-orders button {
+    width: 100%;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .users-list li, .user-orders li {
+    font-size: 0.9rem;
+  }
+}

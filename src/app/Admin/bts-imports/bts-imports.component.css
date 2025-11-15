@@ -1,103 +1,112 @@
-.empire-admin {
-  background: #f9f9f9;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-  max-width: 900px;
-  margin: 40px auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+.admin-container {
+  padding: 2rem;
+  font-family: 'Arial', sans-serif;
+  color: #4b0082;
 
-.empire-admin h2 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #0d1b2a;
-  text-align: center;
-  margin-bottom: 25px;
-}
+  h1 {
+    color: #6a0dad;
+    margin-bottom: 1rem;
+  }
 
-.admin-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  margin-bottom: 30px;
-}
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
 
-.admin-form input[type="text"],
-.admin-form input[type="file"] {
-  padding: 10px 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  flex: 1;
-  min-width: 250px;
-  font-size: 14px;
-  outline: none;
-}
+    input, select {
+      padding: 0.5rem;
+      border: 1px solid #dcdcdc;
+      border-radius: 0.25rem;
+      min-width: 200px;
+    }
+  }
 
-.admin-form input:focus {
-  border-color: #0077b6;
-}
+  .product-form {
+    background: #fff8f0;
+    padding: 1rem;
+    border: 1px solid #e0d4ff;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
 
-.admin-form button {
-  background: #0077b6;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s;
-}
+    h2 {
+      margin-bottom: 1rem;
+      color: #6a0dad;
+    }
 
-.admin-form button:hover {
-  background: #023e8a;
-}
+    input, select {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.75rem;
+      padding: 0.5rem;
+      border: 1px solid #dcdcdc;
+      border-radius: 0.25rem;
+    }
 
-.empire-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-}
+    button {
+      background: #d4af37;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
 
-.empire-item {
-  background: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  text-align: center;
-  transition: transform 0.2s;
-}
+      &:hover {
+        background: #b58f2b;
+      }
+    }
+  }
 
-.empire-item:hover {
-  transform: translateY(-5px);
-}
+  .loading {
+    font-size: 1.2rem;
+    color: #6a0dad;
+  }
 
-.empire-item img {
-  max-width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
 
-.empire-item h3 {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: #222;
-}
+    .product-card {
+      background: #fff;
+      border: 1px solid #dcdcdc;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 
-.empire-item button {
-  background: #e63946;
-  color: #fff;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
+      img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        margin-bottom: 0.5rem;
+        border-radius: 0.25rem;
+      }
 
-.empire-item button:hover {
-  background: #a4161a;
+      h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+      }
+
+      p {
+        margin: 0.25rem 0;
+        font-size: 0.9rem;
+        font-family: 'Times New Roman', Times, serif;
+      }
+
+      .delete-btn {
+        background: #ff4d4f;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        margin-top: 0.5rem;
+
+        &:hover {
+          background: #d9363e;
+        }
+      }
+    }
+  }
 }

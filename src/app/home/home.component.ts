@@ -1,252 +1,163 @@
-import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { Router, RouterModule } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Product } from '../product.model';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { FooterComponent } from '../footer/footer.component';
+import { HeaderComponent } from '../header/header.component';
+import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Blog, BlogService } from '../blog.service';
-import { AvailableComponent } from '../available/available.component';
+import { Router, RouterModule } from '@angular/router';
 
-interface Empire {
-  id: number;
-  title: string;
-  image_url: string;
-}
 @Component({
   selector: 'app-home',
-  imports: [HeaderComponent,RouterModule,CommonModule,FormsModule,FooterComponent,AvailableComponent],
+  imports:[CommonModule,FooterComponent,HeaderComponent,FormsModule,RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-blogs: Blog[] = [];
-    loading = true;
-    error: string | null = null;
-    currentSlide = 0;
-  intervalId: any;
-  
-  
- 
+export class HomeComponent implements OnInit{
+  query = '';
+  activeCategory = 'All categories';
+  categories = ['All categories','Women','Men','Home','Electronics','Beauty','Toys','Office'];
 
-  goToSlide(index: number) {
-    this.currentSlide = index;
-  }
-  
-  ngOnDestroy() {
-    clearInterval(this.intervalId);}
-  
-  isPaused = false;
-
-
-  culturalSlides = [
-    
-    {
-      image: 'assets/importsLogo.jpeg',
-      alt: "women's latest fashion sale",
-      content: {
-       
-        title: "Chief Esuka Enderley and his Royal entourage always present at various FMCC events",
-       
-      }
-    },
-   
-    {
-      image: 'assets/importsLogo.jpeg',
-      alt: 'modern sunglasses',
-      content: {
-       
-        title: 'Cultural Dances and perfomances from the Fako people',
-       
-      }
-    },
-   
-    {
-      image: 'assets/importsLogo.jpeg',
- 
-      content: {
-     
-        title: 'Football friendly matches, between several fako teams, blessed by the presence of the paramount cheif himself',
-       
-      }
-    },
-     
-    {
-      image: 'assets/Mbando/3D4A9376.JPG',
-    
-      content: {
-    
-        title: "Event Hosting grounds, with multiple partipants, A day for CULTURE!",
-       
-      }
-    },
-   
-    {
-      image: 'assets/Mbando/3D4A9380.JPG',
-      alt: 'modern sunglasses',
-      content: {
-       
-        title: 'Friendly Associations between the elderly, so much love and respect among the fako people',
-       
-      }
-    },
-   
-    {
-      image: 'assets/coro.jpeg',
-      alt: 'new fashion summer sale',
-      content: {
-        
-        title: 'Cultural Events Happily celebrated with friends and loved ones, to remind us of our roots',
-       
-      }
-    }
-  ];
-  galleryImages = [
-    'assets/instagram.png', 'assets/tiktok.png', 'assets/social.png',
-    'assets/youtube.png', 'assets/linkedin.png', 'assets/facebook.png',
-    
-  ];
-
-
-  testimonials = [
-    { name: 'Jane Doe', message: 'Luxuria Empire is unmatched in excellence!' },
-    { name: 'John Smith', message: 'Their dedication and vision are inspiring.' },
-    { name: 'Mary Johnson', message: 'Truly a world-class experience.' }
-  ];
- upcomingEvents = [
-  {
-    title: 'Luxury Gala Night',
-    date: new Date('2025-09-15'),
-    image: 'assets/importsLogo.jpeg',
-    description: 'An exclusive evening of glamour, networking, and entertainment.'
-  },
-  {
-    title: 'Vendors Exhibition',
-    date: new Date('2025-10-02'),
-    image: 'assets/importsLogo.jpeg',
-    description: 'Celebrating creativity and heritage with artists across the globe.'
-  },
-  {
-    title: 'Business Leaders Summit',
-    date: new Date('2025-11-10'),
-    image: 'assets/importsLogo.jpeg',
-    description: 'A gathering of top minds to discuss the future of luxury trade.'
-  }
-];
-
- milestones = [
-  { icon: 'inventory_2', count: 1200, label: 'Products Delivered' },
-  { icon: 'groups', count: 250, label: 'Happy Customers' },
-  { icon: 'diamond', count: 3, label: 'Awards & Recognitions' },
-  { icon: 'music_note', count: 4, label: 'Music Lessons Completed' }
-];
-
-  subscriberEmail: string = '';
-
-  hoveredEvent: any = null;
-
-  visibleImages: string[] = [];
-  currentIndex: number = 0;
-  imagesPerView: number = 4;
+  products: Product[] = [];
+  filtered: Product[] = [];
+   cartCount = 0;
+  apiUrl = 'http://localhost:5000/api/carty';
 
  
-
-  // Scroll to section
-  scrollTo(sectionId: string) {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-  }
-
- empireItems: Empire[] = [];
-  baseUrl = 'http://localhost:5000/api/empire';
-
-
-
-  constructor(private http: HttpClient,private blogService: BlogService, private router: Router) {}
+   constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit() {
-    this.fetchEmpire();
-       this.updateVisibleImages();
-       this.blogService.getBlogs().subscribe({
-        next: (res: Blog[]) => {
-          this.blogs = res;
-          this.loading = false;
-        },
-        error: (err: any) => {
-          console.error(err);
-          this.error = 'Failed to load blogs';
-          this.loading = false;
-        }
-      });
+    this.loadProducts();
+    this.loadCartCount();
+    
+  const urlParams = new URLSearchParams(window.location.search);
+  const ref = urlParams.get('ref');
+  if (ref) {
+    this.http.post('http://localhost:5000/api/dm/click', { referral_code: ref, url: window.location.href })
+      .subscribe();
+  
+}
 
-      this.intervalId = setInterval(() => {
-      this.currentSlide = (this.currentSlide + 1) % this.culturalSlides.length;
-    }, 8000);
+  }
+    goToLogin() {
+    this.router.navigate(['/login']);
+  }
+  addToCart(product: any) {
+  console.log('Added to cart:', product);
+  // Here you can integrate your cart logic
+  alert(`${product.title} added to cart!`);
+}
+ // Method to generate WhatsApp link
+  whatsappLink(product: any): string {
+    const text = `I am interested in ${product.title} priced at ${product.price} FRS`;
+    return `https://wa.me/676516888?text=${encodeURIComponent(text)}`;
   }
 
-  fetchEmpire() {
-    this.http.get<Empire[]>(this.baseUrl).subscribe({
-      next: res => this.empireItems = res,
-      error: err => console.error(err)
+
+  loadProducts() {
+    this.http.get<Product[]>('http://localhost:5000/api/products')
+      .subscribe(data => {
+        this.products = data;
+        this.filtered = data;
+      });
+  }
+
+  search() {
+    const q = this.query.trim();
+    this.http.get<Product[]>(`http://localhost:5000/api/products?q=${q}`)
+      .subscribe(data => this.filtered = data);
+  }
+
+  selectCategory(cat: string) {
+    this.activeCategory = cat;
+    const url = `http://localhost:5000/api/products?category=${cat}`;
+    this.http.get<Product[]>(url).subscribe(data => this.filtered = data);
+  }
+
+
+
+  viewProduct(p:Product){
+    alert('Open product detail: ' + p.title);
+  }
+
+  // keyboard shortcut: press / to focus search
+  @HostListener('window:keydown', ['$event'])
+  onKeydown(event: KeyboardEvent){
+    if(event.key === '/'){
+      event.preventDefault();
+      const el = document.querySelector('.search-input') as HTMLInputElement;
+      if(el) el.focus();
+    }
+  }
+  ngAfterViewInit() {
+  const images = document.querySelectorAll('.carousel-inner img');
+  const prev = document.querySelector('.carousel-btn.prev') as HTMLElement;
+  const next = document.querySelector('.carousel-btn.next') as HTMLElement;
+  const lightbox = document.getElementById('lightbox')!;
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const closeBtn = document.querySelector('.lightbox .close') as HTMLElement;
+
+  let current = 0;
+  const total = images.length;
+
+  function showImage(index: number) {
+    images.forEach((img, i) => img.classList.toggle('active', i === index));
+  }
+
+  function nextImage() {
+    current = (current + 1) % total;
+    showImage(current);
+  }
+
+  function prevImage() {
+    current = (current - 1 + total) % total;
+    showImage(current);
+  }
+
+  next.onclick = nextImage;
+  prev.onclick = prevImage;
+
+  // Auto-slide every 3s
+  setInterval(nextImage, 3000);
+
+  // Lightbox open
+  images.forEach((img) => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.getAttribute('src')!;
+    });
+  });
+
+  // Lightbox close
+  closeBtn.onclick = () => (lightbox.style.display = 'none');
+  lightbox.onclick = (e) => {
+    if (e.target === lightbox) lightbox.style.display = 'none';
+  };
+}
+ goToCart() {
+    this.router.navigate(['/cart']);
+  }
+  goToUser() {
+    this.router.navigate(['/acc']);
+  }
+
+  loadCartCount() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.cartCount = 0;
+      return;
+    }
+
+    this.http.get<any[]>(this.apiUrl, {
+      headers: { Authorization: `Bearer ${token}` },
+    }).subscribe({
+      next: (res) => {
+        this.cartCount = res.reduce((sum, item) => sum + item.quantity, 0);
+      },
+      error: (err) => console.error('Error fetching cart count:', err),
     });
   }
 
-  pauseScroll() {
-    this.isPaused = true;
-  }
-
-  resumeScroll() {
-    this.isPaused = false;
-  }
-
-  
- 
-  
-   
-   
-     goToBlog(id:number | undefined){
-      if(id === undefined) return;
-      console.log('Navigating to blog id:', id);
-      this.router.navigate(['/blogdet', id]);
-  
-    }
-
-
-
-  // Event hover logic
-  hoverEvent(event: any) {
-    this.hoveredEvent = event;
-    console.log(`Hovering over: ${event.title}`);
-  }
-
-  leaveEvent(event: any) {
-    if (this.hoveredEvent === event) {
-      this.hoveredEvent = null;
-    }
-    console.log(`Stopped hovering: ${event.title}`);
-  }
-
-  // Event details
-  viewEventDetails(event: any) {
-    alert(`Viewing details for: ${event.title}`);
-  }
-
-  // Gallery slideshow logic
-  updateVisibleImages() {
-    this.visibleImages = this.galleryImages.slice(this.currentIndex, this.currentIndex + this.imagesPerView);
-  }
-
-  nextSlide() {
-    if (this.currentIndex + this.imagesPerView < this.galleryImages.length) {
-      this.currentIndex++;
-      this.updateVisibleImages();
-    }
-  }
-
-  prevSlide() {
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
-      this.updateVisibleImages();
-    }
-  }
-
 }
+
+

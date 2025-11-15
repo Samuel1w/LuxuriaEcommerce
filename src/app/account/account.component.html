@@ -1,0 +1,115 @@
+<app-header></app-header>
+
+<section class="account-wrapper" *ngIf="user; else notLoggedIn">
+  <!-- HEADER SECTION -->
+  <div class="account-hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <div class="avatar-circle">
+        <i class="fas fa-user-circle"></i>
+      </div>
+      <h2 class="welcome">Welcome, <span>{{ user.name || 'Guest' }}</span></h2>
+      <p class="member-since">Member Since {{ user.created_at | date: 'longDate' }}</p>
+    </div>
+  </div>
+
+  <!-- BODY SECTION -->
+  <div class="account-body container">
+    <!-- USER INFO CARD -->
+    <div class="account-card info-card">
+      <h3><i class="fas fa-id-card"></i> Account Details</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">Name:</span>
+          <span class="value">{{ user.name || '—' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Email:</span>
+          <span class="value">{{ user.email }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Member Since:</span>
+          <span class="value">{{ user.created_at | date }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="account-card quick-links" style="display: flex;">
+      <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+      <div class="links-grid">
+        <a routerLink="/cart" routerLinkActive="active-link" class="link-item">
+          <i class="fas fa-shopping-cart"></i>
+          <span>View My Cart</span>
+        </a>
+        <a routerLink="/order" routerLinkActive="active-link" class="link-item">
+          <i class="fas fa-box"></i>
+          <span>My Orders</span>
+        </a>
+        <a routerLink="/wishlist" class="link-item">
+          <i class="fas fa-heart"></i>
+          <span>Wishlist</span>
+        </a>
+        <a routerLink="/settings" class="link-item">
+          <i class="fas fa-user-cog"></i>
+          <span>Account Settings</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- MEMBERSHIP CARD -->
+    <div class="account-card membership-card">
+      <div class="membership-header">
+        <i class="fas fa-crown"></i>
+        <h3>Luxuria Membership</h3>
+      </div>
+      <p class="membership-text">
+        As a valued member of <strong>Luxuria Empire</strong>, you have access to premium experiences, 
+        exclusive deals, and personalized recommendations.
+      </p>
+      <button class="upgrade-btn">Upgrade to Elite</button>
+    </div>
+
+    <!-- ACTIVITY TIMELINE -->
+    <div class="account-card activity-card">
+      <h3><i class="fas fa-history"></i> Recent Activity</h3>
+      <ul class="timeline">
+        <li>
+          <span class="dot"></span>
+          <div class="timeline-content">
+            <h4>Logged in successfully</h4>
+            <p class="time">Just now</p>
+          </div>
+        </li>
+        <li>
+          <span class="dot"></span>
+          <div class="timeline-content">
+            <h4>Viewed product “Golden Luxe Watch”</h4>
+            <p class="time">Yesterday</p>
+          </div>
+        </li>
+        <li>
+          <span class="dot"></span>
+          <div class="timeline-content">
+            <h4>Added “Velvet Gown” to cart</h4>
+            <p class="time">2 days ago</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- NOT LOGGED IN -->
+<ng-template #notLoggedIn>
+  <div class="login-section">
+    <div class="login-box">
+      <i class="fas fa-lock"></i>
+      <h2>You’re not logged in</h2>
+      <p>Log in to view your account details and exclusive offers.</p>
+      <button routerLink="/login" class="btn-login">Login</button>
+    </div>
+  </div>
+</ng-template>
+
+<app-footer></app-footer>

@@ -1,97 +1,71 @@
-<div class="products-admin">
+<div class="admin-container">
+  <h1>Product Management</h1>
 
-  <!-- Add Product Form -->
-  <section class="form-card">
-    <h2>➕ Add New Product</h2>
-    <form (ngSubmit)="addProduct()" enctype="multipart/form-data">
-      <div class="form-grid">
-        <input type="text" placeholder="👑 Product Name" [(ngModel)]="newProduct.name" name="name" required />
-        <input type="text" placeholder="📜 Description" [(ngModel)]="newProduct.description" name="description" required />
-        <input type="number" placeholder="💰 Price" [(ngModel)]="newProduct.price" name="price" required />
+  <div class="controls">
+    <input type="text" placeholder="Search products..." [(ngModel)]="searchQuery" (input)="fetchProducts()" />
+    <select [(ngModel)]="selectedCategory" (change)="fetchProducts()">
+      <option *ngFor="let cat of categories">{{ cat }}</option>
+    </select>
+  </div>
 
-        <!-- Category Dropdown -->
-        <select [(ngModel)]="newProduct.category" name="category" required>
-          <option *ngFor="let cat of categories" [value]="cat">{{ cat | titlecase }}</option>
-        </select>
+  <div class="product-form">
+  <h2>Add New Product</h2>
+  <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
+    <input type="text" formControlName="title" placeholder="Product title" />
+    <input type="number" formControlName="price" placeholder="Price" />
+    <input type="text" formControlName="store" placeholder="Description" />
+    <select formControlName="category">
+      <option *ngFor="let cat of categories.slice(1)">{{ cat }}</option>
+    </select>
 
-        <!-- Type Dropdown -->
-        <select [(ngModel)]="newProduct.type" name="type" required>
-          <option *ngFor="let t of types" [value]="t">{{ t | titlecase }}</option>
-        </select>
+    <label>Thumbnail:</label>
+    <input type="file" (change)="onThumbnailSelected($event)" />
 
-        <!-- File Upload -->
-        <input type="file" (change)="onFileSelected($event)" name="image_url" accept="image/*" />
-        <input type="file" (change)="onSubImagesSelected($event)" name="sub_images" multiple accept="image/*" />
-      </div>
-      <button type="submit" class="btn-add">✨ Add Product</button>
-    </form>
-  </section>
+    <label>Subimages (you can select multiple):</label>
+    <input type="file" multiple (change)="onSubimagesSelected($event)" />
 
-  <!-- Products List -->
-  <section class="products-table-section">
-    <h2>📦 All Products</h2>
-    <div class="table-wrapper">
-      <table class="products-table">
-        <thead>
-          <tr>
-            <th>Preview</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price (USD)</th>
-            <th>Category</th>
-            <th>Type</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Show products -->
-          <tr *ngFor="let product of products">
-            <td><img [src]="'http://localhost:5000' + product.image_url"  alt="{{ product.name }}" class="thumb" /></td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.description }}</td>
-            <td>{{ product.price }}frs</td>
-            <td>{{ product.category | titlecase }}</td>
-            <td>{{ product.type | titlecase }}</td>
-            <td class="actions">
-              <button class="btn-edit" (click)="editProduct(product)">✏ Edit</button>
-              <button class="btn-delete" (click)="deleteProduct(product.id)">🗑 Delete</button>
-            </td>
-          </tr>
-
-          <!-- Inline editing -->
-          <tr *ngIf="editingProduct">
-            <td colspan="7">
-              <form (ngSubmit)="updateProduct()" class="edit-form" enctype="multipart/form-data">
-                <input type="text" [(ngModel)]="editingProduct.name" name="name" placeholder="Name" />
-                <input type="text" [(ngModel)]="editingProduct.description" name="description" placeholder="Description" />
-                <input type="number" [(ngModel)]="editingProduct.price" name="price" placeholder="Price" />
-
-                <select [(ngModel)]="editingProduct.category" name="category">
-                  <option *ngFor="let cat of categories" [value]="cat">{{ cat | titlecase }}</option>
-                </select>
-
-                <select [(ngModel)]="editingProduct.type" name="type">
-                  <option *ngFor="let t of types" [value]="t">{{ t | titlecase }}</option>
-                </select>
-
-                <input type="file" (change)="onEditFileSelected($event)" name="image_url" accept="image/*" />
-               <input type="file" (change)="onEditSubImagesSelected($event)" name="sub_images" multiple accept="image/*" />
+    <button type="submit">Add Product</button>
+  </form>
+</div>
 
 
-                <button type="submit" class="btn-save">💾 Save</button>
-                <button type="button" class="btn-cancel" (click)="editingProduct = null">❌ Cancel</button>
-              </form>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div *ngIf="loading" class="loading">Loading products...</div>
 
-    <!-- Pagination -->
-    <div class="pagination">
-      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">⬅ Prev</button>
-      <span>Page {{ currentPage }} of {{ totalPages }}</span>
-      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next ➡</button>
-    </div>
-  </section>
+  <div class="products-table-container">
+  <h2>Products List</h2>
+
+  <table class="products-table" *ngIf="products.length > 0; else noProducts">
+    <thead>
+      <tr>
+        <th>Thumbnail</th>
+        <th>Title</th>
+        <th>Price (frs)</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Sold</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>
+          <img [src]="'http://localhost:5000'  + product.thumbnail" alt="{{ product.title }}" class="product-thumb"/>
+        </td>
+        <td>{{ product.title }}</td>
+        <td>{{ product.price | number:'1.2-2' }}</td>
+        <td>{{ product.store }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.sold }}</td>
+        <td>
+          <button class="delete-btn" (click)="deleteProduct(product.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noProducts>
+    <p>No products available.</p>
+  </ng-template>
+</div>
+
 </div>

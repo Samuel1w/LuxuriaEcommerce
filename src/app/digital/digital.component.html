@@ -1,0 +1,164 @@
+<app-header></app-header>
+
+<!-- HERO SECTION -->
+<section class="dm-hero" style="background: linear-gradient(135deg, #6a1b9a, #8e24aa); color:white; padding: 3rem 1rem;">
+  <div class="container dm-hero-inner" style="display:flex; flex-wrap:wrap; gap:2rem;">
+    
+    <!-- HERO LEFT -->
+    <div class="dm-hero-left" style="flex:1; min-width:300px;">
+      <h1 class="dm-title" style="font-size:2.5rem; margin-bottom:1rem;">Join the Luxuria Digital Marketers Program</h1>
+      <p class="dm-sub" style="font-size:1.1rem; line-height:1.6; margin-bottom:2rem;">
+        Promote curated Luxuria products, earn verified commissions, and grow with a premium brand. 
+        Quick setup • Personalized dashboard • Manual or automated payouts.
+      </p>
+
+      <div class="dm-cta-row" style="display:flex; gap:1rem; margin-bottom:2rem;">
+        <button (click)="scrollTo('how-it-works')" class="btn btn-primary" style="background:#fff; color:#6a1b9a; font-weight:bold; padding:0.8rem 1.5rem; border-radius:8px;">How it works</button>
+        <button (click)="scrollTo('join')" class="btn btn-outline" style="border:2px solid #fff; color:white; padding:0.8rem 1.5rem; border-radius:8px;">Join Now</button>
+      </div>
+
+      <ul class="dm-highlights" style="list-style:none; padding:0; font-size:1rem; line-height:1.8;">
+        <li><strong>No cost to join</strong> — Start earning immediately</li>
+        <li><strong>Transparent dashboard</strong> — clicks, verified orders, commissions</li>
+        <li><strong>Promo kit included</strong> — banners, product links, and creatives</li>
+      </ul>
+    </div>
+
+    <!-- HERO RIGHT (STATS CARD) -->
+    <div class="dm-hero-right" style="flex:1; min-width:280px;">
+      <div class="stats-card" style="background:white; border-radius:12px; padding:1.5rem; color:#6a1b9a; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+        <div class="stats-top" style="display:flex; justify-content:space-between; margin-bottom:1rem;">
+          <div>
+            <small>Active Marketers</small>
+            <h3>{{ stats.activeMarketers || '—' }}</h3>
+          </div>
+          <div>
+            <small>Tracked Clicks</small>
+            <h3><strong>{{ preview.counts.clicks || 0 }}</strong>
+</h3>
+          </div>
+        </div>
+
+        <div class="ref-box" style="margin-bottom:1rem;">
+          <label>Your quick referral preview</label>
+          <div class="ref-row" style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+       
+<input readonly class="ref-input" [value]="referralLink" style="flex:1; padding:0.5rem; border:1px solid #ccc; border-radius:6px;" />
+            <button class="copy-btn" (click)="copyReferralLink()" title="Copy referral link" style="background:#f3e5f5; border:none; padding:0.5rem 0.8rem; border-radius:6px; cursor:pointer;">
+              <i class="fa fa-copy"></i>
+            </button>
+          </div>
+          <small class="hint">Share anywhere: WhatsApp, Instagram, TikTok — clicks & orders are tracked.</small>
+        </div>
+
+        <div class="mini-actions" style="display:flex; gap:0.5rem;">
+          <button (click)="openShareMenu()" class="share-btn" style="flex:1; background:#e1bee7; border:none; padding:0.6rem; border-radius:6px; cursor:pointer;">Share</button>
+          <button (click)="openPromoKit()" class="kit-btn" style="flex:1; background:#d1c4e9; border:none; padding:0.6rem; border-radius:6px; cursor:pointer;">Promo Kit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS SECTION -->
+<section id="how-it-works" class="how-it-works container" style="padding:3rem 1rem; background:#f5f5f5;">
+  <h2 class="section-title" style="text-align:center; color:#6a1b9a; margin-bottom:2rem;">How the Luxuria Digital Marketer System Works</h2>
+
+  <div class="steps" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem;">
+    
+    <article class="step" style="background:white; padding:1.5rem; border-radius:12px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+      <div class="step-icon" style="font-size:1.8rem; font-weight:bold; color:#6a1b9a;">1</div>
+      <h3>Sign up & get a code</h3>
+      <p>Register using the form below. A unique referral code is generated automatically for you. Admin approval may be required before tracking starts.</p>
+    </article>
+
+    <article class="step" style="background:white; padding:1.5rem; border-radius:12px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+      <div class="step-icon" style="font-size:1.8rem; font-weight:bold; color:#6a1b9a;">2</div>
+      <h3>Share & promote</h3>
+      <p>Use your referral link on social media, WhatsApp, Instagram, or TikTok. All clicks and interactions are tracked automatically for your dashboard.</p>
+    </article>
+
+    <article class="step" style="background:white; padding:1.5rem; border-radius:12px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+      <div class="step-icon" style="font-size:1.8rem; font-weight:bold; color:#6a1b9a;">3</div>
+      <h3>Orders & verification</h3>
+      <p>When a user places an order with your referral code, it is logged. Admin manually verifies payment to prevent fraud. Only verified orders count towards your commission.</p>
+    </article>
+
+    <article class="step" style="background:white; padding:1.5rem; border-radius:12px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+      <div class="step-icon" style="font-size:1.8rem; font-weight:bold; color:#6a1b9a;">4</div>
+      <h3>Receive commission</h3>
+      <p>Once the admin verifies payment, your commission is recorded in your dashboard. Payouts are manual for now (Mobile Money / Bank Transfer), but automated payouts will be added later.</p>
+    </article>
+  </div>
+</section>
+
+<!-- REGISTRATION FORM -->
+<section id="join" class="join container" style="padding:3rem 1rem;">
+  <h2 class="section-title" style="text-align:center; color:#6a1b9a; margin-bottom:2rem;">Register as a Digital Marketer</h2>
+  
+  <div class="form-container" style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; align-items:flex-start;">
+    
+    <!-- FORM -->
+    <div class="form-left" style="flex:1; min-width:300px; max-width:450px; background:white; padding:2rem; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+      <form (ngSubmit)="register()" #regForm="ngForm" class="register-form">
+        <div class="row" style="display:flex; gap:1rem; margin-bottom:1rem;">
+          <input name="name" [(ngModel)]="form.name" required placeholder="Full name" style="flex:1; padding:0.6rem; border-radius:6px; border:1px solid #ccc;">
+          <input name="email" [(ngModel)]="form.email" required type="email" placeholder="Email address" style="flex:1; padding:0.6rem; border-radius:6px; border:1px solid #ccc;">
+        </div>
+
+        <div class="row" style="display:flex; gap:1rem; margin-bottom:1rem;">
+          <input name="phone" [(ngModel)]="form.phone" placeholder="Phone (optional)" style="flex:1; padding:0.6rem; border-radius:6px; border:1px solid #ccc;">
+          <input name="platform" [(ngModel)]="form.platform" placeholder="Primary platform (WhatsApp/IG/TikTok)" style="flex:1; padding:0.6rem; border-radius:6px; border:1px solid #ccc;">
+        </div>
+
+        <textarea name="note" [(ngModel)]="form.note" placeholder="Tell us about your audience (optional)" style="width:100%; padding:0.6rem; border-radius:6px; border:1px solid #ccc; margin-bottom:1rem;"></textarea>
+
+        <div class="form-actions" style="display:flex; gap:1rem; margin-bottom:1rem;">
+          <button class="btn btn-primary" [disabled]="loading" style="flex:1; background:#6a1b9a; color:white; padding:0.8rem; border-radius:8px; font-weight:bold;">{{ loading ? 'Submitting...' : 'Apply & Get Link' }}</button>
+          <button type="button" class="btn btn-outline" (click)="resetForm()" style="flex:1; border:2px solid #6a1b9a; color:#6a1b9a; padding:0.8rem; border-radius:8px;">Reset</button>
+        </div>
+
+        <p class="small-note" style="font-size:0.85rem; color:#666;">By registering you agree to our terms. Admin approval may be required.</p>
+      </form>
+
+      <!-- SUCCESS MESSAGE -->
+      <div *ngIf="referralLink" class="success-msg" style="margin-top:1rem; background:#e8f0fe; padding:1rem; border-radius:8px; color:#1a73e8;">
+        <p>Your referral link: 
+          <input readonly [value]="referralLink" style="padding:0.5rem; border-radius:6px; border:1px solid #ccc; width:70%;">
+
+        <button (click)="copyReferralLink()" style="padding:0.4rem 0.8rem;">Copy</button>
+
+        </p>
+      </div>
+    </div>
+
+    <!-- DASHBOARD PREVIEW -->
+    <div class="form-right" style="flex:1; min-width:280px; max-width:400px;">
+      <div class="dash-preview" style="background:#f3e5f5; padding:1.5rem; border-radius:12px; color:#6a1b9a; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+        <h4>Dashboard Preview</h4>
+        <div class="dash-metrics" style="display:flex; gap:1rem; margin-bottom:1rem;">
+          <div><small>Clicks</small><strong>{{ preview.counts.clicks || 0 }}</strong></div>
+          <div><small>Orders</small><strong>{{ preview.counts.orders || 0 }}</strong></div>
+          <div><small>Balance</small><strong>{{ preview.counts.balance | currency:'XAF':'symbol' }}</strong></div>
+        </div>
+
+        <div class="kit-preview">
+          <h5>Promo Kit Included</h5>
+          <div class="kit-thumbs" style="display:flex; gap:0.5rem;">
+            <img src="assets/imports3.jpeg" alt="promo" style="width:60px; border-radius:6px;">
+            <img src="assets/imports9.jpeg" alt="promo" style="width:60px; border-radius:6px;">
+            <img src="assets/imports8.jpeg" alt="promo" style="width:60px; border-radius:6px;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- WHATSAPP CONTACT BUTTON -->
+<a href="https://wa.me/237676516888" target="_blank" class="whatsapp-float" title="Contact Admin on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+
+<app-footer></app-footer>

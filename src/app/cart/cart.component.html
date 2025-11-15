@@ -1,0 +1,58 @@
+<app-header></app-header>
+
+<div class="cart-page" *ngIf="cartItems.length; else emptyCart">
+  <h2>Your Shopping Cart</h2>
+
+  <div class="cart-grid">
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <img
+          class="cart-img"
+          [src]="'http://localhost:5000' + (item.selected_image || item.thumbnail)"
+          alt="{{ item.title }}"
+        />
+
+        <div class="cart-details">
+          <h3>{{ item.title }}</h3>
+          <p class="price">Unit Price: {{ item.price | number }} FRS</p>
+
+          <!-- Sub-images -->
+          <div class="sub-images" *ngIf="item.sub_images?.length">
+            <div class="sub-image" *ngFor="let sub of item.sub_images">
+              <img [src]="'http://localhost:5000' + sub.url" alt="{{ item.title }}" />
+              <div class="quantity-control">
+                <button (click)="updateSubImageQuantity(item, sub, -1)">−</button>
+                <span>{{ sub.quantity }}</span>
+                <button (click)="updateSubImageQuantity(item, sub, 1)">+</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="subtotal">
+  Subtotal: {{ getItemSubtotal(item) | number }} FRS
+</p>
+
+
+          <button class="remove-btn" (click)="removeItem(item.id)">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <h3>Order Summary</h3>
+      <p>Total: <strong>{{ total | number }} FRS</strong></p>
+      <button class="checkout-btn" (click)="sendToWhatsApp()">
+        <i class="fab fa-whatsapp"></i> Send Order via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyCart>
+  <div class="empty-cart">
+    <h3>Your cart is empty 🛒</h3>
+    <p>Start shopping to add items!</p>
+  </div>
+</ng-template>
+
+<app-footer></app-footer>

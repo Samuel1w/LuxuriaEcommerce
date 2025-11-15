@@ -1,61 +1,123 @@
-import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
+import { Component, HostListener, OnInit } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from '../footer/footer.component';
+import { HeaderComponent } from '../header/header.component';
 import { FormsModule } from '@angular/forms';
-
-import { ProductListComponent } from '../product-list/product-list.component';
-import { BtsCrochetComponent } from '../bts-crochet/bts-crochet.component';
-
+import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { cart } from '../carty.service';
 
 @Component({
   selector: 'app-lux-craft',
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    CommonModule,
-    FormsModule,
-    
-    ProductListComponent,
-    BtsCrochetComponent
-    // ✅ Add BTS Component to imports
-  ],
+  imports:[CommonModule,FooterComponent,HeaderComponent,FormsModule,RouterModule],
   templateUrl: './lux-craft.component.html',
-  styleUrl: './lux-craft.component.css'
+  styleUrls: ['./lux-craft.component.css']
 })
-export class LuxCraftComponent implements OnInit {
-  currentSlide = 0;
-  intervalId: any;
+export class LuxCraftComponent implements OnInit{
+  query = '';
+  activeCategory = 'All categories';
+  categories = ['All categories','Women','Men','Kids','Home Decor','Bags','Jewelries','Potraits'];
 
-  bgImages: string[] = [
-    './assets/crochet4.png',
-   
-    './assets/luxCrochet1.png',
-    
-    
-    
-  ];
+  products: cart[] = [];
+  filtered: cart[] = [];
 
-  currentBgIndex = 0;
-  activeTab: string = 'preorder';
-  tabPosition = 150;
+   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.intervalId = setInterval(() => {
-      this.currentBgIndex = (this.currentBgIndex + 1) % this.bgImages.length;
-    }, 5000);
+    this.loadProducts();
+  }
+  addToCart(product: any) {
+  console.log('Added to cart:', product);
+  // Here you can integrate your cart logic
+  alert(`${product.title} added to cart!`);
+}
+ // Method to generate WhatsApp link
+  whatsappLink(product: any): string {
+    const text = `I am interested in ${product.title} priced at ${product.price} FRS`;
+    return `https://wa.me/676516888?text=${encodeURIComponent(text)}`;
   }
 
-  selectBg(index: number) {
-    this.currentBgIndex = index;
-    clearInterval(this.intervalId);
-    this.ngOnInit(); // restart auto-rotation
+
+  loadProducts() {
+    this.http.get<cart[]>('http://localhost:5000/api/cart')
+      .subscribe(data => {
+        this.products = data;
+        this.filtered = data;
+      });
   }
 
-  selectTab(tab: string) {
-    this.activeTab = tab;
-    const tabIndexMap: any = { preorder: 150, available: 620, bts: 1050 };
-    this.tabPosition = tabIndexMap[tab] ?? 150;
+  search() {
+    const q = this.query.trim();
+    this.http.get<cart[]>(`http://localhost:5000/api/cart?q=${q}`)
+      .subscribe(data => this.filtered = data);
   }
- 
+
+  selectCategory(cart: string) {
+    this.activeCategory = cart;
+    const url = `http://localhost:5000/api/cart?category=${cart}`;
+    this.http.get<cart[]>(url).subscribe(data => this.filtered = data);
+  }
+
+
+
+  viewProduct(p:cart){
+    alert('Open product detail: ' + p.title);
+  }
+
+  // keyboard shortcut: press / to focus search
+  @HostListener('window:keydown', ['$event'])
+  onKeydown(event: KeyboardEvent){
+    if(event.key === '/'){
+      event.preventDefault();
+      const el = document.querySelector('.search-input') as HTMLInputElement;
+      if(el) el.focus();
+    }
+  }
+  ngAfterViewInit() {
+  const images = document.querySelectorAll('.carousel-inner img');
+  const prev = document.querySelector('.carousel-btn.prev') as HTMLElement;
+  const next = document.querySelector('.carousel-btn.next') as HTMLElement;
+  const lightbox = document.getElementById('lightbox')!;
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const closeBtn = document.querySelector('.lightbox .close') as HTMLElement;
+
+  let current = 0;
+  const total = images.length;
+
+  function showImage(index: number) {
+    images.forEach((img, i) => img.classList.toggle('active', i === index));
+  }
+
+  function nextImage() {
+    current = (current + 1) % total;
+    showImage(current);
+  }
+
+  function prevImage() {
+    current = (current - 1 + total) % total;
+    showImage(current);
+  }
+
+  next.onclick = nextImage;
+  prev.onclick = prevImage;
+
+  // Auto-slide every 3s
+  setInterval(nextImage, 3000);
+
+  // Lightbox open
+  images.forEach((img) => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.getAttribute('src')!;
+    });
+  });
+
+  // Lightbox close
+  closeBtn.onclick = () => (lightbox.style.display = 'none');
+  lightbox.onclick = (e) => {
+    if (e.target === lightbox) lightbox.style.display = 'none';
+  };
+}
 
 }

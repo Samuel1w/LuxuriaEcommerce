@@ -33,3 +33,81 @@ img, video {
   height: auto;
   display: block;
 }
+
+
+
+
+a{color:inherit;text-decoration:none}
+
+/* Utility */
+.container{max-width:1200px;margin:0 auto;padding:18px}
+.shadow{box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+
+/* top-level layout */
+.app-shell{display:flex;min-height:100vh}
+.left-nav{width:72px;background:#ffffff;border-right:1px solid #eee;padding-top:12px;display:flex;flex-direction:column;align-items:center}
+.left-nav .logo{font-weight:700;color:#d4a017;font-size:20px;margin-bottom:20px}
+.left-nav .nav-item{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:#6b3fa0;cursor:pointer}
+.left-nav .nav-item.active{background:#f6eefb}
+
+.main-area{flex:1;display:flex;flex-direction:column}
+.header{background:linear-gradient(#fff,#fcfbff);padding:18px 24px;border-bottom:1px solid #eee}
+.header-row{display:flex;align-items:center;gap:18px}
+.brand{font-weight:800;color:#6b3fa0;font-size:22px}
+.search-box{flex:1;display:flex;align-items:center}
+.search-box input{width:100%;padding:12px 14px;border-radius:8px;border:1px solid #e6e0ef;font-size:14px}
+.search-btn{margin-left:12px;padding:10px 16px;background:#6b3fa0;color:white;border-radius:8px;border:none;cursor:pointer}
+.icon-btn{background:#fff;border:1px solid #efe6f6;padding:8px;border-radius:8px}
+
+.content{display:flex;gap:18px;padding:18px}
+.left-column{width:240px}
+.center-column{flex:1}
+.right-column{width:320px}
+
+/* left category box */
+.categories{background:white;padding:12px;border-radius:8px;border:1px solid #eee}
+.cat-item{display:flex;align-items:center;padding:10px;border-radius:6px;cursor:pointer}
+.cat-item:hover{background:#f6effb}
+.cat-item i{width:36px;height:36px;border-radius:6px;background:#fbf6ff;color:#6b3fa0;display:flex;align-items:center;justify-content:center;margin-right:10px}
+
+/* hero carousel area */
+.hero{background:white;padding:12px;border-radius:8px;border:1px solid #eee}
+.hero-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+.hero-main{position:relative;height:220px;border-radius:8px;overflow:hidden}
+.hero-main img{width:100%;height:100%;object-fit:cover}
+.hero-side{display:flex;flex-direction:column;gap:12px}
+.hero-side .tile{height:100px;border-radius:8px;overflow:hidden}
+
+/* product strip */
+.quick-links{display:flex;gap:12px;margin-top:12px}
+.quick-links .pill{background:#fff;padding:10px;border-radius:8px;border:1px solid #efe6f6;color:#6b3fa0}
+
+/* product grid */
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:white;border-radius:8px;overflow:hidden;border:1px solid #eee;transition:transform .25s ease, box-shadow .25s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(107,63,160,0.08)}
+.card .thumb{position:relative;height:210px;overflow:hidden}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.card:hover img{transform:scale(1.08)}
+.card .body{padding:12px}
+.card .title{font-size:14px;font-weight:600;margin-bottom:8px;color:#333}
+.card .price{color:#d43c3c;font-weight:700}
+.card .meta{display:flex;justify-content:space-between;font-size:12px;color:#888;margin-top:8px}
+
+/* right account panel */
+.account-box{background:white;padding:16px;border-radius:8px;border:1px solid #eee}
+.account-box h3{margin:0 0 8px 0;color:#6b3fa0}
+.login-btn{display:block;margin-top:12px;padding:12px;border-radius:8px;background:#d4a017;color:white;text-align:center;font-weight:700}
+
+/* small screens */
+@media (max-width:1100px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .left-column{display:none}
+}
+@media (max-width:760px){
+  .container{padding:10px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .right-column{display:none}
+  .hero-main{height:160px}
+}

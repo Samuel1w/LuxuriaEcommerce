@@ -1,0 +1,13 @@
+<div class="modal-backdrop">
+  <div class="modal-box">
+    <h2>{{ mode === 'login' ? 'Login' : 'Register' }}</h2>
+    <input type="email" [(ngModel)]="email" placeholder="Email" />
+    <input type="password" [(ngModel)]="password" placeholder="Password" />
+    <button (click)="submit()">{{ mode | titlecase }}</button>
+    <p class="toggle" (click)="switchMode()">
+      {{ mode === 'login' ? 'No account? Register' : 'Have an account? Login' }}
+    </p>
+    <p *ngIf="error" class="error">{{ error }}</p>
+    <button class="close" (click)="onClose.emit()">×</button>
+  </div>
+</div>

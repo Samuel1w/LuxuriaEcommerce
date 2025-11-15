@@ -1,32 +1,91 @@
 <app-header></app-header>
 
-<section class="product-details" *ngIf="product">
-  <div class="details-container">
-    <!-- Subimages -->
-    <div class="sub-images">
-      <img 
-        *ngFor="let sub of product.sub_images" 
-        [src]="'http://localhost:5000' + sub" 
-        (click)="setMainImage(sub)" 
-        [class.active]="sub === mainImage"
-        alt="Product Subimage">
-    </div>
+<div class="app-shell" *ngIf="product; else loading">
+ 
 
-    <!-- Main Image -->
-    <div class="main-image">
-      <img [src]="'http://localhost:5000' + mainImage" alt="{{ product.name }}">
-    </div>
+  <main class="main-area">
+       <div class="back-arrow" (click)="goBack()">
+  ← Back
+</div>
+    <div class="content container">
+    
+      <section class="product-detail shadow">
+        <div class="product-grid">
+          <!-- LEFT SIDE -->
+          <div class="images">
+            <div class="sub-images">
+              <img
+                *ngFor="let img of allImages"
+                [src]="'http://localhost:5000' + img"
+                (click)="selectImage(img)"
+                [class.selected]="img === selectedImage"
+                alt="Sub image"
+              />
+            </div>
 
-    <!-- Info -->
-    <div class="info">
-      <h1>{{ product.name }}</h1>
-      <p class="price">XAF {{ product.price | number }}</p>
-      <p class="description">{{ product.description }}</p>
-      <p class="category"><strong>Category:</strong> {{ product.category }}</p>
-      <p class="type"><strong>Status:</strong> {{ product.type }}</p>
-      <button class="buy-btn">Add to Cart</button>
+            <div class="main-image">
+              <img
+                [src]="'http://localhost:5000' + (selectedImage || product?.thumbnail)"
+                alt="{{ product?.title }}"
+              />
+            </div>
+          </div>
+
+          <!-- RIGHT SIDE -->
+          <div class="details">
+            <h1 class="title">{{ product?.title }}</h1>
+            <p class="description">{{ product?.store }}</p>
+            <div class="price">{{ product?.price }} FRS</div>
+            <div class="quantity-selector">
+ 
+</div>
+
+            <div class="product-extra-info">
+  <p><strong>Why you’ll love this product:</strong></p>
+  <ul>
+    <li>Premium quality materials designed to last.</li>
+    <li>Carefully crafted to combine style and comfort.</li>
+    <li>Perfect gift option for friends, family, or yourself.</li>
+    <li>Easy to maintain and user-friendly.</li>
+    <li>Trusted by thousands of satisfied customers.</li>
+  </ul>
+  <p>Don’t miss out—add this product to your cart now and elevate your daily experience!</p>
+</div>
+
+            <button class="add-cart-btn" (click)="addToCart(product)">
+              <i class="fa fa-shopping-cart"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
-  </div>
-</section>
+  </main>
+</div>
+
+<ng-template #loading>
+  <div class="loading">Loading product details...</div>
+</ng-template>
+
 
 <app-footer></app-footer>
+
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" *ngIf="showLoginModal" (click)="closeLoginModal()"></div>
+<div class="login-modal" *ngIf="showLoginModal">
+  <div class="modal-content">
+    <h2>Login Required</h2>
+    <p>You need to log in to add products to your cart.</p>
+
+    <form (ngSubmit)="loginUser()">
+      <input type="email" [(ngModel)]="loginEmail" name="email" placeholder="Email" required />
+      <input type="password" [(ngModel)]="loginPassword" name="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <p>Don’t have an account?</p>
+    <button (click)="registerUser()">Register</button>
+
+    <button class="close-btn" (click)="closeLoginModal()">Close</button>
+  </div>
+</div>

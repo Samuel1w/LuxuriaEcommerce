@@ -1,60 +1,63 @@
-
+// admin-dm.component.ts
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { FinanceService } from '../../finance.service';
+
+interface Marketer {
+  id: number;
+  name: string;
+  email: string;
+  referral_code: string;
+  approved: boolean;
+  created_at: string;
+}
+
+interface DMOrder {
+  dm_order_id: number;
+  marketer_name: string;
+  referral_code: string;
+  order_id: number;
+  user_name: string;
+  product_title: string;
+  product_price: number;
+  commission: number;
+  verified: boolean;
+  created_at: string;
+}
 
 @Component({
   selector: 'app-payments',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './payments.component.html',
   styleUrls: ['./payments.component.css']
 })
 export class PaymentsComponent implements OnInit {
-  cashIn: any[] = [];
-  expenses: any[] = [];
-  investments: any[] = [];
+  marketers: Marketer[] = [];
+  dmOrders: DMOrder[] = [];
 
-  totals = { cashIn: 0, expenses: 0, investments: 0, returns: 0 };
+  constructor(private http: HttpClient) {}
 
-  newRecord: any = { type: 'cashin', name: '', purpose: '', amount: null, returns: 0, notes: '' };
-  editingRecord: any = null;
-
-  constructor(private financeService: FinanceService) {}
-
-  ngOnInit(): void { this.loadAll(); }
-
-  loadAll() {
-    this.financeService.getByType('cashin').subscribe((res: any) => { this.cashIn = res; this.calculateTotals(); });
-    this.financeService.getByType('expense').subscribe((res: any) => { this.expenses = res; this.calculateTotals(); });
-    this.financeService.getByType('investment').subscribe((res: any) => { this.investments = res; this.calculateTotals(); });
+  ngOnInit() {
+    this.loadMarketers();
+    this.loadDMOrders();
   }
 
-  addRecord() {
-    this.financeService.add(this.newRecord).subscribe(() => {
-      this.newRecord = { type: 'cashin', name: '', purpose: '', amount: null, returns: 0, notes: '' };
-      this.loadAll();
-    });
+  loadMarketers() {
+    this.http.get<Marketer[]>('http://localhost:5000/api/adm/digital-marketers').subscribe(data => this.marketers = data);
   }
 
-  editRecord(record: any) { this.editingRecord = { ...record }; }
-
-  updateRecord() {
-    this.financeService.update(this.editingRecord.id, this.editingRecord).subscribe(() => {
-      this.editingRecord = null;
-      this.loadAll();
-    });
+  approveMarketer(marketerId: number, approved: boolean) {
+    this.http.patch(`/api/admin/digital-marketers/${marketerId}`, { approved })
+      .subscribe(() => this.loadMarketers());
   }
 
-  deleteRecord(id: number) {
-    if (confirm('Delete this record?')) this.financeService.delete(id).subscribe(() => this.loadAll());
+  loadDMOrders() {
+    this.http.get<DMOrder[]>('http://localhost:5000/api/adm/dm-orders').subscribe(data => this.dmOrders = data);
   }
 
-  calculateTotals() {
-    this.totals = { cashIn: 0, expenses: 0, investments: 0, returns: 0 };
-    this.cashIn.forEach(r => this.totals.cashIn += parseFloat(r.amount));
-    this.expenses.forEach(r => this.totals.expenses += parseFloat(r.amount));
-    this.investments.forEach(r => { this.totals.investments += parseFloat(r.amount); this.totals.returns += parseFloat(r.returns || 0); });
+  verifyOrder(dmOrderId: number, verified: boolean) {
+    this.http.patch(`http://localhost:5000/api/adm/dm-orders/${dmOrderId}`, { verified })
+      .subscribe(() => this.loadDMOrders());
   }
 }

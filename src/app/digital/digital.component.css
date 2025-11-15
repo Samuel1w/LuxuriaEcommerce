@@ -1,0 +1,170 @@
+/* GENERAL LAYOUT */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.dm-hero-inner,
+.form-container {
+  gap: 2rem;
+}
+
+/* HERO SECTION */
+.dm-hero-left h1.dm-title {
+  font-weight: 700;
+}
+
+.dm-hero-left .btn {
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dm-hero-left .btn-primary:hover {
+  background: #fff;
+  color: #4a148c;
+  transform: translateY(-2px);
+}
+
+.dm-hero-left .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* STATS CARD */
+.stats-card h3 {
+  font-size: 1.5rem;
+  margin: 0.2rem 0;
+}
+
+.stats-card .ref-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.stats-card .ref-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.stats-card .copy-btn {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.stats-card .copy-btn:hover {
+  background: #d1c4e9;
+}
+
+/* HOW IT WORKS SECTION */
+.steps article.step {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.steps article.step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.step-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+/* REGISTRATION FORM */
+.register-form input,
+.register-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.register-form button {
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.register-form button:hover {
+  opacity: 0.85;
+}
+
+.success-msg input {
+  background: #f1f8ff;
+  border: 1px solid #c5dbff;
+}
+
+.success-msg button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* DASHBOARD PREVIEW */
+.dash-preview h4 {
+  margin-bottom: 1rem;
+}
+
+.dash-metrics {
+  display: flex;
+  justify-content: space-around;
+  background: #f3e5f5;
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.kit-thumbs img {
+  width: 60px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* FAQ SECTION */
+.faq details {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.faq details summary {
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+  .dm-hero-inner,
+  .form-container {
+    flex-direction: column;
+  }
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #25d366;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}

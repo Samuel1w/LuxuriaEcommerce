@@ -1,45 +1,44 @@
 <app-header></app-header>
 
 <!-- ===================== HERO SECTION ===================== -->
-<section class="hero-section">
-  <video autoplay muted loop class="hero-video">
-    <source src="assets/musicvid.mp4" type="video/mp4" />
+<section class="lux-tech-hero"> 
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="../../assets/techubvid.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
   </video>
+
   <div class="hero-overlay">
-    <h1>Welcome to <span>Luxuria Empire</span></h1>
-    <p>Where luxury, innovation, craft, and music unite in royal excellence.</p>
-    <a href="#journey-section" class="scroll-btn">Our Journey</a>
-  </div>
-</section>
-
-<!-- ===================== OUR STORY ===================== -->
-<section class="story-section">
-  <div class="story-content">
-    <h2 class="story-title" style="text-align: center;" >Our Story <span>& Vision</span></h2>
-    <p class="story-text">
-      Luxuria Empire is more than a company — it is a dynasty of dreams. Built upon four royal houses, 
-      we unite the world of <strong>luxury importation</strong>, the brilliance of <strong>technology</strong>, 
-      the artistry of <strong>handmade craft</strong>, and the soul of <strong>music</strong>.
-    </p>
-    <p class="story-text">
-      From its foundation, Luxuria Empire has stood as a symbol of elegance, innovation, and timeless creativity. 
-      We envision a future where luxury is not just owned but experienced, 
-      where technology meets art, and where culture dances with innovation. 
-      Our mission is to inspire, to build, and to reign as the true beacon of excellence.
-    </p>
-  </div>
-</section>
-
-<!-- ===================== FOUR PILLARS ===================== -->
-<section class="pillars-section">
-  <h2 class="section-title" style="text-shadow: 0 0 10px gold; color: gold; text-align: center;">The Four <span>Pillars of Luxuria Empire</span></h2>
-  <div class="pillars-container">
-    <div class="pillar" *ngFor="let pillar of pillarsList">
-      <h3>{{ pillar.icon }} {{ pillar.name }}</h3>
-      <p>{{ pillar.desc }}</p>
+    <div class="hero-content container">
+      <img src="assets\luxEmpire.jpeg" alt="Luxuria Logo" class="hero-logo"/>
+      <h2 class="hero-subtitle">LUXURIA EMPIRES</h2>
+      <h1 class="hero-title">
+        Building Excellence, Crafting Legacies, <br />
+        and Elevating Experiences Worldwide.
+      </h1>
+      
+      <a [routerLink]="[]" fragment="our-vision" class="hero-cta">LEARN ABOUT US →</a>
     </div>
   </div>
 </section>
+
+
+
+<!-- ===================== FOUR PILLARS ===================== -->
+<!-- ===================== FOUR PILLARS ===================== -->
+<section class="pillars-section">
+  <h2 class="section-title">
+    The Four <span>Pillars of Luxuria Empire</span>
+  </h2>
+
+  <div class="pillars-container">
+    <div class="pillar" *ngFor="let pillar of pillarsList">
+      <div class="pillar-icon">{{ pillar.icon }}</div>
+      <h3 class="pillar-title">{{ pillar.name }}</h3>
+      <p class="pillar-desc">{{ pillar.desc }}</p>
+    </div>
+  </div>
+</section>
+
 
 <!-- ===================== JOURNEY / TIMELINE ===================== -->
 <section id="journey-section" class="timeline-section">

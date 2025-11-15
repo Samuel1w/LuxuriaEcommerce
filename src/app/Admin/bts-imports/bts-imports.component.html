@@ -1,20 +1,38 @@
-<div class="empire-admin">
-  <h2>⚔️ Empire Showcase Admin</h2>
+<div class="admin-container">
+  <h1>Crochet Management</h1>
 
-  <!-- Add New Item -->
-  <form (ngSubmit)="addEmpire()" class="admin-form">
-    <input type="text" placeholder="Enter Title" [(ngModel)]="newEmpire.title" name="title" />
-    <input type="file" (change)="onFileSelected($event)" />
-    <button type="submit">Add</button>
-  </form>
-  
+  <div class="controls">
+    <input type="text" placeholder="Search products..." [(ngModel)]="searchQuery" (input)="fetchProducts()" />
+    <select [(ngModel)]="selectedCategory" (change)="fetchProducts()">
+      <option *ngFor="let cat of categories">{{ cat }}</option>
+    </select>
+  </div>
 
-  <!-- List -->
-  <div class="empire-list">
-    <div *ngFor="let item of empireItems" class="empire-item">
-      <img [src]="'http://localhost:5000' + item.image_url" [alt]="item.title" />
-      <h3>{{ item.title }}</h3>
-      <button (click)="deleteEmpire(item.id)">Delete</button>
+  <div class="product-form">
+    <h2>Add New Product</h2>
+    <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
+      <input type="text" formControlName="title" placeholder="Product title" />
+      <input type="number" formControlName="price" placeholder="Price" />
+      <input type="text" formControlName="store" placeholder="Store name" />
+      <select formControlName="category">
+        <option *ngFor="let cat of categories.slice(1)">{{ cat }}</option>
+      </select>
+      <input type="file" (change)="onFileSelected($event)" />
+      <button type="submit">Add Product</button>
+    </form>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading products...</div>
+
+  <div class="products-grid">
+    <div class="product-card" *ngFor="let product of products">
+      <img [src]="product.thumbnail" alt="{{ product.title }}" />
+      <h3>{{ product.title }}</h3>
+      <p>Price: ${{ product.price }}</p>
+      <p>Store: {{ product.store }}</p>
+      <p>Category: {{ product.category }}</p>
+      <p>Sold: {{ product.sold }}</p>
+      <button class="delete-btn" (click)="deleteProduct(product.id)">Delete</button>
     </div>
   </div>
 </div>

@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-about',
-  imports: [HeaderComponent,CommonModule,FooterComponent],
+  imports: [HeaderComponent,CommonModule,FooterComponent,RouterModule],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })

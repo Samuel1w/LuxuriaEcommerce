@@ -55,8 +55,8 @@ a {
 .desktop-nav {
   display: flex;
   gap: 1.2rem;
-  background: rgba(77, 6, 73, 1);
-  padding: 20px 100px;
+  background: #3d0249;
+  padding: 10px 80px;
   border-radius: 50px;
   color: white;
 }
@@ -85,32 +85,45 @@ a {
 }
 
 
-/* Right Icons */
 .right-icons {
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: flex-end;
+  padding-right: 20px;
 }
 
+/* Simple, elegant button */
 .notification-btn {
-  position: relative;
-  background: none;
-  border: none;
+  background-color: #d4a017; /* royal purple */
+  color: #fff;
+  border: 1.5px solid gold;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
-  color: purple;
-  font-size: 1.5rem;
+  transition: all 0.25s ease-in-out;
 }
 
-.badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: yellow;
-  color: #18551e;
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 50%;
-  padding: 2px 5px;
+/* Hover */
+.notification-btn:hover {
+  background-color: white;
+  color: #6a0dad;
+  border-color: #6a0dad;
+}
+
+/* Active click */
+.notification-btn:active {
+  transform: scale(0.97);
+  opacity: 0.9;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .notification-btn {
+    font-size: 0.9rem;
+    padding: 7px 15px;
+  }
 }
 
 /* Hamburger Menu (Mobile) */
