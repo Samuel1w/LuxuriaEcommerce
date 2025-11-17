@@ -44,7 +44,7 @@ export class PaymentsComponent implements OnInit {
   }
 
   loadMarketers() {
-    this.http.get<Marketer[]>('http://localhost:5000/api/adm/digital-marketers').subscribe(data => this.marketers = data);
+    this.http.get<Marketer[]>('https://luxuria-backend-v5u9.onrender.com/api/adm/digital-marketers').subscribe(data => this.marketers = data);
   }
 
   approveMarketer(marketerId: number, approved: boolean) {
@@ -53,11 +53,11 @@ export class PaymentsComponent implements OnInit {
   }
 
   loadDMOrders() {
-    this.http.get<DMOrder[]>('http://localhost:5000/api/adm/dm-orders').subscribe(data => this.dmOrders = data);
+    this.http.get<DMOrder[]>('https://luxuria-backend-v5u9.onrender.com/api/adm/dm-orders').subscribe(data => this.dmOrders = data);
   }
 
   verifyOrder(dmOrderId: number, verified: boolean) {
-    this.http.patch(`http://localhost:5000/api/adm/dm-orders/${dmOrderId}`, { verified })
+    this.http.patch(`https://luxuria-backend-v5u9.onrender.com/api/adm/dm-orders/${dmOrderId}`, { verified })
       .subscribe(() => this.loadDMOrders());
   }
 }
