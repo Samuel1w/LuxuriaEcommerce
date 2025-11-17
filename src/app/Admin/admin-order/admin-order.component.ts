@@ -36,7 +36,7 @@ export class AdminOrderComponent implements OnInit {
   }
 
   fetchUsers() {
-    this.http.get<{ id: number; name: string; email: string }[]>('http://localhost:5000/api/order/users')
+    this.http.get<{ id: number; name: string; email: string }[]>('https://luxuria-backend-v5u9.onrender.com/api/order/users')
       .subscribe({
         next: (data) => {
           this.users = data;
@@ -52,7 +52,7 @@ export class AdminOrderComponent implements OnInit {
   if (!userId) return;  // handle null
   this.selectedUserId = userId;
   this.orders = [];
-  this.http.get<Order[]>(`http://localhost:5000/api/order/orders/${userId}`)
+  this.http.get<Order[]>(`https://luxuria-backend-v5u9.onrender.com/api/order/orders/${userId}`)
     .subscribe({
       next: data => this.orders = data,
       error: err => console.error(err)
@@ -63,7 +63,7 @@ export class AdminOrderComponent implements OnInit {
   addOrder(productId: number, quantity: number) {
   if (!this.selectedUserId) return;
 
-  this.http.post('http://localhost:5000/api/order/orders', {
+  this.http.post('https://luxuria-backend-v5u9.onrender.com/api/order/orders', {
     userId: this.selectedUserId,
     productId: Number(productId),
     quantity: Number(quantity)
@@ -73,7 +73,7 @@ export class AdminOrderComponent implements OnInit {
 deleteOrder(orderId: number) {
   if (!this.selectedUserId) return;
 
-  this.http.delete(`http://localhost:5000/api/order/orders/${orderId}`)
+  this.http.delete(`https://luxuria-backend-v5u9.onrender.com/api/order/orders/${orderId}`)
     .subscribe({
       next: () => this.selectUser(this.selectedUserId!), // refresh orders
       error: err => console.error('Error deleting order:', err)
