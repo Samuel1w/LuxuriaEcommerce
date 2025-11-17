@@ -31,7 +31,7 @@ interface CartItem {
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   total = 0;
-  apiUrl = 'http://localhost:5000/api/carty';
+  apiUrl = 'https://luxuria-backend-v5u9.onrender.com/api/carty';
   adminPhone = '237676516888'; // Replace with your WhatsApp number
 
   constructor(private http: HttpClient) {}
