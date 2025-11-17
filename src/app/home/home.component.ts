@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit{
   const urlParams = new URLSearchParams(window.location.search);
   const ref = urlParams.get('ref');
   if (ref) {
-    this.http.post('http://localhost:5000/api/dm/click', { referral_code: ref, url: window.location.href })
+    this.http.post('https://luxuria-backend-v5u9.onrender.com/api/dm/click', { referral_code: ref, url: window.location.href })
       .subscribe();
   
 }
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit{
 
 
   loadProducts() {
-    this.http.get<Product[]>('http://localhost:5000/api/products')
+    this.http.get<Product[]>('https://luxuria-backend-v5u9.onrender.com/api/products')
       .subscribe(data => {
         this.products = data;
         this.filtered = data;
@@ -64,13 +64,13 @@ export class HomeComponent implements OnInit{
 
   search() {
     const q = this.query.trim();
-    this.http.get<Product[]>(`http://localhost:5000/api/products?q=${q}`)
+    this.http.get<Product[]>(`https://luxuria-backend-v5u9.onrender.com/api/products?q=${q}`)
       .subscribe(data => this.filtered = data);
   }
 
   selectCategory(cat: string) {
     this.activeCategory = cat;
-    const url = `http://localhost:5000/api/products?category=${cat}`;
+    const url = `https://luxuria-backend-v5u9.onrender.com/api/products?category=${cat}`;
     this.http.get<Product[]>(url).subscribe(data => this.filtered = data);
   }
 
