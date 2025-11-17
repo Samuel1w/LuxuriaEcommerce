@@ -16,7 +16,7 @@ export interface Product {
   providedIn: 'root'
 })
 export class ProService {
-  private apiUrl = 'http://localhost:5000/api';
+  private apiUrl = 'https://luxuria-backend-v5u9.onrender.com/api';
 
   constructor(private http: HttpClient) {}
 
