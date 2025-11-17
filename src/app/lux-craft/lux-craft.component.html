@@ -143,7 +143,7 @@
   <!-- Show products if available -->
   <div class="card" *ngFor="let p of filtered" (click)="viewProduct(p)">
     <div class="thumb">
-      <img [src]="'http://localhost:5000' + p.thumbnail" [alt]="p.title" />
+      <img [src]="'https://luxuria-backend-v5u9.onrender.com' + p.thumbnail" [alt]="p.title" />
     </div>
 
     <div class="body">
