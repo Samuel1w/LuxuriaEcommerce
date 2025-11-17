@@ -8,7 +8,7 @@
       <div class="cart-item" *ngFor="let item of cartItems">
         <img
           class="cart-img"
-          [src]="'http://localhost:5000' + (item.selected_image || item.thumbnail)"
+          [src]="'https://luxuria-backend-v5u9.onrender.com' + (item.selected_image || item.thumbnail)"
           alt="{{ item.title }}"
         />
 
@@ -19,7 +19,7 @@
           <!-- Sub-images -->
           <div class="sub-images" *ngIf="item.sub_images?.length">
             <div class="sub-image" *ngFor="let sub of item.sub_images">
-              <img [src]="'http://localhost:5000' + sub.url" alt="{{ item.title }}" />
+              <img [src]="'https://luxuria-backend-v5u9.onrender.com' + sub.url" alt="{{ item.title }}" />
               <div class="quantity-control">
                 <button (click)="updateSubImageQuantity(item, sub, -1)">−</button>
                 <span>{{ sub.quantity }}</span>
