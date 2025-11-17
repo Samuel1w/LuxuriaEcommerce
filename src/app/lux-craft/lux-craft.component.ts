@@ -40,7 +40,7 @@ export class LuxCraftComponent implements OnInit{
 
 
   loadProducts() {
-    this.http.get<cart[]>('http://localhost:5000/api/cart')
+    this.http.get<cart[]>('https://luxuria-backend-v5u9.onrender.com/api/cart')
       .subscribe(data => {
         this.products = data;
         this.filtered = data;
@@ -49,13 +49,13 @@ export class LuxCraftComponent implements OnInit{
 
   search() {
     const q = this.query.trim();
-    this.http.get<cart[]>(`http://localhost:5000/api/cart?q=${q}`)
+    this.http.get<cart[]>(`https://luxuria-backend-v5u9.onrender.com/api/cart?q=${q}`)
       .subscribe(data => this.filtered = data);
   }
 
   selectCategory(cart: string) {
     this.activeCategory = cart;
-    const url = `http://localhost:5000/api/cart?category=${cart}`;
+    const url = `https://luxuria-backend-v5u9.onrender.com/api/cart?category=${cart}`;
     this.http.get<cart[]>(url).subscribe(data => this.filtered = data);
   }
 
