@@ -35,7 +35,7 @@ export class DigitalComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 ngOnInit() {
-  this.http.get<{ marketer: { referral_code: string } }>('http://localhost:5000/api/dm/marketer')
+  this.http.get<{ marketer: { referral_code: string } }>('https://luxuria-backend-v5u9.onrender.com/api/dm/marketer')
       .subscribe(res => {
         // Assign here in TS, not in HTML
         this.referralLink = `${window.location.origin}?ref=${res.marketer.referral_code}`;
@@ -47,7 +47,7 @@ ngOnInit() {
 
   register() {
     this.loading = true;
-    this.http.post('http://localhost:5000/api/dm/register', this.form)
+    this.http.post('https://luxuria-backend-v5u9.onrender.com/api/dm/register', this.form)
       .subscribe({
         next: (res: any) => {
           this.loading = false;
@@ -69,7 +69,7 @@ ngOnInit() {
 
 loadDashboard() {
   if (!this.marketerId) return;
-  this.http.get<any>(`http://localhost:5000/api/dm/dashboard/${this.marketerId}`)
+  this.http.get<any>(`https://luxuria-backend-v5u9.onrender.com/api/dm/dashboard/${this.marketerId}`)
     .subscribe({
       next: data => {
         this.stats = data;
