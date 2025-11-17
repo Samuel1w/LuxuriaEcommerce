@@ -61,7 +61,7 @@ goBack() {
   loadOrders() {
     if (!this.userId) return;
 
-    this.http.get<Order[]>(`http://localhost:5000/api/order/orders/${this.userId}`).subscribe({
+    this.http.get<Order[]>(`https://luxuria-backend-v5u9.onrender.com/api/order/orders/${this.userId}`).subscribe({
       next: (data) => {
         this.orders = data;
         this.calculateTotal();
