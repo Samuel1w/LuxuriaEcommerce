@@ -19,7 +19,7 @@ export interface cart {
 })
 export class CartyService {
  
-  private apiUrl = `${environment.apiUrl}`;
+  private apiUrl = `${environment.apiUrl}/api`;
 
   constructor(private http: HttpClient) {}
 
