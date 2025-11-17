@@ -20,7 +20,7 @@ export class AccountComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (!token) return;
 
-    this.http.get('http://localhost:5000/api/users/me', {
+    this.http.get('https://luxuria-backend-v5u9.onrender.com/api/users/me', {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
       next: (res) => this.user = res,
