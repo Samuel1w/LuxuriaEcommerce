@@ -34,7 +34,7 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.http.get(`http://localhost:5000/api/admin/${id}`).subscribe({
+    this.http.get(`https://luxuria-backend-v5u9.onrender.com/api/admin/${id}`).subscribe({
       next: (data: any) => {
         this.product = data;
         const subImages = Array.isArray(data.subimages) ? data.subimages : [];
@@ -67,7 +67,7 @@ export class ProductDetailsComponent implements OnInit {
       quantity: this.quantity,
     };
 
-    this.http.post('http://localhost:5000/api/carty', cartData, {
+    this.http.post('https://luxuria-backend-v5u9.onrender.com/api/carty', cartData, {
       headers: { Authorization: `Bearer ${token}` },
     }).subscribe({
       next: () => alert(`${product.title} added to cart!`),
@@ -80,7 +80,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   loginUser() {
-    this.http.post('http://localhost:5000/api/auth/login', {
+    this.http.post('https://luxuria-backend-v5u9.onrender.com/api/auth/login', {
       email: this.loginEmail,
       password: this.loginPassword,
     }).subscribe({
@@ -94,7 +94,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   registerUser() {
-    this.http.post('http://localhost:5000/api/auth/register', {
+    this.http.post('https://luxuria-backend-v5u9.onrender.com/api/auth/register', {
       email: this.loginEmail,
       password: this.loginPassword,
     }).subscribe({
