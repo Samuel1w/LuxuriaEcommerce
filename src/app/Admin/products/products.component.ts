@@ -55,28 +55,34 @@ export class ProductsComponent implements OnInit {
     this.subimageFiles = Array.from(event.target.files);
   }
 
-  submitProduct(): void {
-    if (this.productForm.invalid) return;
+ submitProduct(): void {
+  if (this.productForm.invalid) return;
 
-    const formData = new FormData();
-    formData.append('title', this.productForm.value.title);
-    formData.append('price', this.productForm.value.price);
-    formData.append('category', this.productForm.value.category);
-    formData.append('store', this.productForm.value.store);
+  const formData = new FormData();
+  formData.append('title', this.productForm.value.title);
+  formData.append('price', this.productForm.value.price.toString()); // ensure string
+  formData.append('category', this.productForm.value.category);
+  formData.append('store', this.productForm.value.store);
 
-    if (this.thumbnailFile) formData.append('thumbnail', this.thumbnailFile);
-    this.subimageFiles.forEach(file => formData.append('subimages', file));
+  if (this.thumbnailFile) formData.append('thumbnail', this.thumbnailFile);
+  this.subimageFiles.forEach(file => formData.append('subimages', file)); // multiple files
 
-    this.productService.addProduct(formData).subscribe({
-      next: (res) => {
-        this.products.push(res);
-        this.productForm.reset();
-        this.thumbnailFile = null;
-        this.subimageFiles = [];
-      },
-      error: (err) => console.error(err)
-    });
-  }
+  this.loading = true;
+
+  this.productService.addProduct(formData).subscribe({
+    next: (res: any) => {
+      this.products.push(res); // push new product to list
+      this.productForm.reset();
+      this.thumbnailFile = null;
+      this.subimageFiles = [];
+      this.loading = false;
+    },
+    error: (err) => {
+      console.error('Error adding product:', err);
+      this.loading = false;
+    }
+  });
+}
 
   deleteProduct(id: number): void {
     if (!confirm('Are you sure you want to delete this product?')) return;
