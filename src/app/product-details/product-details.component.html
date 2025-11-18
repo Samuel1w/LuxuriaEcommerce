@@ -16,7 +16,7 @@
             <div class="sub-images">
               <img
                 *ngFor="let img of allImages"
-                [src]="'https://luxuria-backend-v5u9.onrender.com' + img"
+                [src]="img"
                 (click)="selectImage(img)"
                 [class.selected]="img === selectedImage"
                 alt="Sub image"
@@ -25,7 +25,7 @@
 
             <div class="main-image">
               <img
-                [src]="'https://luxuria-backend-v5u9.onrender.com' + (selectedImage || product?.thumbnail)"
+                [src]="(selectedImage || product?.thumbnail)"
                 alt="{{ product?.title }}"
               />
             </div>
