@@ -75,10 +75,35 @@ export class HomeComponent implements OnInit{
   }
 
 getImageUrl(img: any): string {
-  if (!img) return '';
-  if (typeof img === 'string') return img;
-  return img.secure_url || img.url || '';
+  if (!img) return 'assets/placeholder.png';
+
+  // 1️⃣ If DB returns full JSON string → parse it
+  if (typeof img === 'string') {
+    try {
+      const parsed = JSON.parse(img);
+
+      return (
+        parsed.secure_url ||
+        parsed.url ||
+        'assets/placeholder.png'
+      );
+
+    } catch {
+      // 2️⃣ If it is not JSON, assume it's already a URL
+      return img.startsWith('http')
+        ? img
+        : 'assets/placeholder.png';
+    }
+  }
+
+  // 3️⃣ If backend ever returns object directly
+  return (
+    img.secure_url ||
+    img.url ||
+    'assets/placeholder.png'
+  );
 }
+
 
 
   viewProduct(p:Product){
