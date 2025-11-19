@@ -74,6 +74,11 @@ export class HomeComponent implements OnInit{
     this.http.get<Product[]>(url).subscribe(data => this.filtered = data);
   }
 
+getImageUrl(img: any): string {
+  if (!img) return '';
+  if (typeof img === 'string') return img;
+  return img.secure_url || img.url || '';
+}
 
 
   viewProduct(p:Product){
