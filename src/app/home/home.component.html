@@ -147,7 +147,8 @@
   <div class="card" *ngFor="let p of filtered">
     <a [routerLink]="['/prodet', p.id]" class="card-link">
       <div class="thumb">
-        <img [src]="p.thumbnail" [alt]="p.title" />
+        <img [src]="p.thumbnail?.secure_url || p.thumbnail?.url" [alt]="p.title" />
+
       </div>
 
       <div class="body" >
