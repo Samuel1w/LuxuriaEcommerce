@@ -60,6 +60,7 @@ getImageUrl(img: any): string {
         : 'assets/placeholder.png';
     }
   }
+  }
   fetchCart() {
     const token = localStorage.getItem('token');
     if (!token) return;
