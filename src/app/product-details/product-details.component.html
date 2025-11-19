@@ -24,10 +24,11 @@
             </div>
 
             <div class="main-image">
-              <img
-                [src]="(selectedImage || product?.thumbnail)"
-                alt="{{ product?.title }}"
-              />
+              <img 
+  [src]="selectedImage || product?.thumbnail?.secure_url || product?.thumbnail?.url"
+  [alt]="product?.title"
+/>
+
             </div>
           </div>
 
