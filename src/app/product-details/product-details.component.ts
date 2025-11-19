@@ -52,6 +52,8 @@ export class ProductDetailsComponent implements OnInit {
       error: (err) => console.error('Error fetching product:', err),
     });
   }
+getImageUrl(img: any): string {
+}
 
   goBack() {
     this.location.back();
