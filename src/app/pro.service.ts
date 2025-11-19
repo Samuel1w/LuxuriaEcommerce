@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
 export interface Product {
   id: number;
   title: string;
@@ -9,8 +10,23 @@ export interface Product {
   category: string;
   store: string;
   sold: number;
-  thumbnail: string;
+  thumbnail: CloudinaryImage;
+  subimages: CloudinaryImage[];
 }
+
+
+
+export interface CloudinaryImage {
+  secure_url: string;
+  url: string;
+  public_id?: string;
+  asset_id?: string;
+  width?: number;
+  height?: number;
+  format?: string;
+}
+
+
 
 @Injectable({
   providedIn: 'root'
