@@ -16,12 +16,13 @@
             <div class="sub-images">
               <img
                 *ngFor="let img of allImages"
-                [src]="img"
+                [src]="getImageUrl(img)"
                 (click)="selectImage(img)"
                 [class.selected]="img === selectedImage"
                 alt="Sub image"
               />
             </div>
+            
 
             <div class="main-image">
   
