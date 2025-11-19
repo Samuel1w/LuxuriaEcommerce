@@ -35,12 +35,20 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.http.get(`https://luxuria-backend-v5u9.onrender.com/api/admin/${id}`).subscribe({
-      next: (data: any) => {
-        this.product = data;
-        const subImages = Array.isArray(data.subimages) ? data.subimages : [];
-        this.allImages = [data.thumbnail, ...subImages].filter(Boolean);
-        this.selectedImage = this.allImages[0];
-      },
+     next: (data: any) => {
+  this.product = data;
+
+  const thumbnailUrl = data.thumbnail?.secure_url || data.thumbnail?.url;
+
+  const subImageUrls = Array.isArray(data.subimages)
+    ? data.subimages.map((img: any) => img.secure_url || img.url)
+    : [];
+
+  this.allImages = [thumbnailUrl, ...subImageUrls].filter(Boolean);
+  this.selectedImage = this.allImages[0];
+},
+
+      
       error: (err) => console.error('Error fetching product:', err),
     });
   }
@@ -63,7 +71,7 @@ export class ProductDetailsComponent implements OnInit {
 
     const cartData = {
       product_id: product.id,
-      selected_image: this.selectedImage || product.thumbnail,
+      selected_image: this.selectedImage || product.thumbnail?.secure_url || product.thumbnail?.url,
       quantity: this.quantity,
     };
 
