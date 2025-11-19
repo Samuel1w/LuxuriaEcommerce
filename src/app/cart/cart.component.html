@@ -8,7 +8,7 @@
       <div class="cart-item" *ngFor="let item of cartItems">
         <img
           class="cart-img"
-          [src]="getImageUrl(item.selected_image || item.thumbnail)"
+          [src]="(item.selected_image || item.thumbnail)"
           alt="{{ item.title }}"
         />
 
