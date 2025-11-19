@@ -51,7 +51,7 @@
         <td>
 
           <img 
-  [src]="product.thumbnail?.secure_url || product.thumbnail?.url" 
+  [src]="getImageUrl(product.thumbnail)" 
   [alt]="product.title" 
   class="product-thumb"
 />
