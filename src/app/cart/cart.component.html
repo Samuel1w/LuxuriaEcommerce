@@ -8,7 +8,7 @@
       <div class="cart-item" *ngFor="let item of cartItems">
         <img
           class="cart-img"
-          [src]="(item.selected_image || item.thumbnail)"
+          [src]="getImageUrl(item.selected_image || item.thumbnail)"
           alt="{{ item.title }}"
         />
 
@@ -19,7 +19,7 @@
           <!-- Sub-images -->
           <div class="sub-images" *ngIf="item.sub_images?.length">
             <div class="sub-image" *ngFor="let sub of item.sub_images">
-              <img [src]="sub.url" alt="{{ item.title }}" />
+              <img [src]="getImageUrl(sub.url)" alt="{{ item.title }}" />
               <div class="quantity-control">
                 <button (click)="updateSubImageQuantity(item, sub, -1)">−</button>
                 <span>{{ sub.quantity }}</span>
