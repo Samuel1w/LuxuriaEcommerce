@@ -1,3 +1,4 @@
+
 <app-header></app-header>
 
 <div class="app-shell" *ngIf="product; else loading">
@@ -16,7 +17,7 @@
             <div class="sub-images">
               <img
                 *ngFor="let img of allImages"
-                [src]="getImageUrl(img)"
+                [src]="img"
                 (click)="selectImage(img)"
                 [class.selected]="img === selectedImage"
                 alt="Sub image"
