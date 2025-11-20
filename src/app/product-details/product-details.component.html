@@ -16,13 +16,13 @@
           <div class="images">
             <div class="sub-images">
   <img
-  *ngFor="let img of allImages"
-  [src]="img?.secure_url || img?.url || img || 'assets/placeholder.png'"
-  (click)="selectImage(img?.secure_url || img?.url || img)"
-  [class.selected]="(img?.secure_url || img?.url || img) === selectedImage"
-  alt="Sub image"
-  loading="lazy"
-/>
+    *ngFor="let img of allImages"
+    [src]="img || 'assets/Dana B.jpg'"
+    (click)="selectImage(img)"
+    [class.selected]="img === selectedImage"
+    alt="Sub image"
+    loading="lazy"
+  />
 </div>
 
             <div class="main-image">
