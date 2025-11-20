@@ -29,10 +29,11 @@ interface CartItem {
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+
   cartItems: CartItem[] = [];
   total = 0;
   apiUrl = 'https://luxuria-backend-v5u9.onrender.com/api/carty';
-  adminPhone = '237676516888'; // Replace with your WhatsApp number
+  adminPhone = '237676516888';
 
   constructor(private http: HttpClient) {}
 
@@ -55,12 +56,10 @@ export class CartComponent implements OnInit {
     });
   }
 
-}
   calculateTotal() {
-  this.total = this.cartItems.reduce((sum, item) => sum + this.getItemSubtotal(item), 0);
-}
+    this.total = this.cartItems.reduce((sum, item) => sum + this.getItemSubtotal(item), 0);
+  }
 
-  // Update main item quantity
   updateQuantity(item: CartItem, change: number) {
     const newQty = item.quantity + change;
     if (newQty < 1) return;
@@ -74,7 +73,6 @@ export class CartComponent implements OnInit {
     });
   }
 
-  // Update sub-image quantity
   updateSubImageQuantity(item: CartItem, sub: SubImage, change: number) {
     const newQty = sub.quantity + change;
     if (newQty < 0) return;
@@ -83,99 +81,79 @@ export class CartComponent implements OnInit {
     this.calculateTotal();
   }
 
-removeItem(itemId: number) {
-  const token = localStorage.getItem('token');
+  removeItem(itemId: number) {
+    const token = localStorage.getItem('token');
 
-  if (!token) {
-    console.error("❌ No token found — user not logged in");
-    alert("You must be logged in to remove items.");
-    return;
-  }
+    if (!token) {
+      console.error("No token found — user not logged in");
+      alert("You must be logged in to remove items.");
+      return;
+    }
 
-  this.http.delete(
-    `${this.apiUrl}/${itemId}`,
-    {
+    this.http.delete(`${this.apiUrl}/${itemId}`, {
       headers: { Authorization: `Bearer ${token}` }
-    }
-  ).subscribe({
-    next: () => {
-      this.cartItems = this.cartItems.filter(i => i.id !== itemId);
-      this.calculateTotal();
-    },
-    error: (err) => {
-      console.error('❌ Error removing item:', err);
-      alert("Failed to remove item.");
-    }
-  });
-}
-
-getImageUrl(img: any): string {
-  if (!img) return 'assets/placeholder.png';
-
-  // 1️⃣ If DB returns full JSON string → parse it
-  if (typeof img === 'string') {
-    try {
-      const parsed = JSON.parse(img);
-
-      return (
-        parsed.secure_url ||
-        parsed.url ||
-        'assets/placeholder.png'
-      );
-
-    } catch {
-      // 2️⃣ If it is not JSON, assume it's already a URL
-      return img.startsWith('http')
-        ? img
-        : 'assets/placeholder.png';
-    }
+    }).subscribe({
+      next: () => {
+        this.cartItems = this.cartItems.filter(i => i.id !== itemId);
+        this.calculateTotal();
+      },
+      error: (err) => {
+        console.error('Error removing item:', err);
+        alert("Failed to remove item.");
+      }
+    });
   }
 
-sendToWhatsApp() {
-  if (!this.cartItems || !this.cartItems.length) {
-    alert('Cart is empty!');
-    return;
+  getImageUrl(img: any): string {
+    if (!img) return 'assets/placeholder.png';
+
+    if (typeof img === 'string') {
+      try {
+        const parsed = JSON.parse(img);
+        return parsed.secure_url || parsed.url || 'assets/placeholder.png';
+      } catch {
+        return img.startsWith('http') ? img : 'assets/placeholder.png';
+      }
+    }
+
+    return img.secure_url || img.url || 'assets/placeholder.png';
   }
 
-  const phoneNumber = '237676516888'; // Replace with your number including country code, e.g., 2376xxxxxxx
-  const origin = window.location.origin;   // To generate product links dynamically
-
-  // Build message text
-  let message = '🛒 *My Cart Items:*\n\n';
-
-  this.cartItems.forEach(item => {
-    message += `*${item.title}*\n`;
-
-    // Include sub-images with quantity > 0
-    if (item.sub_images && item.sub_images.length) {
-      item.sub_images
-        .filter(img => img.quantity && img.quantity > 0)
-        .forEach(img => {
-          message += `- Sub Image: ${img.url} x${img.quantity}\n`;
-        });
+  sendToWhatsApp() {
+    if (!this.cartItems || !this.cartItems.length) {
+      alert('Cart is empty!');
+      return;
     }
 
-    // Include main quantity if any
-    if (item.quantity && item.quantity > 0) {
-      message += `- Main Product: x${item.quantity}\n`;
-    }
+    const phoneNumber = this.adminPhone;
+    const origin = window.location.origin;
 
-    // Include product page link
-    message += `Product link: ${origin}/product/${item.product_id}\n\n`;
-  });
+    let message = '🛒 *My Cart Items:*\n\n';
 
-  // Encode message for URL
-  const encodedMessage = encodeURIComponent(message);
+    this.cartItems.forEach(item => {
+      message += `*${item.title}*\n`;
 
-  // Open WhatsApp
-  const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-  window.open(waUrl, '_blank');
-}
+      if (item.sub_images && item.sub_images.length) {
+        item.sub_images
+          .filter(img => img.quantity > 0)
+          .forEach(img => {
+            message += `- Sub Image: ${img.url} x${img.quantity}\n`;
+          });
+      }
 
-  // Add this method inside CartComponent
-getItemSubtotal(item: CartItem): number {
-  return item.sub_images.reduce((sum, img) => sum + img.quantity * item.price, 0);
-}
+      if (item.quantity > 0) {
+        message += `- Main Product: x${item.quantity}\n`;
+      }
 
+      message += `Product link: ${origin}/product/${item.product_id}\n\n`;
+    });
 
+    const encodedMessage = encodeURIComponent(message);
+    const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(waUrl, '_blank');
+  }
+
+  getItemSubtotal(item: CartItem): number {
+    return item.sub_images.reduce((sum, img) => sum + img.quantity * item.price, 0);
+  }
 }
