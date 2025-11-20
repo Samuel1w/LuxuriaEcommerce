@@ -17,9 +17,9 @@
             <div class="sub-images">
   <img
     *ngFor="let img of allImages"
-    [src]="getImageUrl(img)"                       <!-- always pass through sanitizer -->
-    (click)="selectImage(getImageUrl(img))"       <!-- pass URL, not raw item -->
-    [class.selected]="getImageUrl(img) === selectedImage" <!-- compare normalized URLs -->
+    [src]="getImageUrl(img)"
+    (click)="selectImage(getImageUrl(img))"
+    [class.selected]="getImageUrl(img) === selectedImage"
     alt="Sub image"
     loading="lazy"
   />
