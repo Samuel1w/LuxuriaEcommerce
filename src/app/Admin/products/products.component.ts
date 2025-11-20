@@ -46,28 +46,23 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
-getImageUrl(img: any): string {
-  if (!img) return 'assets/placeholder.png';
 
-  // 1️⃣ If DB returns full JSON string → parse it
-  if (typeof img === 'string') {
-    try {
-      const parsed = JSON.parse(img);
 
-      return (
-        parsed.secure_url ||
-        parsed.url ||
-        'assets/placeholder.png'
-      );
+    getImageUrl(img: any): string {
+    if (!img) return 'assets/placeholder.png';
 
-    } catch {
-      // 2️⃣ If it is not JSON, assume it's already a URL
-      return img.startsWith('http')
-        ? img
-        : 'assets/placeholder.png';
+    if (typeof img === 'string') {
+      try {
+        const parsed = JSON.parse(img);
+        return parsed.secure_url || parsed.url || 'assets/placeholder.png';
+      } catch {
+        return img.startsWith('http') ? img : 'assets/placeholder.png';
+      }
     }
+
+    return img.secure_url || img.url || 'assets/placeholder.png';
   }
-  }
+
   onThumbnailSelected(event: any): void {
     this.thumbnailFile = event.target.files[0] || null;
   }
