@@ -35,23 +35,31 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.http.get(`https://luxuria-backend-v5u9.onrender.com/api/admin/${id}`).subscribe({
-     next: (data: any) => {
+   next: (data: any) => {
   this.product = data;
 
-  const thumbnailUrl = data.thumbnail?.secure_url || data.thumbnail?.url;
+  // ---- Normalizing thumbnail ----
+  const thumbnailUrl = this.getImageUrl(data.thumbnail);
 
+  // ---- Normalizing ALL subimages no matter what format they came in ----
   const subImageUrls = Array.isArray(data.subimages)
-    ? data.subimages.map((img: any) => img.secure_url || img.url)
+    ? data.subimages.map((img: any) => this.getImageUrl(img))
     : [];
 
+  // ---- Fill gallery ----
   this.allImages = [thumbnailUrl, ...subImageUrls].filter(Boolean);
+
   this.selectedImage = this.allImages[0];
 },
+
 
       
       error: (err) => console.error('Error fetching product:', err),
     });
   }
+
+ 
+
 getImageUrl(img: any): string {
   if (!img) return 'assets/placeholder.png';
 
