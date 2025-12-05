@@ -119,39 +119,52 @@ export class CartComponent implements OnInit {
     return img.secure_url || img.url || 'assets/placeholder.png';
   }
 
-  sendToWhatsApp() {
-    if (!this.cartItems || !this.cartItems.length) {
-      alert('Cart is empty!');
-      return;
+ sendToWhatsApp() {
+  if (!this.cartItems || !this.cartItems.length) {
+    alert('Cart is empty!');
+    return;
+  }
+
+  const phoneNumber = this.adminPhone;
+  const origin = window.location.origin;
+
+  let message = "Hello, I would like to place an order 😊\n\n";
+
+  this.cartItems.forEach(item => {
+    message += `*Product:* ${item.title}\n`;
+
+    let count = 1;
+
+    // SUB IMAGES
+    if (item.sub_images && item.sub_images.length) {
+      item.sub_images
+        .filter(img => img.quantity > 0)
+        .forEach(img => {
+          const realUrl =
+            img.secure_url ||
+            img.url?.secure_url ||
+            img.url?.url ||
+            img.url ||
+            "Image unavailable";
+
+          message += `${count}) ${img.quantity} of this sub image 👉 ${realUrl}\n`;
+          count++;
+        });
     }
 
-    const phoneNumber = this.adminPhone;
-    const origin = window.location.origin;
+    // MAIN PRODUCT
+    if (item.quantity > 0) {
+      message += `${count}) ${item.quantity} main product\n`;
+    }
 
-    let message = '🛒 *My Cart Items:*\n\n';
+    // PRODUCT LINK
+    message += `Product link: ${origin}/product/${item.product_id}\n\n`;
+  });
 
-    this.cartItems.forEach(item => {
-      message += `*${item.title}*\n`;
-
-      if (item.sub_images && item.sub_images.length) {
-        item.sub_images
-          .filter(img => img.quantity > 0)
-          .forEach(img => {
-            message += `- Sub Image: ${img.url} x${img.quantity}\n`;
-          });
-      }
-
-      if (item.quantity > 0) {
-        message += `- Main Product: x${item.quantity}\n`;
-      }
-
-      message += `Product link: ${origin}/product/${item.product_id}\n\n`;
-    });
-
-    const encodedMessage = encodeURIComponent(message);
-    const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    window.open(waUrl, '_blank');
-  }
+  const encodedMessage = encodeURIComponent(message);
+  const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+  window.open(waUrl, '_blank');
+}
 
   getItemSubtotal(item: CartItem): number {
     return item.sub_images.reduce((sum, img) => sum + img.quantity * item.price, 0);
