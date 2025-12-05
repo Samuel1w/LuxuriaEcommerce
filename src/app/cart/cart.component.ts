@@ -119,7 +119,7 @@ export class CartComponent implements OnInit {
     return img.secure_url || img.url || 'assets/placeholder.png';
   }
 
- sendToWhatsApp() {
+sendToWhatsApp() {
   if (!this.cartItems || !this.cartItems.length) {
     alert('Cart is empty!');
     return;
@@ -140,12 +140,8 @@ export class CartComponent implements OnInit {
       item.sub_images
         .filter(img => img.quantity > 0)
         .forEach(img => {
-          const realUrl =
-            img.secure_url ||
-            img.url?.secure_url ||
-            img.url?.url ||
-            img.url ||
-            "Image unavailable";
+          // Use the SAME logic used for displaying images
+          const realUrl = this.getImageUrl(img.url);
 
           message += `${count}) ${img.quantity} of this sub image 👉 ${realUrl}\n`;
           count++;
